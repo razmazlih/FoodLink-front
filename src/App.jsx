@@ -1,9 +1,13 @@
-function App() {
-  return (
-    <div>
+import Main from "./components/home/Main";
+import Navbar from "./components/Navbar";
 
-    </div>
-  );
+function App() {
+    return (
+        <div>
+            <Navbar />
+			<Main />
+        </div>
+    );
 }
 
 export default App;
