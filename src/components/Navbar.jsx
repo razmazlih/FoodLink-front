@@ -8,7 +8,7 @@ function Navbar() {
             { name: 'Home', link: '/' },
             { name: 'About', link: '/' },
             { name: 'How it Works', link: '/' },
-            { name: 'Restaurants', link: '/' },
+            { name: 'Restaurants', link: '/restaurants' },
             { name: 'Contact', link: '/' },
         ]);
     }, []);
