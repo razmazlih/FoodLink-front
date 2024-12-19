@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getRestaurantById } from '../../services/DishBoard/restaurants/api';
+import RestaurantInfo from './RestaurantInfo';
 
 function MenuMain() {
     const { id } = useParams();
@@ -18,21 +19,10 @@ function MenuMain() {
         fetchRestaurantInfo();
     }, [id]);
 
-    const firstSection = (
-        <div>
-            <h2>{restaurantInfo.name}</h2>
-            <h3>
-                {restaurantInfo.address}, {restaurantInfo.city}
-            </h3>
-        </div>
-    );
-
-
 
     return (
         <>
-            <div>{firstSection}</div>
-
+            <div><RestaurantInfo restaurant={restaurantInfo} /></div>
         </>
     );
 }
