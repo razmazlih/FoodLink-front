@@ -10,3 +10,14 @@ export const getRestaurants = async () => {
         throw error;
     }
 };
+
+export const getRestaurantById = async (id) => {
+    try {
+        const { data } = await axios.get(`${API_DISHBOARD_URL}/restaurants/info/${id}/`);
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error("Error fetching restaurant by ID:", error);
+        throw error;
+    }
+};
