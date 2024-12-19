@@ -1,12 +1,17 @@
-import Main from "./components/home/Main";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomeMain from "./components/home/HomeMain";
 import Navbar from "./components/Navbar";
+import RestaurantsMain from "./components/restaurants/RestaurantsMain";
 
 function App() {
     return (
-        <div>
+        <Router>
             <Navbar />
-			<Main />
-        </div>
+            <Routes>
+                <Route path="/" element={<HomeMain />} />
+                <Route path="/restaurants" element={<RestaurantsMain />} />
+            </Routes>
+        </Router>
     );
 }
 
