@@ -1,42 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RestaurantSearch from './RestaurantSearch';
 import RestaurantsTemplate from './RestaurantsTemplate';
+import { getRestaurants } from '../../services/DishBoard/restaurants/api';
 
 function RestaurantsMain() {
     const [searchTerm, setSearchTerm] = useState('');
+    const [restaurants, setRestaurants] = useState([]);
 
-    const restaurants = [
-        {
-            id: 1,
-            name: 'Pizza Heaven',
-            city: 'Tel Aviv',
-            address: '123 Rothschild Blvd',
-        },
-        {
-            id: 2,
-            name: 'Sushi World',
-            city: 'Haifa',
-            address: '456 Carmel St',
-        },
-        {
-            id: 3,
-            name: 'Burger King',
-            city: 'Jerusalem',
-            address: '789 King David St',
-        },
-        {
-            id: 4,
-            name: 'Pasta Paradise',
-            city: 'Eilat',
-            address: '101 Beachfront Ave',
-        },
-        {
-            id: 5,
-            name: 'Falafel Dream',
-            city: 'Beer Sheva',
-            address: '202 Negev St',
-        },
-    ];
+    useEffect(() => {
+        const fetchRestaurants = async () => {
+            try {
+                const data = await getRestaurants();
+                setRestaurants(data);
+            } catch (error) {
+                console.error('Error fetching restaurants:', error);
+            }
+        };
+
+        fetchRestaurants();
+    }, []);
 
     const filteredRestaurants = restaurants.filter((restaurant) =>
         restaurant.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -44,8 +26,8 @@ function RestaurantsMain() {
 
     const showRestaurants = (
         <div>
-            {filteredRestaurants.map((restaurant, index) => (
-                <RestaurantsTemplate key={index} restaurant={restaurant} />
+            {filteredRestaurants.map((restaurant) => (
+                <RestaurantsTemplate key={restaurant.id} restaurant={restaurant} />
             ))}
         </div>
     );
