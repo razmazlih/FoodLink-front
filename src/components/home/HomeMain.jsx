@@ -1,7 +1,7 @@
 import FirstContent from './FirstContent';
 import TemplateContent from './TemplateContent';
 
-function Main() {
+function HomeMain() {
     const myItems = [
         {
             topic: 'Restaurant discovery',
@@ -63,4 +63,4 @@ function Main() {
     );
 }
 
-export default Main;
+export default HomeMain;
