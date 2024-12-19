@@ -2,27 +2,39 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getRestaurantById } from '../../services/DishBoard/restaurants/api';
 import RestaurantInfo from './RestaurantInfo';
+import MenuItems from './MenuItems';
+import { getRestaurantMenu } from '../../services/DishBoard/menu/api';
 
 function MenuMain() {
     const { restaurantId } = useParams();
     const [restaurantInfo, setRestaurantInfo] = useState('');
+    const [menuItems, setMenuItems] = useState([]);
 
     useEffect(() => {
-        const fetchRestaurantInfo = async () => {
+        const fetchData = async () => {
             try {
-                setRestaurantInfo(await getRestaurantById(restaurantId));
+                const [restaurant, menu] = await Promise.all([
+                    getRestaurantById(restaurantId),
+                    getRestaurantMenu(restaurantId),
+                ]);
+                setRestaurantInfo(restaurant);
+                setMenuItems(menu);
             } catch (error) {
-                console.error('Error fetching restaurant info:', error);
+                console.error('Error fetching data:', error);
             }
         };
 
-        fetchRestaurantInfo();
+        fetchData();
     }, [restaurantId]);
-
 
     return (
         <>
-            <div><RestaurantInfo restaurant={restaurantInfo} /></div>
+            <div>
+                <RestaurantInfo restaurant={restaurantInfo} />
+            </div>
+            <div>
+                <MenuItems menu={menuItems} />
+            </div>
         </>
     );
 }
