@@ -4,20 +4,20 @@ import { getRestaurantById } from '../../services/DishBoard/restaurants/api';
 import RestaurantInfo from './RestaurantInfo';
 
 function MenuMain() {
-    const { id } = useParams();
+    const { restaurantId } = useParams();
     const [restaurantInfo, setRestaurantInfo] = useState('');
 
     useEffect(() => {
         const fetchRestaurantInfo = async () => {
             try {
-                setRestaurantInfo(await getRestaurantById(id));
+                setRestaurantInfo(await getRestaurantById(restaurantId));
             } catch (error) {
                 console.error('Error fetching restaurant info:', error);
             }
         };
 
         fetchRestaurantInfo();
-    }, [id]);
+    }, [restaurantId]);
 
 
     return (
