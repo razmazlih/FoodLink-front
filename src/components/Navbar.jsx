@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 function Navbar() {
-    const [myList, setMyList] = useState([]);
+    const { isLoggedIn, handleLogout } = useContext(AuthContext);
 
-    useEffect(() => {
-        setMyList([
-            { name: 'Home', link: '/' },
-            { name: 'About', link: '/' },
-            { name: 'How it Works', link: '/' },
-            { name: 'Restaurants', link: '/restaurants' },
-            { name: 'Contact', link: '/' },
-        ]);
-    }, []);
+    const navbarList = [
+        { name: 'Home', link: '/' },
+        { name: 'About', link: '/' },
+        { name: 'How it Works', link: '/' },
+        { name: 'Restaurants', link: '/restaurants' },
+        { name: 'Contact', link: '/' },
+    ];
 
     const navbarLink = (item, index) => {
         return (
             <li key={index}>
-                <a href={item.link}>{item.name}</a>
+                <Link to={item.link}>{item.name}</Link>
             </li>
         );
     };
@@ -24,7 +24,18 @@ function Navbar() {
     return (
         <div>
             <h1>Food Link</h1>
-            {myList.map(navbarLink)}
+            <ul>
+                {navbarList.map(navbarLink)}
+                {isLoggedIn ? (
+                    <li>
+                        <button onClick={handleLogout}>Logout</button>
+                    </li>
+                ) : (
+                    <li>
+                        <Link to={'/login'}>Login</Link>
+                    </li>
+                )}
+            </ul>
         </div>
     );
 }
