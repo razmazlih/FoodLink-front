@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { userCredentials } from "../../services/Userbase/api";
 
 function Login() {
-  const { handleLogin } = useContext(AuthContext); // שימוש בפונקציה מהקונטקסט
+  const { handleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
