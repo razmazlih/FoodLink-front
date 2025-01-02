@@ -1,1 +1,2 @@
 export const API_DISHBOARD_URL = process.env.REACT_APP_API_DISHBOARD_URL || "http://localhost:8002/api";
+export const API_USERBASE_URL = process.env.REACT_APP_API_USERBASE_URL || "http://localhost:8001/api";
