@@ -15,3 +15,16 @@ export const fetchOrder = async (orderId) => {
         throw error;
     }
 };
+
+export const fetchAllOrders = async (userId) => {
+    try {
+        const { data } = await axios.get(`${API_ORDERLINE_URL}/orders/`);
+        const filteredData = data.filter(
+            (order) => Number(order.user_id) === Number(userId)
+        );
+        return filteredData;
+    } catch (error) {
+        console.error('Error fetching all orders:', error);
+        throw error;
+    }
+};
