@@ -44,7 +44,6 @@ function RestaurantsTemplate({ restaurant }) {
         try {
             const data = await getRestaurantOpeningHours(restaurantId);
             setOpeningHours(data);
-            console.log(data);
         } catch (error) {
             console.error('Error fetching opening hours:', error);
         }
