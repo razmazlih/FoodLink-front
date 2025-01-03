@@ -8,10 +8,12 @@ import { AuthProvider } from './context/AuthContext';
 import Register from './components/users/Register';
 import AboutMain from './components/about/AboutMain';
 import HowItWorksMain from './components/how-it-works/HowItWorksMain';
+import { CartContextProvider } from './context/CartContext';
 
 function App() {
     return (
         <AuthProvider>
+            <CartContextProvider>
             <Router>
                 <Navbar />
                 <Routes>
@@ -24,6 +26,7 @@ function App() {
                     <Route path="/how-it-works" element={<HowItWorksMain />} />                    
                 </Routes>
             </Router>
+            </CartContextProvider>
         </AuthProvider>
     );
 }
