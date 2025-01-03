@@ -8,17 +8,17 @@ function RestaurantsMain() {
     const [restaurants, setRestaurants] = useState([]);
 
     useEffect(() => {
-        const fetchRestaurants = async () => {
-            try {
-                const data = await getRestaurants();
-                setRestaurants(data);
-            } catch (error) {
-                console.error('Error fetching restaurants:', error);
-            }
-        };
-
         fetchRestaurants();
     }, []);
+
+    const fetchRestaurants = async () => {
+        try {
+            const data = await getRestaurants();
+            setRestaurants(data);
+        } catch (error) {
+            console.error('Error fetching restaurants:', error);
+        }
+    };
 
     const filteredRestaurants = restaurants.filter((restaurant) =>
         restaurant.name.toLowerCase().includes(searchTerm.toLowerCase())
