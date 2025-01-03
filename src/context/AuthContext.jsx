@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userId, setUserId] = useState(null);
+    const [userId, setUserId] = useState(localStorage.getItem('userId') || '');
 
     const handleLogout = useCallback(() => {
         localStorage.removeItem('accessToken');
@@ -18,14 +18,12 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
-        const myUserId = localStorage.getItem('userId');
-        if ((accessToken && !myUserId) || (!accessToken && myUserId)) {
+        if ((accessToken && !userId) || (!accessToken && userId)) {
             handleLogout();
         } else {
             setIsLoggedIn(!!accessToken);
-            setUserId(myUserId || '');
         }
-    }, [handleLogout]);
+    }, [userId, handleLogout]);
 
     const handleLogin = (tokens) => {
         localStorage.setItem('accessToken', JSON.stringify(tokens));
