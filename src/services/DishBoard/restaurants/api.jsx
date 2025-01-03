@@ -11,6 +11,20 @@ export const getRestaurants = async () => {
     }
 };
 
+export const getRestaurantsNamesAndIds = async () => {
+    try {
+        const { data } = await axios.get(`${API_DISHBOARD_URL}/restaurants/info/`);
+        const mapRestaurants = data.map((restaurant) => {
+            const info = {id: restaurant.id, name: restaurant.name}
+            return info;
+        });
+        return mapRestaurants;
+    } catch (error) {
+        console.error("Error fetching restaurants:", error);
+        throw error;
+    }
+};
+
 export const getRestaurantById = async (id) => {
     try {
         const { data } = await axios.get(`${API_DISHBOARD_URL}/restaurants/info/${id}/`);
