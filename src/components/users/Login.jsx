@@ -11,10 +11,8 @@ function Login() {
 
   const handleSubmit = () => {
     userCredentials({ username, password }).then((response) => {
-      if (response.access) {
         handleLogin(JSON.stringify(response));
         navigate("/");
-      }
       })
       .catch((error) => {
         console.error("Error login user:", error);
