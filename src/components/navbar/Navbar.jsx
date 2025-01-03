@@ -32,6 +32,9 @@ function Navbar() {
                 {isLoggedIn ? (
                     <>
                         <li>
+                            <Link to={'/my-orders'}>My Orders</Link>
+                        </li>
+                        <li>
                             <button onClick={() => setShowing(!showing)}>
                                 My Cart
                             </button>
