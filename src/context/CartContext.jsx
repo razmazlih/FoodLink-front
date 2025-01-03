@@ -1,12 +1,24 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { fetchOrder } from '../services/OrderLine/order/api';
 
 export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
-    const [cart, setCart] = useState(false);
+    const [orderId, setOrderId] = useState('')
+    const [cart, setCart] = useState([]);
+    const [showing, setShowing] = useState(false);
+
+    useEffect(() => {
+        const cartItems = fetchOrder(orderId).then((fullOrder) => fullOrder.items);
+        setCart(cartItems);
+    }, [orderId]);
 
     useEffect(() => {
         const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+        const savedOrderId = localStorage.getItem('orderId');
+        if (savedOrderId) {
+            setOrderId(savedOrderId);
+        }
         setCart(cartItems || []);
     }, []);
 
@@ -30,7 +42,7 @@ export const CartContextProvider = ({ children }) => {
     };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, showing, setShowing }}>
             {children}
         </CartContext.Provider>
     );
