@@ -12,9 +12,9 @@ import { CartContextProvider } from './context/CartContext';
 
 function App() {
     return (
-        <AuthProvider>
-            <CartContextProvider>
-                <Router>
+        <Router>
+            <AuthProvider>
+                <CartContextProvider>
                     <Navbar />
                     <Routes>
                         <Route path="/" element={<HomeMain />} />
@@ -34,9 +34,9 @@ function App() {
                             element={<HowItWorksMain />}
                         />
                     </Routes>
-                </Router>
-            </CartContextProvider>
-        </AuthProvider>
+                </CartContextProvider>
+            </AuthProvider>
+        </Router>
     );
 }
 
