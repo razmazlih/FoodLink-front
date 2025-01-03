@@ -5,7 +5,7 @@ import { getRestaurants } from '../../services/DishBoard/restaurants/api';
 
 function RestaurantsMain() {
     const [searchTerm, setSearchTerm] = useState('');
-    const [restaurants, setRestaurants] = useState([]);
+    const [restaurants, setRestaurants] = useState(JSON.parse(localStorage.getItem('restaurants')) || []);
 
     useEffect(() => {
         fetchRestaurants();
@@ -14,6 +14,7 @@ function RestaurantsMain() {
     const fetchRestaurants = async () => {
         try {
             const data = await getRestaurants();
+            localStorage.setItem('restaurants', JSON.stringify(data));
             setRestaurants(data);
         } catch (error) {
             console.error('Error fetching restaurants:', error);
