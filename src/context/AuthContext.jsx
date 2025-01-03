@@ -1,18 +1,31 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-// יצירת הקונטקסט
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState(null);
+
+    const handleLogout = useCallback(() => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userId');
+        setUserId(null);
+        setIsLoggedIn(false);
+        navigate('/');
+    }, [navigate]);
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
         const myUserId = localStorage.getItem('userId');
-        setIsLoggedIn(!!accessToken);
-        setUserId(myUserId || '');
-    }, []);
+        if ((accessToken && !myUserId) || (!accessToken && myUserId)) {
+            handleLogout();
+        } else {
+            setIsLoggedIn(!!accessToken);
+            setUserId(myUserId || '');
+        }
+    }, [handleLogout]);
 
     const handleLogin = (tokens) => {
         localStorage.setItem('accessToken', JSON.stringify(tokens));
@@ -20,12 +33,6 @@ export const AuthProvider = ({ children }) => {
         setIsLoggedIn(true);
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('userId');
-        setUserId(null);
-        setIsLoggedIn(false);
-    };
 
     const extractUserIdFromToken = (token) => {
         try {
@@ -42,7 +49,9 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, handleLogin, handleLogout, userId }}>
+        <AuthContext.Provider
+            value={{ isLoggedIn, handleLogin, handleLogout, userId }}
+        >
             {children}
         </AuthContext.Provider>
     );
