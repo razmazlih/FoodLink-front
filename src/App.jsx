@@ -7,6 +7,7 @@ import Login from './components/users/Login';
 import { AuthProvider } from './context/AuthContext';
 import Register from './components/users/Register';
 import AboutMain from './components/about/AboutMain';
+import HowItWorksMain from './components/how-it-works/HowItWorksMain';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/about" element={<AboutMain />} />                    
+                    <Route path="/how-it-works" element={<HowItWorksMain />} />                    
                 </Routes>
             </Router>
         </AuthProvider>

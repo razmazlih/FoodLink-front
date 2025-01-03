@@ -33,6 +33,7 @@ function HomeMain() {
                 </p>
             ),
             button: 'Get In Touch',
+            link: '/contact'
         },
         {
             topHeader: <h3>DELICIOUS DELIVERIES</h3>,

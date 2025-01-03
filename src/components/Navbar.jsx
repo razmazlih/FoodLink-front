@@ -8,7 +8,7 @@ function Navbar() {
     const navbarList = [
         { name: 'Home', link: '/' },
         { name: 'About', link: '/about' },
-        { name: 'How it Works', link: '/' },
+        { name: 'How it Works', link: '/how-it-works' },
         { name: 'Restaurants', link: '/restaurants' },
         { name: 'Contact', link: '/' },
     ];
