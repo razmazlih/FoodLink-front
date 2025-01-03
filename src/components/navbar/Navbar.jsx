@@ -1,9 +1,12 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { CartContext } from '../../context/CartContext';
+import CartNavbar from './CartNavbar';
 
 function Navbar() {
     const { isLoggedIn, handleLogout } = useContext(AuthContext);
+    const { showing, setShowing, orderId } = useContext(CartContext);
 
     const navbarList = [
         { name: 'Home', link: '/' },
@@ -27,15 +30,23 @@ function Navbar() {
             <ul>
                 {navbarList.map(navbarLink)}
                 {isLoggedIn ? (
-                    <li>
-                        <button onClick={handleLogout}>Logout</button>
-                    </li>
+                    <>
+                        <li>
+                            <button onClick={() => setShowing(!showing)}>
+                                My Cart
+                            </button>
+                        </li>
+                        <li>
+                            <button onClick={handleLogout}>Logout</button>
+                        </li>
+                    </>
                 ) : (
                     <li>
                         <Link to={'/login'}>Login</Link>
                     </li>
                 )}
             </ul>
+            {showing && <CartNavbar />}
         </div>
     );
 }
