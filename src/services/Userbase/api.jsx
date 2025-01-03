@@ -11,3 +11,13 @@ export const userCredentials = async (user) => {
         throw error;
     }
 };
+
+export const registerUser = async (user) => {
+    try {
+        const { data } = await axios.post(`${API_USERBASE_URL}/users/register/`, user);
+        return data;
+    } catch (error) {
+        console.error("Error registering user:", error);
+        throw error;
+    }
+};
