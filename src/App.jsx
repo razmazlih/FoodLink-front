@@ -6,6 +6,7 @@ import MenuMain from './components/menu/MenuMain';
 import Login from './components/users/Login';
 import { AuthProvider } from './context/AuthContext';
 import Register from './components/users/Register';
+import AboutMain from './components/about/AboutMain';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/restaurants/:restaurantId" element={<MenuMain />}/>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/about" element={<AboutMain />} />                    
                 </Routes>
             </Router>
         </AuthProvider>
