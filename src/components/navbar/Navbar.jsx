@@ -6,7 +6,7 @@ import CartNavbar from './CartNavbar';
 
 function Navbar() {
     const { isLoggedIn, handleLogout } = useContext(AuthContext);
-    const { showing, setShowing, orderId } = useContext(CartContext);
+    const { showing, setShowing } = useContext(CartContext);
 
     const navbarList = [
         { name: 'Home', link: '/' },
