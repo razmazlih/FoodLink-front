@@ -8,11 +8,11 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
-        setIsLoggedIn(!!accessToken); // עדכון מצב ההתחברות
+        setIsLoggedIn(!!accessToken);
     }, []);
 
-    const handleLogin = (token) => {
-        localStorage.setItem('accessToken', token);
+    const handleLogin = (tokens) => {
+        localStorage.setItem('accessToken', JSON.stringify(tokens));
         setIsLoggedIn(true);
     };
 
