@@ -9,6 +9,7 @@ import Register from './components/users/Register';
 import AboutMain from './components/about/AboutMain';
 import HowItWorksMain from './components/how-it-works/HowItWorksMain';
 import { CartContextProvider } from './context/CartContext';
+import Orders from './components/orders/all_orders/Orders';
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
                             path="/how-it-works"
                             element={<HowItWorksMain />}
                         />
+                        <Route path="/my-orders" element={<Orders />} />
                     </Routes>
                 </CartContextProvider>
             </AuthProvider>
