@@ -11,7 +11,7 @@ function Login() {
 
   const handleSubmit = () => {
     userCredentials({ username, password }).then((response) => {
-        handleLogin(JSON.stringify(response));
+        handleLogin(response);
         navigate("/");
       })
       .catch((error) => {
