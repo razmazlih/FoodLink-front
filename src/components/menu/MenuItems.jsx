@@ -1,17 +1,23 @@
-import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
+import { AuthContext } from '../../context/AuthContext';
 
 function MenuItems({ menu }) {
     const { addToCart } = useContext(CartContext);
-    const hundleClickAddToCart = (menuItem) =>
-        addToCart(menuItem)
+    const { userId } = useContext(AuthContext);
+
+    const hundleClickAddToCart = (menuItem) => addToCart(menuItem);
+
+    const addToUserCart = (menuItem) => userId && (
+        <button onClick={() => hundleClickAddToCart(menuItem)}>
+            Add to Cart
+        </button>
+    );
 
     const showItems = (menuItem) => (
         <li key={menuItem.id}>
             <strong>{menuItem.name}</strong> - {menuItem.price}₪{' '}
-            <button onClick={() => hundleClickAddToCart(menuItem)}>
-                Add to Cart
-            </button>
+            {addToUserCart(menuItem)}
             <p>{menuItem.description}</p>
         </li>
     );
