@@ -1,14 +1,9 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import CartTemplate from './CartTemplate';
 
 function CartNavbar() {
     let { cart, clearCart } = useContext(CartContext);
-
-    useEffect(() => {
-        console.log(cart)
-    }, [cart]);
-
 
     const mapCart = (
         <div>
