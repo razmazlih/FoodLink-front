@@ -1,57 +1,78 @@
-import { useContext } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { CartContext } from '../../context/CartContext';
 import CartNavbar from '../cart/CartNavbar';
+import './Navbar.css';
 
-function Navbar() {
-    const { isLoggedIn, handleLogout } = useContext(AuthContext);
-    const { showing, setShowing } = useContext(CartContext);
+class Navbar extends Component {
+    static contextType = AuthContext;
 
-    const navbarList = [
-        { name: 'Home', link: '/' },
-        { name: 'About', link: '/about' },
-        { name: 'How it Works', link: '/how-it-works' },
-        { name: 'Restaurants', link: '/restaurants' },
-        { name: 'Contact', link: '/' },
-    ];
-
-    const navbarLink = (item, index) => {
+    render() {
+        const { isLoggedIn, handleLogout } = this.context;
         return (
-            <li key={index}>
-                <Link to={item.link}>{item.name}</Link>
-            </li>
-        );
-    };
-
-    return (
-        <div>
-            <h1>Food Link</h1>
-            <ul>
-                {navbarList.map(navbarLink)}
-                {isLoggedIn ? (
-                    <>
-                        <li>
-                            <Link to={'/my-orders'}>My Orders</Link>
-                        </li>
-                        <li>
-                            <button onClick={() => setShowing(!showing)}>
-                                My Cart
-                            </button>
-                        </li>
-                        <li>
-                            <button onClick={handleLogout}>Logout</button>
-                        </li>
-                    </>
-                ) : (
-                    <li>
-                        <Link to={'/login'}>Login</Link>
-                    </li>
+            <CartContext.Consumer>
+                {({ showing, setShowing }) => (
+                    <div className="navbar">
+                        <h1 className="navbar-title">Food Link</h1>
+                        <ul className="navbar-list">
+                            {[
+                                { name: 'Home', link: '/' },
+                                { name: 'About', link: '/about' },
+                                { name: 'How it Works', link: '/how-it-works' },
+                                { name: 'Restaurants', link: '/restaurants' },
+                                { name: 'Contact', link: '/' },
+                            ].map((item, index) => (
+                                <li key={index} className="navbar-item">
+                                    <Link
+                                        to={item.link}
+                                        className="navbar-link"
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                            {isLoggedIn ? (
+                                <>
+                                    <li className="navbar-item">
+                                        <Link
+                                            to={'/my-orders'}
+                                            className="navbar-link"
+                                        >
+                                            My Orders
+                                        </Link>
+                                    </li>
+                                    <li className="navbar-item">
+                                        <button
+                                            className="navbar-button"
+                                            onClick={() => setShowing(!showing)}
+                                        >
+                                            My Cart
+                                        </button>
+                                    </li>
+                                    <li className="navbar-item">
+                                        <button
+                                            className="navbar-button"
+                                            onClick={handleLogout}
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
+                                </>
+                            ) : (
+                                <li className="navbar-item">
+                                    <Link to={'/login'} className="navbar-link">
+                                        Login
+                                    </Link>
+                                </li>
+                            )}
+                        </ul>
+                        {showing && <CartNavbar />}
+                    </div>
                 )}
-            </ul>
-            {showing && <CartNavbar />}
-        </div>
-    );
+            </CartContext.Consumer>
+        );
+    }
 }
 
 export default Navbar;
