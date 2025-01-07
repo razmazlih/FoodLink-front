@@ -8,7 +8,7 @@ function MenuItems({ menu }) {
 
     const showItems = (menuItem) => (
         <li key={menuItem.id}>
-            <strong>{menuItem.name}</strong> - {menuItem.price} ₪{' '}
+            <strong>{menuItem.name}</strong> - {menuItem.price}₪{' '}
             <button onClick={() => hundleClickAddToCart(menuItem)}>
                 Add to Cart
             </button>
