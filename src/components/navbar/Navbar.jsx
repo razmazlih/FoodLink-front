@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { CartContext } from '../../context/CartContext';
-import CartNavbar from './CartNavbar';
+import CartNavbar from '../cart/CartNavbar';
 
 function Navbar() {
     const { isLoggedIn, handleLogout } = useContext(AuthContext);
