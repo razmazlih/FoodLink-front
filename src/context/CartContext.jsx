@@ -4,13 +4,16 @@ import { fetchOrder } from '../services/OrderLine/order/api';
 export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
-    const [orderId, setOrderId] = useState('')
+    const [orderId, setOrderId] = useState('');
     const [cart, setCart] = useState([]);
     const [showing, setShowing] = useState(false);
 
     useEffect(() => {
-        const cartItems = fetchOrder(orderId).then((fullOrder) => fullOrder.items);
-        setCart(cartItems);
+        if (orderId) {
+            fetchOrder(orderId)
+               .then((fullOrder) => fullOrder.items)
+               .then((cartItems) => setCart(cartItems));
+        }
     }, [orderId]);
 
     useEffect(() => {
