@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+
 function MenuItems({ menu }) {
+    const { addToCart } = useContext(CartContext);
     const hundleClickAddToCart = (menuItem) =>
-        console.log('Add to cart', menuItem.name, menuItem.id);
+        addToCart(menuItem)
 
     const showItems = (menuItem) => (
         <li key={menuItem.id}>
