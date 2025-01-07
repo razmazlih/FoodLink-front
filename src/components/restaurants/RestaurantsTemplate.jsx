@@ -114,7 +114,7 @@ function RestaurantsTemplate({ restaurant }) {
                                 Continue Ordering
                             </button>
                         ) : (
-                            <button onClick={handleClick}>View Menu</button>
+                            <button onClick={handleClick}>Order Now</button>
                         )}
                     </p>
                 </>
