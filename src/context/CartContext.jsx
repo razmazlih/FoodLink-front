@@ -27,7 +27,14 @@ export const CartContextProvider = ({ children }) => {
     };
 
     const addToCart = (item) => {
-        setCart([...cart, item]);
+        const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+        if (existingItemIndex !== -1) {
+            const updatedCart = [...cart];
+            updatedCart[existingItemIndex].count = (updatedCart[existingItemIndex].count || 1) + 1;
+            setCart(updatedCart);
+        } else {
+            setCart([...cart, { ...item, count: 1 }]);
+        }
         saveCart();
     };
 
