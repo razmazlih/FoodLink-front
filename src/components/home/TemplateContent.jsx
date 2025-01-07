@@ -1,16 +1,17 @@
+import './TemplateContent.css';
+
 function TemplateContent({ topHeader, mainHeader, paragraph, button }) {
 
-    const buttonTag = button ? <button>{button}</button> : null
+    const buttonTag = button ? <button>{button}</button> : null;
 
-    const content = (
-        <div>
+    return (
+        <div className="template-content">
             {topHeader}
             {mainHeader}
             {paragraph}
             {buttonTag}
         </div>
-    )
-  return content;
+    );
 }
 
-export default TemplateContent
+export default TemplateContent;

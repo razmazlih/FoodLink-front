@@ -1,0 +1,33 @@
+.first-content {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.first-content h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.first-content p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.first-content button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #f0a500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.first-content button:hover {
+    background-color: #d89000;
+}

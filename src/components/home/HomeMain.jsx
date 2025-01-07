@@ -1,5 +1,6 @@
 import FirstContent from './FirstContent';
 import TemplateContent from './TemplateContent';
+import './HomeMain.css';
 
 function HomeMain() {
     const myItems = [
@@ -57,7 +58,7 @@ function HomeMain() {
     ))
 
     return (
-        <div>
+        <div className="home-main">
             <FirstContent />
             {mapItems}
         </div>
