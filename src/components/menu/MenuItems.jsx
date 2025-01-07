@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { AuthContext } from '../../context/AuthContext';
+import './MenuItems.css';
 
 function MenuItems({ menu }) {
     const { addToCart } = useContext(CartContext);
@@ -8,11 +9,12 @@ function MenuItems({ menu }) {
 
     const hundleClickAddToCart = (menuItem) => addToCart(menuItem);
 
-    const addToUserCart = (menuItem) => userId && (
-        <button onClick={() => hundleClickAddToCart(menuItem)}>
-            Add to Cart
-        </button>
-    );
+    const addToUserCart = (menuItem) =>
+        userId && (
+            <button onClick={() => hundleClickAddToCart(menuItem)}>
+                Add to Cart
+            </button>
+        );
 
     const showItems = (menuItem) => (
         <li key={menuItem.id}>
@@ -21,8 +23,9 @@ function MenuItems({ menu }) {
             <p>{menuItem.description}</p>
         </li>
     );
+
     return (
-        <div>
+        <div className="menu-items">
             <h2>Menu</h2>
             {menu.map((category) => (
                 <div key={category.id}>

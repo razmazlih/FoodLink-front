@@ -4,6 +4,7 @@ import { getRestaurantById } from '../../services/DishBoard/restaurants/api';
 import RestaurantInfo from './RestaurantInfo';
 import MenuItems from './MenuItems';
 import { getRestaurantMenu } from '../../services/DishBoard/menu/api';
+import './MenuMain.css';
 
 function MenuMain() {
     const { restaurantId } = useParams();
@@ -28,14 +29,14 @@ function MenuMain() {
     }, [restaurantId]);
 
     return (
-        <>
+        <div className="menu-main">
             <div>
                 <RestaurantInfo restaurant={restaurantInfo} />
             </div>
             <div>
                 <MenuItems menu={menuItems} />
             </div>
-        </>
+        </div>
     );
 }
 

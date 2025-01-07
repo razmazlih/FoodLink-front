@@ -1,6 +1,8 @@
+import './RestaurantInfo.css';
+
 function RestaurantInfo({ restaurant }) {
     return (
-        <div>
+        <div className="restaurant-info">
             <h2>{restaurant.name}</h2>
             <h3>
                 {restaurant.address}, {restaurant.city}

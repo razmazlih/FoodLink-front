@@ -1,0 +1,10 @@
+.menu-main {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+    font-family: Arial, sans-serif;
+}
+
+.menu-main > div {
+    margin-bottom: 20px;
+}
