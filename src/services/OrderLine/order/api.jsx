@@ -28,3 +28,15 @@ export const fetchAllOrders = async (userId) => {
         throw error;
     }
 };
+
+export const deleteOrder = async (orderId) => {
+    try {
+        const { data } = await axios.delete(
+            `${API_ORDERLINE_URL}/orders/${orderId}`
+        );
+        return data;
+    } catch (error) {
+        console.error('Error deleting order:', error);
+        throw error;
+    }
+};
