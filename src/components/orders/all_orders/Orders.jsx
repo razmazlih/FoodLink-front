@@ -3,6 +3,7 @@ import { deleteOrder, fetchAllOrders } from '../../../services/OrderLine/order/a
 import { AuthContext } from '../../../context/AuthContext';
 import { getRestaurantsNamesAndIds } from '../../../services/DishBoard/restaurants/api';
 import { useNavigate } from 'react-router-dom';
+import './Orders.css'; // Import CSS file
 
 function Orders() {
     const navigate = useNavigate();
@@ -25,22 +26,22 @@ function Orders() {
     const hundleDeleteOrder = (orderId) => {
         deleteOrder(orderId);
         setMyOrders(myOrders.filter((order) => order.id !== orderId));
-    }
+    };
 
     const hundleContinueOrdering = (orderId) => {
-        navigate(`/restaurants/${orderId}/`)
-    }
+        navigate(`/restaurants/${orderId}/`);
+    };
 
     const showingOrders = myOrders.map((order) => (
-        <div key={order.id}>
-        <h2>{restaurantMap[order.restaurant_id]} - {order.total_price}</h2>
-        <button onClick={() => hundleContinueOrdering(order.id)}>continue ordering</button>
-        <button onClick={() => hundleDeleteOrder(order.id)}>delete order</button>
+        <div key={order.id} className="order-item">
+            <h2>{restaurantMap[order.restaurant_id]} - {order.total_price}₪</h2>
+            <button className="continue-ordering" onClick={() => hundleContinueOrdering(order.id)}>Continue Ordering</button>
+            <button className="delete-order" onClick={() => hundleDeleteOrder(order.id)}>Delete Order</button>
         </div>
-    ))
+    ));
 
     return (
-        <div>
+        <div className="orders-container">
             {showingOrders}
         </div>
     );
