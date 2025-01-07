@@ -1,18 +1,19 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
+import './CartTemplate.css';
 
 function CartTemplate({ item }) {
     const { removeFromCart } = useContext(CartContext);
+
     if (!item) {
-        return <div>פריט לא זמין</div>;
+        return <div>Item not available</div>;
     }
+
     return (
-        <div>
-            <strong>{item.name}</strong> - {item.price}₪{' '}
-            {item.count && <span> x {item.count}</span>}
-            <button onClick={() => removeFromCart(item.id)}>
-                remove from cart
-            </button>
+        <div className="cart-item">
+            <strong>{item.name}</strong>
+            <span>{item.price}₪{item.count && ` x ${item.count}`}</span>
+            <button onClick={() => removeFromCart(item.id)}>Remove</button>
         </div>
     );
 }

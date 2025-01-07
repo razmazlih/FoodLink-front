@@ -1,0 +1,71 @@
+.cart-navbar {
+    position: fixed; /* Ensures the cart stays in place relative to the viewport */
+    top: 70px; /* Adjust based on your Navbar height */
+    right: 10px;
+    width: 90%; /* Keeps it responsive */
+    max-width: 350px; /* Restrict the width for larger screens */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    z-index: 1000;
+    overflow: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.cart-navbar h2 {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.cart-navbar button {
+    display: block;
+    margin: 0 auto 10px auto;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart-navbar button:hover {
+    background-color: #c0392b;
+}
+
+.cart-navbar .cart-items {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding-right: 5px;
+}
+
+.cart-navbar .cart-items::-webkit-scrollbar {
+    width: 5px;
+}
+
+.cart-navbar .cart-items::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.cart-navbar p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin: 65px 0;
+    border-radius: 5px;
+    border: 1px dashed #ccc;
+}
+
+.cart-navbar.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+}
