@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './RestaurantSearch.css';
 
 function RestaurantSearch({ searchTerm, setSearchTerm }) {
     const [tempSearchTerm, setTempSearchTerm] = useState(searchTerm);
@@ -11,7 +12,7 @@ function RestaurantSearch({ searchTerm, setSearchTerm }) {
     };
 
     return (
-        <div>
+        <div className="restaurant-search">
             <h2>Restaurant Search</h2>
             <input
                 type="text"

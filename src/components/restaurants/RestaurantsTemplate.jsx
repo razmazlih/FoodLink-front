@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchAllOrders, fetchOrder } from '../../services/OrderLine/order/api';
 import { AuthContext } from '../../context/AuthContext';
 import { CartContext } from '../../context/CartContext';
+import './RestaurantsTemplate.css';
 
 function RestaurantsTemplate({ restaurant }) {
     const navigate = useNavigate();
@@ -22,7 +23,6 @@ function RestaurantsTemplate({ restaurant }) {
                         order.restaurant_id === restaurantId &&
                         order.restaurant_id === Number(userId)
                 );
-    
                 setHasActiveReservation(isReservationFound);
             } catch (error) {
                 console.error('Error checking reservation:', error);
@@ -40,7 +40,7 @@ function RestaurantsTemplate({ restaurant }) {
             fetchAllOrders(userId).then((response) => {
                 setMyReservations(response);
                 localStorage.setItem('myReservations', JSON.stringify(response));
-            })
+            });
         }
     }, [userId]);
 
@@ -92,7 +92,7 @@ function RestaurantsTemplate({ restaurant }) {
         if (reservation) {
             fetchOrder(reservation.id).then((order) => {
                 updateCart(order.items);
-                handleClick()
+                handleClick();
             });
         } else {
             console.warn('No reservation found for this restaurant.');
@@ -100,28 +100,24 @@ function RestaurantsTemplate({ restaurant }) {
     }
 
     return (
-        <div>
+        <div className="restaurant-card">
             <h3>{restaurant.name}</h3>
             <p>
                 {restaurant.address}, {restaurant.city}
             </p>
-            <p>Status: {isOpenNow ? 'Open' : 'Close'}</p>
+            <p className="status">Status: {isOpenNow ? 'Open' : 'Close'}</p>
             {userId ? (
                 <>
-                    <p>
-                        {hasActiveReservation ? (
-                            <button onClick={() => comtinueOrder(restaurant.id)}>
-                                Continue Ordering
-                            </button>
-                        ) : (
-                            <button onClick={handleClick}>Order Now</button>
-                        )}
-                    </p>
+                    {hasActiveReservation ? (
+                        <button onClick={() => comtinueOrder(restaurant.id)}>
+                            Continue Ordering
+                        </button>
+                    ) : (
+                        <button onClick={handleClick}>Order Now</button>
+                    )}
                 </>
             ) : (
-                <>
-                    <button onClick={handleClick}>View Menu</button>
-                </>
+                <button onClick={handleClick}>View Menu</button>
             )}
         </div>
     );

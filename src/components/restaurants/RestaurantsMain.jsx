@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import RestaurantSearch from './RestaurantSearch';
 import RestaurantsTemplate from './RestaurantsTemplate';
 import { getRestaurants } from '../../services/DishBoard/restaurants/api';
+import './RestaurantsMain.css';
 
 function RestaurantsMain() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -25,21 +26,17 @@ function RestaurantsMain() {
         restaurant.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const showRestaurants = (
-        <div>
-            {filteredRestaurants.map((restaurant) => (
-                <RestaurantsTemplate key={restaurant.id} restaurant={restaurant} />
-            ))}
-        </div>
-    );
-
     return (
-        <div>
+        <div className="restaurants-main">
             <RestaurantSearch
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
             />
-            {showRestaurants}
+            <div className="restaurants-list">
+                {filteredRestaurants.map((restaurant) => (
+                    <RestaurantsTemplate key={restaurant.id} restaurant={restaurant} />
+                ))}
+            </div>
         </div>
     );
 }
