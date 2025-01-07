@@ -35,7 +35,7 @@ function Orders() {
     const showingOrders = myOrders.map((order) => (
         <div key={order.id} className="order-item">
             <h2>{restaurantMap[order.restaurant_id]} - {order.total_price}₪</h2>
-            <button className="continue-ordering" onClick={() => hundleContinueOrdering(order.id)}>Continue Ordering</button>
+            <button className="continue-ordering" onClick={() => hundleContinueOrdering(order.restaurant_id)}>Continue Ordering</button>
             <button className="delete-order" onClick={() => hundleDeleteOrder(order.id)}>Delete Order</button>
         </div>
     ));
