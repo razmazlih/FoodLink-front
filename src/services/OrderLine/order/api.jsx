@@ -14,6 +14,9 @@ export const fetchOrder = async (orderId) => {
 };
 
 export const fetchAllOrders = async (userId) => {
+    if (!userId) {
+        return [];
+    }
     try {
         const { data } = await axios.get(`${API_ORDERLINE_URL}/orders/?user_id=${userId}`);
         const filteredData = data.filter(

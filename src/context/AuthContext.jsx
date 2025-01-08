@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
     const handleLogout = useCallback(() => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userId');
+        localStorage.removeItem('myReservations');
         setUserId(null);
         setIsLoggedIn(false);
         navigate('/');
@@ -28,20 +29,21 @@ export const AuthProvider = ({ children }) => {
 
     const handleLogin = (tokens) => {
         localStorage.setItem('accessToken', JSON.stringify(tokens));
-        extractUserIdFromToken(tokens.access);
+        const {theUserId, theExp} = extractUserIdAndExpFromToken(tokens.access);
+        setUserId(theUserId);
+        localStorage.setItem('userId', theUserId);
+        setExp(theExp);
         setIsLoggedIn(true);
     };
 
 
-    const extractUserIdFromToken = (token) => {
+    const extractUserIdAndExpFromToken = (token) => {
         try {
             const payload = token.split('.')[1];
             const decodedPayload = JSON.parse(atob(payload));
-            const userId = decodedPayload.user_id;
-            console.log(decodedPayload.exp)
-            setExp(userId);
-            localStorage.setItem('userId', userId);
-            return userId;
+            const theUserId = decodedPayload.user_id;
+            const theExp = decodedPayload.exp;
+            return {theUserId, theExp};
         } catch (error) {
             console.error('Failed to extract user_id from token:', error);
             return null;

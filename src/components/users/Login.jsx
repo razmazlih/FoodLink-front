@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { userCredentials } from '../../services/Userbase/api';
-import './Login.css'; // ייבוא קובץ CSS
+import './Login.css';
 
 function Login() {
     const { handleLogin } = useContext(AuthContext);
