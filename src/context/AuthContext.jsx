@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState(localStorage.getItem('userId') || '');
+    const [exp, setExp] = useState('');
 
     const handleLogout = useCallback(() => {
         localStorage.removeItem('accessToken');
@@ -37,7 +38,8 @@ export const AuthProvider = ({ children }) => {
             const payload = token.split('.')[1];
             const decodedPayload = JSON.parse(atob(payload));
             const userId = decodedPayload.user_id;
-            setUserId(userId);
+            console.log(decodedPayload.exp)
+            setExp(userId);
             localStorage.setItem('userId', userId);
             return userId;
         } catch (error) {
@@ -48,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ isLoggedIn, handleLogin, handleLogout, userId }}
+            value={{ isLoggedIn, handleLogin, handleLogout, userId, exp }}
         >
             {children}
         </AuthContext.Provider>
