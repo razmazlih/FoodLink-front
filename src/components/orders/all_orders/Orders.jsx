@@ -85,7 +85,7 @@ function Orders() {
         </div>
     ));
 
-    return <div className="orders-container">{showingOrders}</div>;
+    return <div className="orders-container">{showingOrders && <h2>No orders</h2>}</div>;
 }
 
 export default Orders;

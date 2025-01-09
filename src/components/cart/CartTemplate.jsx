@@ -10,7 +10,7 @@ function CartTemplate({ item }) {
         id: item.id,
         price: item.price,
         quantity: item.quantity,
-        name: localStorage.getItem(`menuItem-${item.id}`) || ''
+        name: localStorage.getItem(`menuItem-${item.id}`) || 'Loading...'
     });
 
     useEffect(() => {
@@ -21,7 +21,7 @@ function CartTemplate({ item }) {
                     ...prev,
                     name: response,
                 }));
-                localStorage.setItem(`menuItem-${item.id}`, JSON.stringify(response));
+                localStorage.setItem(`menuItem-${item.id}`, response);
             }
         }).catch((error) => {
             console.error("Error fetching menu item name:", error);
@@ -37,7 +37,7 @@ function CartTemplate({ item }) {
 
     return (
         <div className="cart-item">
-            <strong>{showItem.name || 'Loading...'}</strong>
+            <strong>{showItem.name}</strong>
             <span>{showItem.price}₪ {item.quantity > 1 && ` x ${showItem.quantity}`}</span>
             <button onClick={() => removeFromCart(showItem.id)}>Remove</button>
         </div>
