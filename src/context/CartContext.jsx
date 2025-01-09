@@ -40,7 +40,7 @@ export const CartContextProvider = ({ children }) => {
         saveCart();
     };
 
-    const clearCart = (newOrderId) => {
+    const clearCart = (newOrderId = orderId) => {
         localStorage.removeItem('cartItems');
         setOrderId(newOrderId);
         setCart([]);
