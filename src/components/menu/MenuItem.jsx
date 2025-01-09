@@ -4,13 +4,18 @@ import { CartContext } from '../../context/CartContext';
 
 function MenuItem({ menuItem }) {
     const { userId } = useContext(AuthContext);
-    const { addToCart } = useContext(CartContext);
+    const { addToCart, setShowing } = useContext(CartContext);
+
+    const handleAddToCart = () => {
+        addToCart(menuItem);
+        setShowing(true);
+    };
 
     return (
         <li className="menu-item" key={menuItem.id}>
             <strong>{menuItem.name}</strong> - {menuItem.price}₪{' '}
             {userId && (
-                <button onClick={() => addToCart(menuItem)}>
+                <button onClick={() => handleAddToCart()}>
                     Add to Cart
                 </button>
             )}

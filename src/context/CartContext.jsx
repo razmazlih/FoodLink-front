@@ -21,11 +21,6 @@ export const CartContextProvider = ({ children }) => {
         }
     }, [orderId]);
 
-    const saveCart = () => {
-        localStorage.setItem('cartItems', JSON.stringify(cart));
-        localStorage.setItem('orderId', orderId);
-    };
-
     const addToCart = (item) => {
         const newOrderItem = {
             orderId: orderId,
@@ -44,8 +39,9 @@ export const CartContextProvider = ({ children }) => {
                     price: item.price,
                     quantity: responeData.quantity,
                 };
-                setCart([...cart, editedResponse]);
-                saveCart();
+                const newCart = [...cart, editedResponse]
+                setCart(newCart);
+                localStorage.setItem('cartItems', JSON.stringify(newCart));
             })
             .catch((error) => {
                 console.error('Error adding item to cart:', error);
@@ -63,19 +59,21 @@ export const CartContextProvider = ({ children }) => {
         });
         updateQuantityById(itemId, newQuantity);
         setCart(updatedCart);
-        saveCart();
+        localStorage.setItem('cartItems', JSON.stringify(updatedCart));
         return(newItem)
     };
 
     const removeFromCart = (itemId) => {
-        setCart(cart.filter((item) => item.id !== itemId));
-        saveCart();
+        const updatedCart = cart.filter((item) => item.id !== itemId);
+        setCart(updatedCart);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCart));
     };
 
     const updateCart = (items, newOrderId) => {
         setOrderId(newOrderId);
         setCart(items);
-        saveCart();
+        localStorage.setItem('orderId', newOrderId);
+        localStorage.setItem('cartItems', JSON.stringify(items));
     };
 
     const createNewCart = (userId, restaurantId) => {
@@ -84,7 +82,6 @@ export const CartContextProvider = ({ children }) => {
             localStorage.setItem('orderId', order.id);
             localStorage.removeItem('cartItems');
             setCart([]);
-            saveCart();
         });
     };
 
