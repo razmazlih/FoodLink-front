@@ -19,10 +19,7 @@ export const fetchAllOrders = async (userId) => {
     }
     try {
         const { data } = await axios.get(`${API_ORDERLINE_URL}/orders/?user_id=${userId}`);
-        const filteredData = data.filter(
-            (order) => Number(order.user_id) === Number(userId)
-        );
-        return filteredData;
+        return data;
     } catch (error) {
         console.error('Error fetching all orders:', error);
         throw error;
@@ -37,6 +34,19 @@ export const deleteOrder = async (orderId) => {
         return data;
     } catch (error) {
         console.error('Error deleting order:', error);
+        throw error;
+    }
+};
+
+export const createOrder = async (userId, restaurantId) => {
+    try {
+        const { data } = await axios.post(`${API_ORDERLINE_URL}/orders/`, {
+            user_id: userId,
+            restaurant_id: restaurantId,
+        });
+        return data;
+    } catch (error) {
+        console.error('Error creating order:', error);
         throw error;
     }
 };

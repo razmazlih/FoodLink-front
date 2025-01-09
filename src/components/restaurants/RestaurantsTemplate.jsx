@@ -12,16 +12,18 @@ function RestaurantsTemplate({ restaurant }) {
     const [isOpenNow, setIsOpenNow] = useState(false);
     const [hasActiveReservation, setHasActiveReservation] = useState(false);
     const { userId } = useContext(AuthContext);
-    const { updateCart } = useContext(CartContext);
+    const { updateCart, createNewCart } = useContext(CartContext);
     const [myReservations, setMyReservations] = useState(JSON.parse(localStorage.getItem('myReservations')) || []);
 
     useEffect(() => {
         const checkReservation = async (restaurantId, userId) => {
             try {
                 const isReservationFound = myReservations.some(
-                    (order) =>
-                        order.restaurant_id === restaurantId &&
-                        order.restaurant_id === Number(userId)
+                    (order) => {
+
+                        return order.restaurant_id === restaurantId &&
+                        order.user_id === Number(userId)
+                    }
                 );
                 setHasActiveReservation(isReservationFound);
             } catch (error) {
@@ -91,12 +93,17 @@ function RestaurantsTemplate({ restaurant }) {
 
         if (reservation) {
             fetchOrder(reservation.id).then((order) => {
-                updateCart(order.items);
+                updateCart(order.items, order.id);
                 handleClick();
             });
         } else {
             console.warn('No reservation found for this restaurant.');
         }
+    }
+
+    async function handleClickOrder(restaurantId) {
+        createNewCart(userId, restaurantId);
+        handleClick();
     }
 
     return (
@@ -113,7 +120,7 @@ function RestaurantsTemplate({ restaurant }) {
                             Continue Ordering
                         </button>
                     ) : (
-                        <button onClick={handleClick}>Order Now</button>
+                        <button onClick={() => {handleClickOrder(restaurant.id)}}>Order Now</button>
                     )}
                 </>
             ) : (

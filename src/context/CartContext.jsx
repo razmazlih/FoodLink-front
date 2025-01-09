@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { fetchOrder } from '../services/OrderLine/order/api';
+import { createOrder, fetchOrder } from '../services/OrderLine/order/api';
 
 export const CartContext = createContext();
 
@@ -27,17 +27,11 @@ export const CartContextProvider = ({ children }) => {
 
     const saveCart = () => {
         localStorage.setItem('cartItems', JSON.stringify(cart));
+        localStorage.setItem('orderId', orderId);
     };
 
     const addToCart = (item) => {
-        const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
-        if (existingItemIndex !== -1) {
-            const updatedCart = [...cart];
-            updatedCart[existingItemIndex].count = (updatedCart[existingItemIndex].count || 1) + 1;
-            setCart(updatedCart);
-        } else {
-            setCart([...cart, { ...item, count: 1 }]);
-        }
+        setCart([...cart, item]);
         saveCart();
     };
 
@@ -46,18 +40,26 @@ export const CartContextProvider = ({ children }) => {
         saveCart();
     };
 
-    const clearCart = () => {
+    const clearCart = (newOrderId) => {
         localStorage.removeItem('cartItems');
+        setOrderId(newOrderId);
         setCart([]);
     };
 
-    const updateCart = (items) => {
+    const updateCart = (items, newOrderId) => {
+        setOrderId(newOrderId);
         setCart(items);
         saveCart();
     }
 
+    const createNewCart = (userId, restaurantId) => {
+        createOrder(userId, restaurantId).then((order) => {
+            clearCart(order.id)
+        });
+    }
+
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, showing, setShowing, updateCart }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, showing, setShowing, updateCart, createNewCart }}>
             {children}
         </CartContext.Provider>
     );
