@@ -54,13 +54,12 @@
     border-radius: 5px;
 }
 
-.cart-navbar p {
+.cart-navbar-pas {
     text-align: center;
     font-size: 1.2rem;
     color: #777;
     background-color: #f9f9f9;
     padding: 15px;
-    margin: 65px 0;
     border-radius: 5px;
     border: 1px dashed #ccc;
 }

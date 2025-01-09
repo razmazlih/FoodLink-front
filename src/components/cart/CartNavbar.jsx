@@ -12,11 +12,7 @@ function CartNavbar() {
             {cart.length ? (
                 <button onClick={() => clearCart()}>Reset Cart</button>
             ) : (
-                <>
-                <br/>
-                <br/>
-                <p className='cart-navbar'>No items in the cart</p>
-                </>
+                <p className='cart-navbar-pas'>No items in the cart</p>
             )}
             
             <div className="cart-items">
