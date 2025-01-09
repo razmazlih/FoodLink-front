@@ -10,3 +10,13 @@ export const getRestaurantMenu = async (restaurantId) => {
         throw error;
     }
 };
+
+export const getMenuItemNameById = async (menuItemId) => {
+    try {
+        const { data } = await axios.get(`${API_DISHBOARD_URL}/menu/item/${menuItemId}`);
+        return data.name;
+    } catch (error) {
+        console.error("Error fetching menu item by ID:", error);
+        throw error;
+    }
+};

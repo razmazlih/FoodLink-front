@@ -6,15 +6,11 @@ function MenuItem({ menuItem }) {
     const { userId } = useContext(AuthContext);
     const { addToCart } = useContext(CartContext);
 
-    const handleAddToCart = (menuItem) => {
-        addToCart(menuItem);
-    };
-
     return (
         <li className="menu-item" key={menuItem.id}>
             <strong>{menuItem.name}</strong> - {menuItem.price}₪{' '}
             {userId && (
-                <button onClick={() => handleAddToCart(menuItem)}>
+                <button onClick={() => addToCart(menuItem)}>
                     Add to Cart
                 </button>
             )}

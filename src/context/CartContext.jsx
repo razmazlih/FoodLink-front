@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { createOrder, fetchOrder } from '../services/OrderLine/order/api';
+import { addItemToCart } from '../services/OrderLine/order_items/api';
 
 export const CartContext = createContext();
 
@@ -11,8 +12,8 @@ export const CartContextProvider = ({ children }) => {
     useEffect(() => {
         if (orderId) {
             fetchOrder(orderId)
-               .then((fullOrder) => fullOrder.items)
-               .then((cartItems) => setCart(cartItems));
+                .then((fullOrder) => fullOrder.items)
+                .then((cartItems) => setCart(cartItems));
         }
     }, [orderId]);
 
@@ -31,12 +32,31 @@ export const CartContextProvider = ({ children }) => {
     };
 
     const addToCart = (item) => {
-        setCart([...cart, item]);
-        saveCart();
+        const newOrderItem = {
+            orderId: orderId,
+            menuItemId: item.id,
+            quantity: 1,
+            price: item.price,
+        };
+
+        addItemToCart(newOrderItem).then((responeData) => {
+            const editedResponse = {
+                id: responeData.id,
+                orderId: responeData.order_id,
+                item_id: responeData.menu_item_id,
+                name: item.name,
+                price: item.price,
+                quantity: responeData.quantity,
+            };
+            setCart([...cart, editedResponse]);
+            saveCart();
+        }).catch((error) => {
+            console.error('Error adding item to cart:', error);
+        })
     };
 
     const removeFromCart = (itemId) => {
-        setCart(cart.filter((item) => item.id!== itemId));
+        setCart(cart.filter((item) => item.id !== itemId));
         saveCart();
     };
 
@@ -50,16 +70,27 @@ export const CartContextProvider = ({ children }) => {
         setOrderId(newOrderId);
         setCart(items);
         saveCart();
-    }
+    };
 
     const createNewCart = (userId, restaurantId) => {
         createOrder(userId, restaurantId).then((order) => {
-            clearCart(order.id)
+            clearCart(order.id);
         });
-    }
+    };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, showing, setShowing, updateCart, createNewCart }}>
+        <CartContext.Provider
+            value={{
+                cart,
+                addToCart,
+                removeFromCart,
+                clearCart,
+                showing,
+                setShowing,
+                updateCart,
+                createNewCart,
+            }}
+        >
             {children}
         </CartContext.Provider>
     );
