@@ -5,8 +5,12 @@ import { addItemToCart } from '../services/OrderLine/order_items/api';
 export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
-    const [orderId, setOrderId] = useState('');
-    const [cart, setCart] = useState([]);
+    const [orderId, setOrderId] = useState(
+        localStorage.getItem('orderId') || ''
+    );
+    const [cart, setCart] = useState(
+        JSON.parse(localStorage.getItem('cartItems')) || []
+    );
     const [showing, setShowing] = useState(false);
 
     useEffect(() => {
@@ -16,15 +20,6 @@ export const CartContextProvider = ({ children }) => {
                 .then((cartItems) => setCart(cartItems));
         }
     }, [orderId]);
-
-    useEffect(() => {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-        const savedOrderId = localStorage.getItem('orderId');
-        if (savedOrderId) {
-            setOrderId(savedOrderId);
-        }
-        setCart(cartItems || []);
-    }, []);
 
     const saveCart = () => {
         localStorage.setItem('cartItems', JSON.stringify(cart));
@@ -39,20 +34,22 @@ export const CartContextProvider = ({ children }) => {
             price: item.price,
         };
 
-        addItemToCart(newOrderItem).then((responeData) => {
-            const editedResponse = {
-                id: responeData.id,
-                orderId: responeData.order_id,
-                item_id: responeData.menu_item_id,
-                name: item.name,
-                price: item.price,
-                quantity: responeData.quantity,
-            };
-            setCart([...cart, editedResponse]);
-            saveCart();
-        }).catch((error) => {
-            console.error('Error adding item to cart:', error);
-        })
+        addItemToCart(newOrderItem)
+            .then((responeData) => {
+                const editedResponse = {
+                    id: responeData.id,
+                    orderId: responeData.order_id,
+                    item_id: responeData.menu_item_id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: responeData.quantity,
+                };
+                setCart([...cart, editedResponse]);
+                saveCart();
+            })
+            .catch((error) => {
+                console.error('Error adding item to cart:', error);
+            });
     };
 
     const removeFromCart = (itemId) => {
@@ -60,9 +57,8 @@ export const CartContextProvider = ({ children }) => {
         saveCart();
     };
 
-    const clearCart = (newOrderId = orderId) => {
+    const clearCart = () => {
         localStorage.removeItem('cartItems');
-        setOrderId(newOrderId);
         setCart([]);
     };
 
@@ -74,7 +70,10 @@ export const CartContextProvider = ({ children }) => {
 
     const createNewCart = (userId, restaurantId) => {
         createOrder(userId, restaurantId).then((order) => {
-            clearCart(order.id);
+            setOrderId(order.id);
+            localStorage.setItem('orderId', order.id);
+            localStorage.removeItem('cartItems');
+            setCart([]);
         });
     };
 
