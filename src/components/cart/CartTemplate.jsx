@@ -4,7 +4,7 @@ import './CartTemplate.css';
 import { getMenuItemNameById } from '../../services/DishBoard/menu/api';
 
 function CartTemplate({ item }) {
-    const { removeFromCart } = useContext(CartContext);
+    const { removeFromCart, updateQuantity } = useContext(CartContext);
 
     const [showItem, setShowItem] = useState({
         itemId: item.id,
@@ -35,6 +35,17 @@ function CartTemplate({ item }) {
         };
     }, [item.id, item.menu_item_id, showItem.name]);
 
+    const hundleClickAdd = () => {
+        const updatedItem = updateQuantity(
+            item.id,
+            item.quantity + 1
+        );
+        setShowItem((prev) => ({
+            ...prev,
+            quantity: updatedItem.quantity,
+        }));
+    }
+
     if (!item) {
         return <div>Item not available</div>;
     }
@@ -44,8 +55,13 @@ function CartTemplate({ item }) {
             <strong>{showItem.name}</strong>
             <span>
                 {showItem.price}₪{' '}
-                {item.quantity > 1 && ` x ${showItem.quantity}`}
+                {showItem.quantity > 1 && ` x ${showItem.quantity}`}
             </span>
+            <button
+                onClick={() => hundleClickAdd()}
+            >
+                Add
+            </button>
             <button onClick={() => removeFromCart(showItem.id)}>Remove</button>
         </div>
     );

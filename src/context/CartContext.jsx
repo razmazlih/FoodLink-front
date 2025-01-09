@@ -52,14 +52,23 @@ export const CartContextProvider = ({ children }) => {
             });
     };
 
+    const updateQuantity = (itemId, newQuantity) => {
+        let newItem;
+        const updatedCart = cart.map((item) => {
+            if (item.id === itemId) {
+                newItem = { ...item, quantity: newQuantity };
+                return newItem;
+            }
+            return item;
+        });
+        setCart(updatedCart);
+        saveCart();
+        return(newItem)
+    };
+
     const removeFromCart = (itemId) => {
         setCart(cart.filter((item) => item.id !== itemId));
         saveCart();
-    };
-
-    const clearCart = () => {
-        localStorage.removeItem('cartItems');
-        setCart([]);
     };
 
     const updateCart = (items, newOrderId) => {
@@ -83,11 +92,11 @@ export const CartContextProvider = ({ children }) => {
                 cart,
                 addToCart,
                 removeFromCart,
-                clearCart,
                 showing,
                 setShowing,
                 updateCart,
                 createNewCart,
+                updateQuantity,
             }}
         >
             {children}

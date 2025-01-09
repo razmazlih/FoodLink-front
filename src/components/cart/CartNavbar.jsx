@@ -4,14 +4,12 @@ import CartTemplate from './CartTemplate';
 import './CartNavbar.css';
 
 function CartNavbar() {
-    const { cart, clearCart, setShowing } = useContext(CartContext);
+    const { cart, setShowing } = useContext(CartContext);
 
     return (
         <div className="cart-navbar">
             <h2>My Cart</h2>
-            {cart.length ? (
-                <button onClick={() => clearCart()}>Reset Cart</button>
-            ) : (
+            {!cart.length && (
                 <p className='cart-navbar-pas'>No items in the cart</p>
             )}
             
