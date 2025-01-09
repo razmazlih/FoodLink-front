@@ -13,7 +13,7 @@ import { CartContext } from '../../../context/CartContext';
 function Orders() {
     const navigate = useNavigate();
     const { userId } = useContext(AuthContext);
-    const { updateCart } = useContext(CartContext);
+    const { updateCart, cart } = useContext(CartContext);
     const [myOrders, setMyOrders] = useState([]);
     const [restaurantMap, setRestaurantMap] = useState(
         JSON.parse(localStorage.getItem('restaurantMap')) || {}
@@ -42,7 +42,7 @@ function Orders() {
                 );
             });
         }
-    }, [userId]);
+    }, [userId, cart]);
 
     const hundleDeleteOrder = (orderId) => {
         deleteOrder(orderId);
