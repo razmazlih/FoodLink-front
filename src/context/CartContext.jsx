@@ -84,6 +84,7 @@ export const CartContextProvider = ({ children }) => {
             localStorage.setItem('orderId', order.id);
             localStorage.removeItem('cartItems');
             setCart([]);
+            saveCart();
         });
     };
 
