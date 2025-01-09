@@ -124,7 +124,7 @@ function RestaurantsTemplate({ restaurant }) {
                     )}
                 </>
             ) : (
-                <button onClick={handleClick}>View Menu</button>
+                <button onClick={() => handleClick()}>View Menu</button>
             )}
         </div>
     );
