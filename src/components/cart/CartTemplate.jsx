@@ -10,7 +10,7 @@ function CartTemplate({ item }) {
         id: item.id,
         price: item.price,
         quantity: item.quantity,
-        name: JSON.parse(localStorage.getItem(`menuItem-${item.id}`))
+        name: localStorage.getItem(`menuItem-${item.id}`) || ''
     });
 
     useEffect(() => {
