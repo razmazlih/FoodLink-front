@@ -1,6 +1,10 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { createOrder, fetchOrder } from '../services/OrderLine/order/api';
-import { addItemToCart, updateQuantityById } from '../services/OrderLine/order_items/api';
+import {
+    addItemToCart,
+    deleteItemFromCart,
+    updateQuantityById,
+} from '../services/OrderLine/order_items/api';
 
 export const CartContext = createContext();
 
@@ -25,7 +29,7 @@ export const CartContextProvider = ({ children }) => {
         const newOrderItem = {
             orderId: orderId,
             menuItemId: item.id,
-            quantity: 1,
+            quantity: item.quantity,
             price: item.price,
         };
 
@@ -39,7 +43,7 @@ export const CartContextProvider = ({ children }) => {
                     price: item.price,
                     quantity: responeData.quantity,
                 };
-                const newCart = [...cart, editedResponse]
+                const newCart = [...cart, editedResponse];
                 setCart(newCart);
                 localStorage.setItem('cartItems', JSON.stringify(newCart));
             })
@@ -49,6 +53,7 @@ export const CartContextProvider = ({ children }) => {
     };
 
     const updateQuantity = (itemId, newQuantity) => {
+        updateQuantityById(itemId, newQuantity);
         let newItem;
         const updatedCart = cart.map((item) => {
             if (item.id === itemId) {
@@ -57,16 +62,31 @@ export const CartContextProvider = ({ children }) => {
             }
             return item;
         });
-        updateQuantityById(itemId, newQuantity);
         setCart(updatedCart);
         localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-        return(newItem)
+        return newItem;
     };
 
-    const removeFromCart = (itemId) => {
-        const updatedCart = cart.filter((item) => item.id !== itemId);
-        setCart(updatedCart);
-        localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+    const removeFromCart = async (showItem) => {
+        try {
+            if (showItem.quantity === 1) {
+                await deleteItemFromCart(showItem.id);
+
+                const updatedCart = cart.filter((item) => item.id !== showItem.id);
+                setCart(updatedCart);
+                localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+            } else {
+                updateQuantity(showItem.id, showItem.quantity - 1);
+
+                await updateQuantityById(showItem.id, showItem.quantity - 1);
+                let updatedItem;
+                const updatedCart = cart.map((item) => {
+                    return item.id === showItem.id ? (updatedItem = {...item, quantity: item.quantity - 1 }) : item;});
+                localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+                setCart(updatedCart);
+                return updatedItem;
+            }
+        } catch (error) {console.error('Error updating the cart:', error);}
     };
 
     const updateCart = (items, newOrderId) => {

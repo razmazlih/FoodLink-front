@@ -10,7 +10,9 @@ function CartTemplate({ item }) {
         itemId: item.id,
         price: Number(item.price),
         quantity: item.quantity,
-        name: JSON.parse(localStorage.getItem('cartNames'))?.[item.id] || 'Loading...',
+        name:
+            JSON.parse(localStorage.getItem('cartNames'))?.[item.id] ||
+            'Loading...',
     });
 
     useEffect(() => {
@@ -23,10 +25,14 @@ function CartTemplate({ item }) {
                             ...prev,
                             name: response,
                         }));
-                        const cartNames = JSON.parse(localStorage.getItem('cartNames')) || {};
+                        const cartNames =
+                            JSON.parse(localStorage.getItem('cartNames')) || {};
                         cartNames[item.id] = response;
-                        localStorage.setItem('cartNames', JSON.stringify(cartNames));
-                }
+                        localStorage.setItem(
+                            'cartNames',
+                            JSON.stringify(cartNames)
+                        );
+                    }
                 })
                 .catch((error) => {
                     console.error('Error fetching menu item name:', error);
@@ -45,6 +51,14 @@ function CartTemplate({ item }) {
         }));
     };
 
+    const hundleClickRemove = async () => {
+        const newItem = await removeFromCart(item);
+        setShowItem((prev) => ({
+            ...prev,
+            quantity: newItem.quantity,
+        }));
+    };
+
     if (!item) {
         return <div>Item not available</div>;
     }
@@ -57,7 +71,7 @@ function CartTemplate({ item }) {
                 {showItem.quantity > 1 && ` x ${showItem.quantity}`}
             </span>
             <button onClick={() => hundleClickAdd()}>+</button>
-            <button onClick={() => removeFromCart(showItem.id)}>Remove</button>
+            <button onClick={() => hundleClickRemove()}>-</button>
         </div>
     );
 }

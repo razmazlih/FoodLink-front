@@ -25,3 +25,11 @@ export const updateQuantityById = async (itemId, newQuantity) => {
         console.error('Error updating quantity:', error);
     }
 };
+
+export const deleteItemFromCart = async (itemId) => {
+    try {
+        await axios.delete(`${API_ORDERLINE_URL}/order-item/${itemId}/`);
+    } catch (error) {
+        console.error('Error deleting item from server:', error);
+    }
+};
