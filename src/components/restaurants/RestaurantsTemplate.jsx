@@ -13,18 +13,20 @@ function RestaurantsTemplate({ restaurant }) {
     const [hasActiveReservation, setHasActiveReservation] = useState(false);
     const { userId } = useContext(AuthContext);
     const { updateCart, createNewCart } = useContext(CartContext);
-    const [myReservations, setMyReservations] = useState(JSON.parse(localStorage.getItem('myReservations')) || []);
+    const [myReservations, setMyReservations] = useState(
+        JSON.parse(localStorage.getItem('myReservations')) || []
+    );
 
     useEffect(() => {
         const checkReservation = async (restaurantId, userId) => {
             try {
-                const isReservationFound = myReservations.some(
-                    (order) => {
-
-                        return order.restaurant_id === restaurantId &&
-                        order.user_id === Number(userId)
-                    }
-                );
+                const isReservationFound = myReservations.some((order) => {
+                    return (
+                        order.restaurant_id === restaurantId &&
+                        order.user_id === Number(userId) &&
+                        order.status.length === 0
+                    );
+                });
                 setHasActiveReservation(isReservationFound);
             } catch (error) {
                 console.error('Error checking reservation:', error);
@@ -41,7 +43,10 @@ function RestaurantsTemplate({ restaurant }) {
         if (userId) {
             fetchAllOrders(userId).then((response) => {
                 setMyReservations(response);
-                localStorage.setItem('myReservations', JSON.stringify(response));
+                localStorage.setItem(
+                    'myReservations',
+                    JSON.stringify(response)
+                );
             });
         }
     }, [userId]);
@@ -87,9 +92,12 @@ function RestaurantsTemplate({ restaurant }) {
     }
 
     async function comtinueOrder(restaurantId) {
-        const reservation = myReservations.find(
-            (order) => order.restaurant_id === restaurantId
-        );
+        const reservation = myReservations.find((order) => {
+            return (
+                order.restaurant_id === restaurantId &&
+                order.status.length === 0
+            );
+        });
 
         if (reservation) {
             fetchOrder(reservation.id).then((order) => {
@@ -120,7 +128,13 @@ function RestaurantsTemplate({ restaurant }) {
                             Continue Ordering
                         </button>
                     ) : (
-                        <button onClick={() => {handleClickOrder(restaurant.id)}}>Order Now</button>
+                        <button
+                            onClick={() => {
+                                handleClickOrder(restaurant.id);
+                            }}
+                        >
+                            Order Now
+                        </button>
                     )}
                 </>
             ) : (

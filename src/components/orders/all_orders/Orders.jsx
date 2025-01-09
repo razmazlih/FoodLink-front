@@ -52,7 +52,9 @@ function Orders() {
 
     const hundleContinueOrdering = (restaurantId) => {
         const reservation = myReservations.find(
-            (order) => order.restaurant_id === restaurantId
+            (order) => {
+                return order.restaurant_id === restaurantId && order.status.length === 0
+            }
         );
 
         if (reservation) {
@@ -70,22 +72,34 @@ function Orders() {
             <h2>
                 {restaurantMap[order.restaurant_id]} - {order.total_price}₪
             </h2>
-            <button
-                className="continue-ordering"
-                onClick={() => hundleContinueOrdering(order.restaurant_id)}
-            >
-                Continue Ordering
-            </button>
-            <button
-                className="delete-order"
-                onClick={() => hundleDeleteOrder(order.id)}
-            >
-                Delete Order
-            </button>
+            {order.status.length === 0 ? (
+                <>
+                    <button
+                        className="continue-ordering"
+                        onClick={() =>
+                            hundleContinueOrdering(order.restaurant_id)
+                        }
+                    >
+                        Continue Ordering
+                    </button>
+                    <button
+                        className="delete-order"
+                        onClick={() => hundleDeleteOrder(order.id)}
+                    >
+                        Delete Order
+                    </button>
+                </>
+            ) : (
+                <p>Order is {order.status[order.status.length -1].status}</p>
+            )}
         </div>
     ));
 
-    return <div className="orders-container">{myOrders.length > 0 ? showingOrders : <h2>No orders</h2>}</div>;
+    return (
+        <div className="orders-container">
+            {myOrders.length > 0 ? showingOrders : <h2>No orders</h2>}
+        </div>
+    );
 }
 
 export default Orders;
