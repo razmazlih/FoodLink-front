@@ -47,6 +47,7 @@ function Orders() {
     const hundleDeleteOrder = (orderId) => {
         deleteOrder(orderId);
         setMyOrders(myOrders.filter((order) => order.id !== orderId));
+        localStorage.removeItem('orderId');
     };
 
     const hundleContinueOrdering = (restaurantId) => {
