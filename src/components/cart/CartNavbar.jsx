@@ -10,7 +10,7 @@ function CartNavbar() {
         <div className="cart-navbar">
             <h2>My Cart</h2>
             {cart.length ? (
-                <button onClick={clearCart}>Reset Cart</button>
+                <button onClick={() => clearCart()}>Reset Cart</button>
             ) : (
                 <>
                 <br/>
