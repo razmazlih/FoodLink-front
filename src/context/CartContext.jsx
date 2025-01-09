@@ -29,7 +29,7 @@ export const CartContextProvider = ({ children }) => {
         const newOrderItem = {
             orderId: orderId,
             menuItemId: item.id,
-            quantity: item.quantity,
+            quantity: 1,
             price: item.price,
         };
 
@@ -72,7 +72,9 @@ export const CartContextProvider = ({ children }) => {
             if (showItem.quantity === 1) {
                 await deleteItemFromCart(showItem.id);
 
-                const updatedCart = cart.filter((item) => item.id !== showItem.id);
+                const updatedCart = cart.filter(
+                    (item) => item.id !== showItem.id
+                );
                 setCart(updatedCart);
                 localStorage.setItem('cartItems', JSON.stringify(updatedCart));
             } else {
@@ -81,12 +83,20 @@ export const CartContextProvider = ({ children }) => {
                 await updateQuantityById(showItem.id, showItem.quantity - 1);
                 let updatedItem;
                 const updatedCart = cart.map((item) => {
-                    return item.id === showItem.id ? (updatedItem = {...item, quantity: item.quantity - 1 }) : item;});
+                    return item.id === showItem.id
+                        ? (updatedItem = {
+                              ...item,
+                              quantity: item.quantity - 1,
+                          })
+                        : item;
+                });
                 localStorage.setItem('cartItems', JSON.stringify(updatedCart));
                 setCart(updatedCart);
                 return updatedItem;
             }
-        } catch (error) {console.error('Error updating the cart:', error);}
+        } catch (error) {
+            console.error('Error updating the cart:', error);
+        }
     };
 
     const updateCart = (items, newOrderId) => {
@@ -105,6 +115,10 @@ export const CartContextProvider = ({ children }) => {
         });
     };
 
+    const checkInCart = (menuItemId) => {
+        return cart.some((item) => item.menu_item_id === menuItemId);
+    };
+
     return (
         <CartContext.Provider
             value={{
@@ -116,6 +130,7 @@ export const CartContextProvider = ({ children }) => {
                 updateCart,
                 createNewCart,
                 updateQuantity,
+                checkInCart,
             }}
         >
             {children}
