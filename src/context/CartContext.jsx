@@ -39,7 +39,7 @@ export const CartContextProvider = ({ children }) => {
                 const editedResponse = {
                     id: responeData.id,
                     orderId: responeData.order_id,
-                    item_id: responeData.menu_item_id,
+                    menu_item_id: responeData.menu_item_id,
                     name: item.name,
                     price: item.price,
                     quantity: responeData.quantity,

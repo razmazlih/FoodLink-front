@@ -7,8 +7,8 @@ function CartTemplate({ item }) {
     const { removeFromCart } = useContext(CartContext);
 
     const [showItem, setShowItem] = useState({
-        id: item.id,
-        price: item.price,
+        itemId: item.id,
+        price: Number(item.price),
         quantity: item.quantity,
         name: localStorage.getItem(`menuItem-${item.id}`) || 'Loading...',
     });
