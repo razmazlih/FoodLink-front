@@ -10,26 +10,30 @@ function CartTemplate({ item }) {
         id: item.id,
         price: item.price,
         quantity: item.quantity,
-        name: localStorage.getItem(`menuItem-${item.id}`) || 'Loading...'
+        name: localStorage.getItem(`menuItem-${item.id}`) || 'Loading...',
     });
 
     useEffect(() => {
         let isMounted = true;
-        getMenuItemNameById(item.id).then((response) => {
-            if (isMounted) {
-                setShowItem((prev) => ({
-                    ...prev,
-                    name: response,
-                }));
-                localStorage.setItem(`menuItem-${item.id}`, response);
-            }
-        }).catch((error) => {
-            console.error("Error fetching menu item name:", error);
-        });
+        if (showItem.name === 'Loading...') {
+            getMenuItemNameById(item.menu_item_id)
+                .then((response) => {
+                    if (isMounted) {
+                        setShowItem((prev) => ({
+                            ...prev,
+                            name: response,
+                        }));
+                        localStorage.setItem(`menuItem-${item.id}`, response);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error fetching menu item name:', error);
+                });
+        }
         return () => {
             isMounted = false;
         };
-    }, [item.id]);
+    }, [item.id, item.menu_item_id, showItem.name]);
 
     if (!item) {
         return <div>Item not available</div>;
@@ -38,7 +42,10 @@ function CartTemplate({ item }) {
     return (
         <div className="cart-item">
             <strong>{showItem.name}</strong>
-            <span>{showItem.price}₪ {item.quantity > 1 && ` x ${showItem.quantity}`}</span>
+            <span>
+                {showItem.price}₪{' '}
+                {item.quantity > 1 && ` x ${showItem.quantity}`}
+            </span>
             <button onClick={() => removeFromCart(showItem.id)}>Remove</button>
         </div>
     );
