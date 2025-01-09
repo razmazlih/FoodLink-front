@@ -4,7 +4,7 @@ import { API_ORDERLINE_URL } from '../../../config';
 export const fetchOrder = async (orderId) => {
     try {
         const { data } = await axios.get(
-            `${API_ORDERLINE_URL}/orders/${orderId}`
+            `${API_ORDERLINE_URL}/orders/${orderId}/`
         );
         return data;
     } catch (error) {
