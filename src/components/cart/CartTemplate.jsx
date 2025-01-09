@@ -60,7 +60,7 @@ function CartTemplate({ item }) {
             <button
                 onClick={() => hundleClickAdd()}
             >
-                Add
+                +
             </button>
             <button onClick={() => removeFromCart(showItem.id)}>Remove</button>
         </div>
