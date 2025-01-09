@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { createOrder, fetchOrder } from '../services/OrderLine/order/api';
-import { addItemToCart } from '../services/OrderLine/order_items/api';
+import { addItemToCart, updateQuantityById } from '../services/OrderLine/order_items/api';
 
 export const CartContext = createContext();
 
@@ -61,6 +61,7 @@ export const CartContextProvider = ({ children }) => {
             }
             return item;
         });
+        updateQuantityById(itemId, newQuantity);
         setCart(updatedCart);
         saveCart();
         return(newItem)

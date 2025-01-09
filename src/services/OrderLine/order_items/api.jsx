@@ -14,3 +14,14 @@ export const addItemToCart = async (order) => {
         console.error('Error adding item to cart:', error);
     }
 };
+
+export const updateQuantityById = async (itemId, newQuantity) => {
+    try {
+        const { data } = await axios.put(`${API_ORDERLINE_URL}/order-item/${itemId}/`, {
+            quantity: newQuantity,
+        });
+        return data;
+    } catch (error) {
+        console.error('Error updating quantity:', error);
+    }
+};

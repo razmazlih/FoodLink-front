@@ -10,7 +10,7 @@ function CartTemplate({ item }) {
         itemId: item.id,
         price: Number(item.price),
         quantity: item.quantity,
-        name: localStorage.getItem(`menuItem-${item.id}`) || 'Loading...',
+        name: JSON.parse(localStorage.getItem('cartNames'))?.[item.id] || 'Loading...',
     });
 
     useEffect(() => {
@@ -23,8 +23,10 @@ function CartTemplate({ item }) {
                             ...prev,
                             name: response,
                         }));
-                        localStorage.setItem(`menuItem-${item.id}`, response);
-                    }
+                        const cartNames = JSON.parse(localStorage.getItem('cartNames')) || {};
+                        cartNames[item.id] = response;
+                        localStorage.setItem('cartNames', JSON.stringify(cartNames));
+                }
                 })
                 .catch((error) => {
                     console.error('Error fetching menu item name:', error);
