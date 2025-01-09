@@ -36,15 +36,12 @@ function CartTemplate({ item }) {
     }, [item.id, item.menu_item_id, showItem.name]);
 
     const hundleClickAdd = () => {
-        const updatedItem = updateQuantity(
-            item.id,
-            item.quantity + 1
-        );
+        const updatedItem = updateQuantity(item.id, item.quantity + 1);
         setShowItem((prev) => ({
             ...prev,
             quantity: updatedItem.quantity,
         }));
-    }
+    };
 
     if (!item) {
         return <div>Item not available</div>;
@@ -57,11 +54,7 @@ function CartTemplate({ item }) {
                 {showItem.price}₪{' '}
                 {showItem.quantity > 1 && ` x ${showItem.quantity}`}
             </span>
-            <button
-                onClick={() => hundleClickAdd()}
-            >
-                +
-            </button>
+            <button onClick={() => hundleClickAdd()}>+</button>
             <button onClick={() => removeFromCart(showItem.id)}>Remove</button>
         </div>
     );
