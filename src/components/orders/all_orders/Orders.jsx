@@ -7,7 +7,7 @@ import {
 import { AuthContext } from '../../../context/AuthContext';
 import { getRestaurantsNamesAndIds } from '../../../services/DishBoard/restaurants/api';
 import { useNavigate } from 'react-router-dom';
-import './Orders.css'; // Import CSS file
+import './Orders.css';
 import { CartContext } from '../../../context/CartContext';
 
 function Orders() {
@@ -85,7 +85,7 @@ function Orders() {
         </div>
     ));
 
-    return <div className="orders-container">{showingOrders && <h2>No orders</h2>}</div>;
+    return <div className="orders-container">{myOrders.length > 0 ? showingOrders : <h2>No orders</h2>}</div>;
 }
 
 export default Orders;

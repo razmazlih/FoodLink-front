@@ -3,7 +3,7 @@ import { API_ORDERLINE_URL } from '../../../config';
 
 export const addItemToCart = async (order) => {
     try {
-        const { data } = axios.post(`${API_ORDERLINE_URL}/order-item/`, {
+        const { data } = await axios.post(`${API_ORDERLINE_URL}/order-item/`, {
             order_id: order.orderId,
             menu_item_id: order.menuItemId,
             quantity: order.quantity,
