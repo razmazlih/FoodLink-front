@@ -1,6 +1,13 @@
+import { useNavigate, useParams } from "react-router-dom";
+import { updateCartStatus } from "../../services/OrderLine/status/api";
+
 function OrderSummary({ totalPrice }) {
+    const { orderId } = useParams();
+    const navigate = useNavigate();
+
     const handleCheckout = () => {
-        console.log('checkout clicked');
+        updateCartStatus(orderId)
+        navigate('/my-orders')
     };
 
     return (

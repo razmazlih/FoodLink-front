@@ -3,7 +3,7 @@ import { API_ORDERLINE_URL } from '../../../config';
 
 export const updateCartStatus = async (orderId) => {
     try {
-        const { data } = await axios.post(`${API_ORDERLINE_URL}/order-item/`, {
+        const { data } = await axios.post(`${API_ORDERLINE_URL}/order-status/`, {
             order_id: orderId,
             status: 'active',
         });
