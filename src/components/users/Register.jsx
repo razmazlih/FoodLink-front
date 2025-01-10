@@ -29,7 +29,7 @@ function Register() {
           password,
         })
           .then((accessToken) => {
-            handleLogin(JSON.stringify(accessToken));
+            handleLogin(accessToken);
             navigate("/");
           })
           .catch((error) => {
