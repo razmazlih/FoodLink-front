@@ -1,7 +1,32 @@
 .first-content {
     text-align: center;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-image: url('./media/business-logo.jpeg'); /* נתיב לתמונה */
+    background-size: cover; /* התמונה תתפוס את כל האזור */
+    background-position: center; /* התמונה תהיה ממורכזת */
+    background-repeat: no-repeat; /* התמונה לא תחזור על עצמה */
+    height: 500px; /* גובה של אזור התמונה, תוכל לשנות לפי הצורך */
+    position: relative; /* נדרש כדי למקם את ה-::before */
+}
+
+.first-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.505); /* צבע לבן עם שקיפות */
+    z-index: 1; /* וודא שהפילטר יהיה מעל התמונה */
+}
+
+.first-content h2, .first-content p, .first-content button {
+    position: relative; /* וודא שהתוכן לא יכוסה */
+    z-index: 2; /* וודא שהתוכן יהיה מעל הפילטר */
+}
+
+.first-content-logo {
+    display: none; /* לא צריך להציג את התמונה כ-<img> במקרה הזה */
 }
 
 .first-content-h2 {
