@@ -23,11 +23,10 @@ export const CartContextProvider = ({ children }) => {
                 .then((fullOrder) => fullOrder.items)
                 .then((cartItems) => setCart(cartItems))
                 .catch(() => {
-                    setOrderId('')
-                    localStorage.setItem('orderId', '')
-                })
-            }
-        
+                    setOrderId('');
+                    localStorage.setItem('orderId', '');
+                });
+        }
     }, [orderId]);
 
     const addToCart = (item) => {
@@ -57,8 +56,8 @@ export const CartContextProvider = ({ children }) => {
             });
     };
 
-    const updateQuantity = (itemId, newQuantity) => {
-        updateQuantityById(itemId, newQuantity);
+    const updateQuantity = async (itemId, newQuantity) => {
+        await updateQuantityById(itemId, newQuantity);
         let newItem;
         const updatedCart = cart.map((item) => {
             if (item.id === itemId) {
