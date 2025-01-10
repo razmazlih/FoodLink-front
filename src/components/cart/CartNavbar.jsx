@@ -10,24 +10,27 @@ function CartNavbar() {
 
     return (
         <div className="cart-navbar">
-            <h2>My Cart</h2>
+            <h2 className="cart-navbar-title">My Cart</h2>
             {!cart.length && (
                 <p className="cart-navbar-pas">No items in the cart</p>
             )}
 
-            <div className="cart-items">
+            <div className="cart-items-container">
                 {cart.map((item) => (
                     <CartTemplate key={item.id} item={item} />
                 ))}
             </div>
             {cart.length > 0 && (
                 <button
+                    className="cart-button"
                     onClick={() => navigate(`/my-orders/checkout/${orderId}`)}
                 >
                     Checkout
                 </button>
             )}
-            <button onClick={() => setShowing(false)}>Close</button>
+            <button 
+            className="cart-button"
+            onClick={() => setShowing(false)}>Close</button>
         </div>
     );
 }
