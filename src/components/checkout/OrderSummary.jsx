@@ -20,9 +20,16 @@ function OrderSummary({ totalPrice }) {
     };
 
     return (
-        <div className="order-summary">
-            <h4>Total: {totalPrice > 0 ? totalPrice : 'Loading...'}₪</h4>
-            <button onClick={handleCheckout}>Checkout</button>
+        <div className="order-checkout-summary-container">
+            <h4 className="order-checkout-summary-total">
+                Total: {totalPrice > 0 ? totalPrice : 'Loading...'}₪
+            </h4>
+            <button
+                className="order-checkout-summary-button"
+                onClick={handleCheckout}
+            >
+                Checkout
+            </button>
         </div>
     );
 }

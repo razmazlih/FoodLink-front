@@ -29,8 +29,8 @@ function OrderCheckoutMain() {
     }, [orderId, cart]);
 
     return (
-        <div className="container-checkout order-checkout-main">
-            <h1>Order Checkout</h1>
+        <div className="order-checkout-main-container">
+            <h1 className="order-checkout-main-title">Order Checkout</h1>
             <OrderCheckoutItem items={cart} />
             <OrderSummary totalPrice={myOrder.totalPrice} />
         </div>

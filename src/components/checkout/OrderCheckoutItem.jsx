@@ -41,8 +41,8 @@ function OrderCheckoutItem({ items }) {
     return (
         <div>
             {items.map((item) => (
-                <div className="order-item" key={item.id}>
-                    <p>
+                <div className="order-checkout-item-container" key={item.id}>
+                    <p className="order-checkout-item-name">
                         {mapItemName[item.id]} - {Number(item.price)}₪{' '}
                         {item.quantity > 1 && 'x ' + item.quantity}
                     </p>
