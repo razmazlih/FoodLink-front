@@ -15,6 +15,10 @@ const Navbar = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
     return (
         <div className="navbar">
             <div className="navbar-header">
@@ -32,7 +36,11 @@ const Navbar = () => {
                     { name: 'Contact', link: '/' },
                 ].map((item, index) => (
                     <li key={index} className="navbar-item">
-                        <Link to={item.link} className="navbar-link">
+                        <Link
+                            to={item.link}
+                            className="navbar-link"
+                            onClick={closeMenu}
+                        >
                             {item.name}
                         </Link>
                     </li>
@@ -40,14 +48,21 @@ const Navbar = () => {
                 {isLoggedIn ? (
                     <>
                         <li className="navbar-item">
-                            <Link to={'/my-orders'} className="navbar-link">
+                            <Link
+                                to={'/my-orders'}
+                                className="navbar-link"
+                                onClick={closeMenu}
+                            >
                                 My Orders
                             </Link>
                         </li>
                         <li className="navbar-item">
                             <button
                                 className="navbar-button"
-                                onClick={() => setShowing(!showing)}
+                                onClick={() => {
+                                    setShowing(!showing);
+                                    closeMenu();
+                                }}
                             >
                                 My Cart
                             </button>
@@ -55,7 +70,10 @@ const Navbar = () => {
                         <li className="navbar-item">
                             <button
                                 className="navbar-button"
-                                onClick={handleLogout}
+                                onClick={() => {
+                                    handleLogout();
+                                    closeMenu();
+                                }}
                             >
                                 Logout
                             </button>
@@ -63,7 +81,11 @@ const Navbar = () => {
                     </>
                 ) : (
                     <li className="navbar-item">
-                        <Link to={'/login'} className="navbar-link">
+                        <Link
+                            to={'/login'}
+                            className="navbar-link"
+                            onClick={closeMenu}
+                        >
                             Login
                         </Link>
                     </li>
