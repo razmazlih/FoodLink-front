@@ -13,7 +13,7 @@ import { CartContext } from '../../../context/CartContext';
 function Orders() {
     const navigate = useNavigate();
     const { userId } = useContext(AuthContext);
-    const { updateCart, cart } = useContext(CartContext);
+    const { updateCart, cart, orderId } = useContext(CartContext);
     const [myOrders, setMyOrders] = useState(
         JSON.parse(localStorage.getItem('myOrders')) || []
     );
@@ -76,6 +76,14 @@ function Orders() {
         }
     };
 
+    const hundleDeleteMyOrder = async (orderId) => {
+        await deleteOrder(orderId);
+        const filteredOrders = myOrders.filter((order) => order.id !== orderId)
+        setMyOrders(filteredOrders);
+        localStorage.setItem('myOrders', JSON.stringify(filteredOrders));
+        updateCart([], '');
+    }
+
     const showingOrders = myOrders.map((order) => (
         <div key={order.id} className="order-item">
             <h2>
@@ -93,7 +101,7 @@ function Orders() {
                     </button>
                     <button
                         className="delete-order"
-                        onClick={() => hundleDeleteOrder(order.id)}
+                        onClick={() => {Number(order.id) === Number(orderId) ? hundleDeleteMyOrder(order.id) : hundleDeleteOrder(order.id)}}
                     >
                         Delete Order
                     </button>
