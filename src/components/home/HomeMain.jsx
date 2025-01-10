@@ -20,10 +20,14 @@ function HomeMain() {
 
     const contentToRender = [
         {
-            topHeader: <h3>DISCOVER FOODLINK</h3>,
-            mainHeader: <h2>Your gateway to delicious meals</h2>,
+            topHeader: <h3
+                className="first-content-h3">DISCOVER FOODLINK</h3>,
+            mainHeader: <h2
+                className="first-content-h2">Your gateway to delicious meals</h2>,
             paragraph: (
-                <p>
+                <p
+                className="first-content-p"
+                >
                     FoodLink connects you to finest restaurants right at your
                     fingertips. Browse through a diverse selection of eateries,
                     explore their menus, and handpick your favorite dishes for a
@@ -37,10 +41,14 @@ function HomeMain() {
             link: '/contact'
         },
         {
-            topHeader: <h3>DELICIOUS DELIVERIES</h3>,
-            mainHeader: <h2>Order from the best local restaurants</h2>,
+            topHeader: <h3
+                className="first-content-h3">DELICIOUS DELIVERIES</h3>,
+            mainHeader: <h2
+                className="first-content-h2">Order from the best local restaurants</h2>,
             paragraph: myItems.map((item, index) => (
-                <li key={index}>
+                <li 
+                className="first-content-li"
+                key={index}>
                     <strong>{item.topic}:</strong> {item.content}
                 </li>
             )),
