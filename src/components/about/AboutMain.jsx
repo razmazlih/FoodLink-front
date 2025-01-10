@@ -18,7 +18,7 @@ function AboutMain() {
                 tools. I designed the website independently. The biggest
                 challenge was aggregating data from multiple servers and
                 presenting it as coherent information on the client side. The
-                website is for personal use and learning, so it is not active.
+                website is for personal use and learning, so it is not active. 
             </p>
         </div>
     );
