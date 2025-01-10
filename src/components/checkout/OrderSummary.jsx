@@ -20,7 +20,7 @@ function OrderSummary({ totalPrice }) {
     };
 
     return (
-        <div>
+        <div className="order-summary">
             <h4>Total: {totalPrice > 0 ? totalPrice : 'Loading...'}₪</h4>
             <button onClick={handleCheckout}>Checkout</button>
         </div>

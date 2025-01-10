@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { fetchOrder } from '../../services/OrderLine/order/api';
 import OrderCheckoutItem from './OrderCheckoutItem';
 import OrderSummary from './OrderSummary';
+import './OrderCheckout.css';
 
 function OrderCheckoutMain() {
     const { orderId } = useParams();
@@ -28,7 +29,7 @@ function OrderCheckoutMain() {
     }, [orderId, cart]);
 
     return (
-        <div>
+        <div className="container-checkout order-checkout-main">
             <h1>Order Checkout</h1>
             <OrderCheckoutItem items={cart} />
             <OrderSummary totalPrice={myOrder.totalPrice} />
