@@ -27,6 +27,7 @@
 
 .cart-item-button {
     padding: 5px 10px;
+    margin: 0 3px;
     font-size: 0.8rem;
     background-color: #f0a500;
     color: white;
