@@ -1,8 +1,11 @@
+import React from 'react';
+import './AboutMain.css';
+
 function AboutMain() {
     return (
-        <div>
-            <h1>About</h1>
-            <p>
+        <div className="about-container">
+            <h1 className="about-title">About</h1>
+            <p className="about-text">
                 I developed an online food ordering website using Django and
                 FastAPI, integrating WebSocket in FastAPI for real-time updates
                 on delivery status. The website includes three server-side
@@ -18,7 +21,7 @@ function AboutMain() {
                 tools. I designed the website independently. The biggest
                 challenge was aggregating data from multiple servers and
                 presenting it as coherent information on the client side. The
-                website is for personal use and learning, so it is not active. 
+                website is for personal use and learning, so it is not active.
             </p>
         </div>
     );
