@@ -21,8 +21,13 @@ export const CartContextProvider = ({ children }) => {
         if (orderId) {
             fetchOrder(orderId)
                 .then((fullOrder) => fullOrder.items)
-                .then((cartItems) => setCart(cartItems));
-        }
+                .then((cartItems) => setCart(cartItems))
+                .catch(() => {
+                    setOrderId('')
+                    localStorage.setItem('orderId', '')
+                })
+            }
+        
     }, [orderId]);
 
     const addToCart = (item) => {
@@ -122,6 +127,7 @@ export const CartContextProvider = ({ children }) => {
     return (
         <CartContext.Provider
             value={{
+                orderId,
                 cart,
                 addToCart,
                 removeFromCart,

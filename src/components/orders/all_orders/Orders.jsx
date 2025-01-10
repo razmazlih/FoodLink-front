@@ -14,7 +14,9 @@ function Orders() {
     const navigate = useNavigate();
     const { userId } = useContext(AuthContext);
     const { updateCart, cart } = useContext(CartContext);
-    const [myOrders, setMyOrders] = useState([]);
+    const [myOrders, setMyOrders] = useState(
+        JSON.parse(localStorage.getItem('myOrders')) || []
+    );
     const [restaurantMap, setRestaurantMap] = useState(
         JSON.parse(localStorage.getItem('restaurantMap')) || {}
     );
@@ -23,7 +25,10 @@ function Orders() {
     );
 
     useEffect(() => {
-        fetchAllOrders(userId).then((orders) => setMyOrders(orders));
+        fetchAllOrders(userId).then((orders) => {
+            localStorage.setItem('myOrders', JSON.stringify(orders));
+            return setMyOrders(orders);
+        });
         getRestaurantsNamesAndIds().then((response) => {
             const map = {};
             response.forEach((restaurant) => {
@@ -46,16 +51,20 @@ function Orders() {
 
     const hundleDeleteOrder = (orderId) => {
         deleteOrder(orderId);
-        setMyOrders(myOrders.filter((order) => order.id !== orderId));
+        const filteredOrders = myOrders.filter((order) => order.id !== orderId)
+        setMyOrders(filteredOrders);
+        localStorage.setItem('myOrders', JSON.stringify(filteredOrders));
         localStorage.removeItem('orderId');
+        localStorage.removeItem('cartItems');
     };
 
     const hundleContinueOrdering = (restaurantId) => {
-        const reservation = myReservations.find(
-            (order) => {
-                return order.restaurant_id === restaurantId && order.status.length === 0
-            }
-        );
+        const reservation = myReservations.find((order) => {
+            return (
+                order.restaurant_id === restaurantId &&
+                order.status.length === 0
+            );
+        });
 
         if (reservation) {
             fetchOrder(reservation.id).then((order) => {
@@ -90,7 +99,7 @@ function Orders() {
                     </button>
                 </>
             ) : (
-                <p>Order is {order.status[order.status.length -1].status}</p>
+                <p>Order is {order.status[order.status.length - 1].status}</p>
             )}
         </div>
     ));

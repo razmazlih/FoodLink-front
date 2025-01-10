@@ -10,6 +10,7 @@ import AboutMain from './components/about/AboutMain';
 import HowItWorksMain from './components/how-it-works/HowItWorksMain';
 import { CartContextProvider } from './context/CartContext';
 import Orders from './components/orders/all_orders/Orders';
+import OrderCheckoutMain from './components/checkout/OrderCheckoutMain';
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                             element={<HowItWorksMain />}
                         />
                         <Route path="/my-orders" element={<Orders />} />
+                        <Route path="/my-orders/checkout/:orderId" element={<OrderCheckoutMain />} />
                     </Routes>
                 </CartContextProvider>
             </AuthProvider>
