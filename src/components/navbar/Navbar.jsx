@@ -33,7 +33,6 @@ const Navbar = () => {
                     { name: 'About', link: '/about' },
                     { name: 'How it Works', link: '/how-it-works' },
                     { name: 'Restaurants', link: '/restaurants' },
-                    { name: 'Contact', link: '/' },
                 ].map((item, index) => (
                     <li key={index} className="navbar-item">
                         <Link
