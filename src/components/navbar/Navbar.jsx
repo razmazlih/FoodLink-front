@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
@@ -9,11 +9,21 @@ import './Navbar.css';
 const Navbar = () => {
     const { isLoggedIn, handleLogout } = useContext(AuthContext);
     const { showing, setShowing } = useContext(CartContext);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
     return (
         <div className="navbar">
-            <h1 className="navbar-title">Food Link</h1>
-            <ul className="navbar-list">
+            <div className="navbar-header">
+                <h1 className="navbar-title">Food Link</h1>
+                <button className="navbar-toggle" onClick={toggleMenu}>
+                    ☰
+                </button>
+            </div>
+            <ul className={`navbar-list ${isMenuOpen ? 'open' : ''}`}>
                 {[
                     { name: 'Home', link: '/' },
                     { name: 'About', link: '/about' },
