@@ -12,8 +12,8 @@ function HowItWorksMain() {
         <ol className="how-it-works-steps">
           <li className="step-item">
             <strong>User Management:</strong> Create an account or log in to
-            access all features. Your account securely stores your preferences
-            and order history for a personalized experience.
+            access all features. Your account securely stores your information
+            for a personalized experience.
             <br/>
             Links: 
             <a href="https://userbase-xqd2.onrender.com" target="_blank" rel="noopener noreferrer" className="service-link">Documentation</a> | 
