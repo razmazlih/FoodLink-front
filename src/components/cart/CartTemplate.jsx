@@ -43,8 +43,8 @@ function CartTemplate({ item }) {
         };
     }, [item.id, item.menu_item_id, showItem.name]);
 
-    const hundleClickAdd = () => {
-        const updatedItem = updateQuantity(item.id, item.quantity + 1);
+    const hundleClickAdd = async () => {
+        const updatedItem = await updateQuantity(item.id, item.quantity + 1);
         setShowItem((prev) => ({
             ...prev,
             quantity: updatedItem.quantity,
