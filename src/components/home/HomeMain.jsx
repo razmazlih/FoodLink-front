@@ -37,8 +37,8 @@ function HomeMain() {
                     of Ashdod without leaving your home!,
                 </p>
             ),
-            button: 'Get In Touch',
-            link: '/contact'
+            button: 'About the Project',
+            link: '/about'
         },
         {
             topHeader: <h3
