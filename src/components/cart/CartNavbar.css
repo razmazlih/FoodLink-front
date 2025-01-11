@@ -61,7 +61,7 @@
 
 /* אזור הצגת הפריטים */
 .cart-items-container {
-    max-height: 300px;
+    max-height: 140px;
     overflow-y: auto;
     margin-top: 20px;
     margin-bottom: 20px;
