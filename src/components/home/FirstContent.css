@@ -1,6 +1,9 @@
 .first-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 20px;
     background-image: url('./media/business-logo.jpeg'); /* נתיב לתמונה */
     background-size: cover; /* התמונה תתפוס את כל האזור */
     background-position: center; /* התמונה תהיה ממורכזת */

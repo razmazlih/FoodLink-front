@@ -6,12 +6,14 @@ function TopContent() {
         <div className="first-content">
             <h2 className="first-content-h2">Delicious deliveries</h2>
             <p className="first-content-p">Explore flavors at your doorstep</p>
+            <div>
             <Link to={'/restaurants'}>
                 <button className="first-content-button">Order Now</button>
             </Link>
             <Link to={'/how-it-works'}>
                 <button className="first-content-button">Our Services</button>
             </Link>
+            </div>
         </div>
     );
 }
