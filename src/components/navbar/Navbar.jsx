@@ -56,26 +56,28 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className="navbar-item">
-                            <button
-                                className="navbar-button"
+                            <Link
+                                to="#"
+                                className="navbar-link"
                                 onClick={() => {
                                     setShowing(!showing);
                                     closeMenu();
                                 }}
                             >
                                 My Cart
-                            </button>
+                            </Link>
                         </li>
                         <li className="navbar-item">
-                            <button
-                                className="navbar-button"
+                            <Link
+                                to="#"
+                                className="navbar-link"
                                 onClick={() => {
                                     handleLogout();
                                     closeMenu();
                                 }}
                             >
                                 Logout
-                            </button>
+                            </Link>
                         </li>
                     </>
                 ) : (
