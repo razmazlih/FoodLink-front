@@ -1,7 +1,7 @@
 .first-content {
     text-align: center;
     padding-top: 120px;
-    background-image: url('./media/business-logo.jpeg'); /* נתיב לתמונה */
+    background-image: url('https://res.cloudinary.com/drlmg8tzf/image/upload/v1736592110/ysztazluvkbnjotv9wit.jpg'); /* נתיב לתמונה */
     background-size: cover; /* התמונה תתפוס את כל האזור */
     background-position: center; /* התמונה תהיה ממורכזת */
     background-repeat: no-repeat; /* התמונה לא תחזור על עצמה */
