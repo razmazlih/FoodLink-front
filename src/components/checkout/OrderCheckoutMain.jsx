@@ -28,9 +28,22 @@ function OrderCheckoutMain() {
         });
     }, [orderId, cart]);
 
+    const formatDate = (date) => {
+        const options = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric', 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            timeZone: 'Asia/Jerusalem'
+        };
+        return new Date(date).toLocaleDateString('en-US', options);
+    };
+
     return (
         <div className="order-checkout-main-container">
             <h1 className="order-checkout-main-title">Order Checkout</h1>
+            <p className="order-checkout-main-date">{formatDate(myOrder.orderedAt)}</p>
             <OrderCheckoutItem items={cart} />
             <OrderSummary totalPrice={myOrder.totalPrice} />
         </div>
