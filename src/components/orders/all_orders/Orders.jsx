@@ -26,6 +26,7 @@ function Orders() {
 
     useEffect(() => {
         fetchAllOrders(userId).then((orders) => {
+            console.log(orders);
             localStorage.setItem('myOrders', JSON.stringify(orders));
             return setMyOrders(orders);
         });
@@ -114,6 +115,7 @@ function Orders() {
 
     return (
         <div className="orders-container">
+            <h2>My Orders</h2>
             {myOrders.length > 0 ? showingOrders : <h2>No orders</h2>}
         </div>
     );

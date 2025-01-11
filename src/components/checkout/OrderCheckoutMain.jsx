@@ -35,9 +35,10 @@ function OrderCheckoutMain() {
             day: 'numeric', 
             hour: '2-digit', 
             minute: '2-digit', 
-            timeZone: 'Asia/Jerusalem'
         };
-        return new Date(date).toLocaleDateString('en-US', options);
+    
+        const israelDate = new Date(new Date(date).getTime() + 2 * 60 * 60 * 1000); // הוספת שעתיים
+        return israelDate.toLocaleString('en-US', { ...options });
     };
 
     return (
