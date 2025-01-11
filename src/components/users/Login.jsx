@@ -44,7 +44,7 @@ function Login() {
                 <button className="login-button" onClick={handleSubmit}>
                     Login
                 </button>
-                {error && <div className="error-message">{error}</div>}
+                {error && <div className="error-message-login">{error}</div>}
                 <p className="login-text">
                     Don't have an account?{' '}
                     <Link to="/register" className="login-link">

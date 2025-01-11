@@ -52,3 +52,14 @@
   .register-link:hover {
     text-decoration: underline;
   }
+
+  .error-message-register {
+    color: #d9534f; /* צבע אדום להודעת שגיאה */
+    background-color: #f2dede; /* רקע בהיר */
+    border: 1px solid #ebccd1; /* גבול */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+}

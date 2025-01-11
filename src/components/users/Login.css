@@ -53,7 +53,7 @@
     text-decoration: underline;
 }
 
-.error-message {
+.error-message-login {
     color: #d9534f; /* צבע אדום להודעת שגיאה */
     background-color: #f2dede; /* רקע בהיר */
     border: 1px solid #ebccd1; /* גבול */
