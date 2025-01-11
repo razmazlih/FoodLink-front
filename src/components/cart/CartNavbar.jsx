@@ -8,6 +8,11 @@ function CartNavbar() {
     const { cart, setShowing, orderId } = useContext(CartContext);
     const navigate = useNavigate();
 
+    const hundleClickCheckout = () => {
+        setShowing(false)
+        navigate(`/my-orders/checkout/${orderId}`)
+    }
+
     return (
         <div className="cart-navbar">
             <h2 className="cart-navbar-title">My Cart</h2>
@@ -23,7 +28,7 @@ function CartNavbar() {
             {cart.length > 0 && (
                 <button
                     className="cart-button"
-                    onClick={() => navigate(`/my-orders/checkout/${orderId}`)}
+                    onClick={() => hundleClickCheckout()}
                 >
                     Checkout
                 </button>

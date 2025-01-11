@@ -1,42 +1,51 @@
+/* תצוגת פריט בעגלת הקניות */
 .cart-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    background-color: #f9f9f9;
+    padding: 12px;
+    background-color: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: box-shadow 0.3s ease;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
 }
 
 .cart-item:hover {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
 }
 
+/* שם המנה בפריט */
 .cart-item-strong {
-    font-size: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
     color: #333;
+    flex-grow: 1;
 }
 
+/* מחיר וכמות המנה */
 .cart-item-span {
-    font-size: 0.9rem;
-    color: #777;
-    margin-left: 10px;
+    font-size: 1.1rem;
+    color: #555;
+    margin-left: 12px;
 }
 
+/* כפתורים לשינוי כמות */
 .cart-item-button {
-    padding: 5px 10px;
-    margin: 0 3px;
-    font-size: 0.8rem;
-    background-color: #f0a500;
+    padding: 8px 15px;
+    margin: 0 5px;
+    font-size: 1rem;
+    background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cart-item-button:hover {
-    background-color: #d89000;
+    background-color: #218838;
+    transform: scale(1.1);
 }
