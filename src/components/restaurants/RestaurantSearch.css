@@ -1,41 +1,53 @@
 .restaurant-search {
     text-align: center;
     margin: 20px 0;
+    background-color: #fff7e5;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .restaurant-search h2 {
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 15px;
+    font-size: 2rem;
+    color: #f0a500;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .restaurant-search input {
-    width: 60%;
-    padding: 10px;
+    width: 70%;
+    padding: 12px;
     font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
+    border: 1px solid #f0a500;
+    border-radius: 8px;
+    margin-right: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .restaurant-search input:focus {
     outline: none;
-    border-color: #f0a500;
-    box-shadow: 0 0 5px #f0a500;
+    border-color: #d89000;
+    box-shadow: 0 0 6px #d89000;
 }
 
 .restaurant-search button {
-    padding: 10px 15px;
-    font-size: 1rem;
+    padding: 12px 28px;
+    margin: 0 10px;
+    font-size: 1.1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    margin: 5px;
     background-color: #f0a500;
     color: white;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
 }
 
 .restaurant-search button:hover {
     background-color: #d89000;
+    transform: scale(1.05);
+}
+
+.restaurant-search button:focus {
+    outline: none;
 }

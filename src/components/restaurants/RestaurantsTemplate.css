@@ -1,28 +1,34 @@
 .restaurant-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #f0a500;
+    border-radius: 12px;
+    padding: 20px;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 350px;
 }
 
 .restaurant-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .restaurant-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .restaurant-card p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #555;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .restaurant-card .status {
@@ -32,17 +38,23 @@
 }
 
 .restaurant-card button {
-    padding: 10px 15px;
-    font-size: 1rem;
+    padding: 12px 18px;
+    font-size: 1.1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    margin: 5px;
     background-color: #f0a500;
     color: white;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 10px;
+    width: 100%;
 }
 
 .restaurant-card button:hover {
     background-color: #d89000;
+    transform: scale(1.05);
+}
+
+.restaurant-card button:focus {
+    outline: none;
 }
