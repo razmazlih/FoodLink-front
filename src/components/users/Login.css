@@ -5,27 +5,27 @@
     justify-content: center;
     height: 40vh;
     background-color: #f9f9f9;
-  }
-  
-  .login-title {
+}
+
+.login-title {
     font-size: 2rem;
     color: #333;
-  }
-  
-  .login-form {
+}
+
+.login-form {
     display: flex;
     flex-direction: column;
     width: 300px;
-  }
-  
-  .login-input {
+}
+
+.login-input {
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
-  
-  .login-button {
+}
+
+.login-button {
     margin-top: 10px;
     padding: 10px;
     background-color: #f0a500;
@@ -33,22 +33,34 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .login-button:hover {
+}
+
+.login-button:hover {
     background-color: #d89000;
-  }
-  
-  .login-text {
+}
+
+.login-text {
     margin-top: 10px;
     font-size: 0.9rem;
-  }
-  
-  .login-link {
+}
+
+.login-link {
     color: #f0a500;
     text-decoration: none;
-  }
-  
-  .login-link:hover {
+}
+
+.login-link:hover {
     text-decoration: underline;
-  }
+}
+
+.error-message {
+    color: #d9534f; /* צבע אדום להודעת שגיאה */
+    background-color: #f2dede; /* רקע בהיר */
+    border: 1px solid #ebccd1; /* גבול */
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+}

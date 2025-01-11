@@ -9,15 +9,17 @@ function Login() {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(''); // סטייט להודעות שגיאה
 
     const handleSubmit = () => {
+        setError(''); // מנקה שגיאות קודמות
         userCredentials({ username, password })
             .then((response) => {
                 handleLogin(response);
                 navigate('/');
             })
             .catch((error) => {
-                console.error('Error login user:', error);
+                setError('Invalid username or password. Please try again.'); // הודעת שגיאה ידידותית
             });
     };
 
@@ -42,6 +44,7 @@ function Login() {
                 <button className="login-button" onClick={handleSubmit}>
                     Login
                 </button>
+                {error && <div className="error-message">{error}</div>}
                 <p className="login-text">
                     Don't have an account?{' '}
                     <Link to="/register" className="login-link">
