@@ -1,53 +1,108 @@
 .restaurant-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, #ffffff, #f9f9f9);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 550px;
+    margin: 10px auto;
     text-align: center;
-    margin: 20px 0;
-    background-color: #fff7e5;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.restaurant-search:hover {
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
 }
 
 .restaurant-search h2 {
     font-size: 2rem;
-    color: #f0a500;
-    margin-bottom: 20px;
-    font-weight: bold;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .restaurant-search input {
-    width: 70%;
-    padding: 12px;
+    width: 100%;
+    max-width: 450px;
+    padding: 14px 18px;
     font-size: 1rem;
-    border: 1px solid #f0a500;
-    border-radius: 8px;
-    margin-right: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .restaurant-search input:focus {
     outline: none;
-    border-color: #d89000;
-    box-shadow: 0 0 6px #d89000;
+    border-color: #f4c430; /* גוון זהב */
+    box-shadow: 0 0 8px rgba(244, 196, 48, 0.3);
 }
 
-.restaurant-search button {
-    padding: 12px 28px;
+.restaurant-search .buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* עיצוב כפתור חיפוש */
+.restaurant-search button.search {
+    flex: 1;
+    min-width: 120px;
     margin: 0 10px;
-    font-size: 1.1rem;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #f4c430, #e6b100);
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    background-color: #f0a500;
-    color: white;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 10px;
+    box-shadow: 0 6px 20px rgba(244, 196, 48, 0.3);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.restaurant-search button:hover {
-    background-color: #d89000;
-    transform: scale(1.05);
+.restaurant-search button.search:hover {
+    background: linear-gradient(135deg, #e6b100, #c99a00);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(201, 154, 0, 0.5);
 }
 
-.restaurant-search button:focus {
+.restaurant-search button.search:focus {
     outline: none;
+    box-shadow: 0 0 10px rgba(244, 196, 48, 0.5);
+}
+
+/* עיצוב כפתור איפוס */
+.restaurant-search button.clear {
+    flex: 1;
+    min-width: 120px;
+    margin: 0 10px;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f4c430;
+    background: #fff;
+    border: 2px solid #f4c430;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(244, 196, 48, 0.1);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.restaurant-search button.clear:hover {
+    background: #f4c430;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(244, 196, 48, 0.3);
+}
+
+.restaurant-search button.clear:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(244, 196, 48, 0.5);
 }

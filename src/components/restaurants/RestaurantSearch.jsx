@@ -20,9 +20,13 @@ function RestaurantSearch({ searchTerm, setSearchTerm }) {
                 value={tempSearchTerm}
                 onChange={(e) => setTempSearchTerm(e.target.value)}
             />
-            <div>
-            <button onClick={handleSearch}>Search</button>
-            <button onClick={() => setSearchTerm('')}>Clear</button>
+            <div className="buttons">
+                <button className="search" onClick={handleSearch}>
+                    Search
+                </button>
+                <button className="clear" onClick={() => setSearchTerm('')}>
+                    Reset
+                </button>
             </div>
         </div>
     );
