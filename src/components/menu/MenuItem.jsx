@@ -4,8 +4,9 @@ import { CartContext } from '../../context/CartContext';
 
 function MenuItem({ menuItem }) {
     const { userId } = useContext(AuthContext);
-    const { addToCart, setShowing, checkInCart, cart } = useContext(CartContext);
-    const [isInCart, setIsInCart] = useState(checkInCart(menuItem.id))
+    const { addToCart, setShowing, checkInCart, cart } =
+        useContext(CartContext);
+    const [isInCart, setIsInCart] = useState(checkInCart(menuItem.id));
 
     useEffect(() => {
         setIsInCart(checkInCart(menuItem.id));
@@ -14,26 +15,34 @@ function MenuItem({ menuItem }) {
     const handleAddToCart = () => {
         setIsInCart(true);
         addToCart(menuItem);
-        setShowing(true);
     };
 
     const userLogin = (
-        <button onClick={() => handleAddToCart()}>Add to Cart</button>
+        <button onClick={() => handleAddToCart()} className="add-to-cart-btn">
+            Add to Cart
+        </button>
     );
 
-    const inCart = (
-        <>added</>
-    )
+    const inCart = <span className="added-to-cart" onClick={() => setShowing(true)}>Added</span>;
 
-    const hundleIsLoginIsInCart = (
-        userId ? (isInCart ? inCart : userLogin) : (<p>Please log in to add items to the cart</p>)
-    )
+    const hundleIsLoginIsInCart = userId ? (
+        isInCart ? (
+            inCart
+        ) : (
+            userLogin
+        )
+    ) : (
+        <p className="login-prompt">Please log in to add items to the cart</p>
+    );
 
     return (
         <li className="menu-item" key={menuItem.id}>
-            <strong>{menuItem.name}</strong> - {menuItem.price}₪{' '}
+            <div className="menu-item-header">
+                <strong>{menuItem.name}</strong> -{' '}
+                <span className="price">{menuItem.price}₪</span>
+            </div>
+            <p className="menu-item-description">{menuItem.description}</p>
             {hundleIsLoginIsInCart}
-            <p>{menuItem.description}</p>
         </li>
     );
 }

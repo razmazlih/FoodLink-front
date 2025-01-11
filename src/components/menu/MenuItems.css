@@ -1,56 +1,80 @@
-.menu-items {
+/* כללי */
+.menu-items-container {
     margin: 20px auto;
     padding: 20px;
-    max-width: 800px;
+    max-width: 900px;
     background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.menu-items h2 {
-    font-size: 2rem;
+.menu-items-container:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.menu-title {
+    font-size: 2.5rem;
     color: #333;
-    margin-bottom: 20px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.menu-items h3 {
-    font-size: 1.5rem;
-    color: #555;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 5px;
+.category-container {
+    margin-bottom: 30px;
 }
 
-.menu-items ul {
+.category-title {
+    font-size: 1.7rem;
+    color: #444;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0a500;
+}
+
+.menu-item-list {
     list-style: none;
     padding: 0;
 }
 
-.menu-items li {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 5px;
+/* פריט תפריט */
+.menu-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
     background-color: #f9f9f9;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 1px solid #eee;
 }
 
-.menu-items li strong {
-    font-size: 1.2rem;
+.menu-item:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-3px);
+}
+
+.menu-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
     color: #333;
 }
 
-.menu-items li p {
-    margin: 5px 0 0 0;
-    font-size: 1rem;
-    color: #666;
+.price {
+    color: #f0a500;
+    font-weight: bold;
 }
 
-.menu-items li button {
-    margin-top: 5px;
-    padding: 8px 12px;
+.menu-item-description {
     font-size: 1rem;
+    color: #777;
+    margin-top: 8px;
+}
+
+/* כפתורים */
+.add-to-cart-btn {
+    font-size: 1.1rem;
+    padding: 10px 15px;
     background-color: #f0a500;
     color: white;
     border: none;
@@ -59,71 +83,102 @@
     transition: background-color 0.3s ease;
 }
 
-.menu-items li button:hover {
+.add-to-cart-btn:hover {
     background-color: #d89000;
+}
+
+.added-to-cart {
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #4CAF50;
+    font-weight: bold;
+    padding: 6px 0px;
+    margin: 5px 0; /* הוספת רווח חיצוני מעל ומתחת */
+    border-radius: 5px;
+    background-color: #e8f5e8;
+    border: 1px solid #4CAF50;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.added-to-cart:hover {
+    background-color: #c8e6c9; /* שינוי צבע הרקע בעת ריחוף */
+    border-color: #388e3c; /* שינוי גבול בעת ריחוף */
+    color: #388e3c; /* שינוי צבע הטקסט בעת ריחוף */
+    cursor: default;
+}
+
+/* טקסטים */
+.login-prompt {
+    font-size: 1rem;
+    color: #ff5733;
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: center;
 }
 
 /* רספונסיביות */
 @media (max-width: 768px) {
-    .menu-items {
+    .menu-items-container {
         padding: 15px;
-        margin: 10px;
+        margin: 15px;
     }
 
-    .menu-items h2 {
-        font-size: 1.8rem;
+    .menu-title {
+        font-size: 2rem;
     }
 
-    .menu-items h3 {
-        font-size: 1.3rem;
+    .category-title {
+        font-size: 1.5rem;
     }
 
-    .menu-items li {
-        padding: 8px;
+    .menu-item {
+        padding: 15px;
     }
 
-    .menu-items li strong {
+    .menu-item-header {
+        font-size: 1.2rem;
+    }
+
+    .menu-item-description {
+        font-size: 0.9rem;
+    }
+
+    .add-to-cart-btn, .added-to-cart {
         font-size: 1rem;
-    }
-
-    .menu-items li p {
-        font-size: 0.9rem;
-    }
-
-    .menu-items li button {
-        font-size: 0.9rem;
-        padding: 6px 10px;
+        padding: 8px 12px;
     }
 }
 
 @media (max-width: 480px) {
-    .menu-items {
+    .menu-items-container {
         padding: 10px;
         margin: 5px;
     }
 
-    .menu-items h2 {
-        font-size: 1.5rem;
+    .menu-title {
+        font-size: 1.6rem;
     }
 
-    .menu-items h3 {
-        font-size: 1.2rem;
+    .category-title {
+        font-size: 1.3rem;
     }
 
-    .menu-items li {
-        padding: 6px;
+    .menu-item {
+        padding: 10px;
     }
 
-    .menu-items li strong {
+    .menu-item-header {
+        font-size: 1rem;
+    }
+
+    .menu-item-description {
+        font-size: 0.85rem;
+    }
+
+    .add-to-cart-btn, .added-to-cart {
         font-size: 0.9rem;
-    }
-
-    .menu-items li p {
-        font-size: 0.8rem;
-    }
-
-    .menu-items li button {
-        font-size: 0.8rem;
-        padding: 5px 8px;
+        padding: 6px 10px;
     }
 }
