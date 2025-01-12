@@ -67,6 +67,50 @@
     background-color: #d89000;
 }
 
+.menu-checkout-placeholder {
+    position: relative;
+    height: 42px;
+}
+
+.menu-checkout-button {
+    padding: 10px 0;
+    font-size: 1.2rem;
+    background-color: #00a816;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    bottom: 20px;
+    width: 100%;
+}
+
+.menu-checkout-button:hover {
+    background-color: #008a12;
+}
+
+.cart-count {
+    font-weight: bold;
+    font-size: 1rem;
+    color: white;
+    background: linear-gradient(135deg, #ff5722, #ff9800);
+    padding: 5px 10px;
+    border-radius: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    bottom: 6px;
+}
+
+.menu-checkout-button.hidden {
+    display: none; /* הסתרת הכפתור */
+}
+
 /* רספונסיביות */
 @media (max-width: 1024px) {
     .menu-main {
@@ -112,5 +156,22 @@
     .menu-main li button {
         font-size: 0.8rem;
         padding: 12px 0;
+    }
+
+    .menu-checkout-button {
+        position: fixed;
+        bottom: 30px;
+        left: 20px;
+        right: 20px;
+        width: auto;
+        font-weight: bold;
+        border-radius: 25px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* צל רך */
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .menu-checkout-button:hover {
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* צל מוגבר */
     }
 }
