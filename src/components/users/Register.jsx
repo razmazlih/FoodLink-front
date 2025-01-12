@@ -68,22 +68,6 @@ function Register() {
         <div className="register-container">
             <h1 className="register-title">Register</h1>
             <div className="register-form">
-                {error && (
-                    <div className="error-message-register">
-                        {Object.keys(error).map((key, index) => {
-                            const errorMessage = updateError(key).replace(
-                                '_',
-                                ' '
-                            );
-                            return (
-                                <span key={index}>
-                                    {errorMessage}
-                                    <br />
-                                </span>
-                            );
-                        })}
-                    </div>
-                )}{' '}
                 <input
                     className="register-input"
                     type="text"
@@ -129,6 +113,22 @@ function Register() {
                 <button className="register-button" onClick={handleSubmit}>
                     Register
                 </button>
+                {error && (
+                    <div className="error-message-register">
+                        {Object.keys(error).map((key, index) => {
+                            const errorMessage = updateError(key).replace(
+                                '_',
+                                ' '
+                            );
+                            return (
+                                <span key={index}>
+                                    {errorMessage}
+                                    <br />
+                                </span>
+                            );
+                        })}
+                    </div>
+                )}{' '}
                 <p className="register-text">
                     Already have an account?{' '}
                     <Link to="/login" className="register-link">
