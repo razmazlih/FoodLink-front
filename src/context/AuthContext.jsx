@@ -13,9 +13,13 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userId');
         localStorage.removeItem('myReservations');
+        localStorage.removeItem('orderId');
+        localStorage.removeItem('cartItems');
+        localStorage.removeItem('myOrders');
+        localStorage.removeItem('myReservations');
         setUserId(null);
         setIsLoggedIn(false);
-        navigate('/');
+        navigate('/login');
     }, [navigate]);
 
     useEffect(() => {

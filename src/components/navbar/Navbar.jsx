@@ -69,7 +69,7 @@ const Navbar = () => {
                         </li>
                         <li className="navbar-item">
                             <Link
-                                to="#"
+                                to="/login"
                                 className="navbar-link"
                                 onClick={() => {
                                     handleLogout();
