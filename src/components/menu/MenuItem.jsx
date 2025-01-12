@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { CartContext } from '../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 function MenuItem({ menuItem }) {
     const { userId } = useContext(AuthContext);
     const { addToCart, setShowing, checkInCart, cart } =
         useContext(CartContext);
     const [isInCart, setIsInCart] = useState(checkInCart(menuItem.id));
+    const navigate = useNavigate()
 
     useEffect(() => {
         setIsInCart(checkInCart(menuItem.id));
@@ -32,7 +34,7 @@ function MenuItem({ menuItem }) {
             userLogin
         )
     ) : (
-        <p className="login-prompt">Please log in to add items to the cart</p>
+        <p className="login-prompt-menu" onClick={() => navigate('/login')}>Please log in to order items</p>
     );
 
     return (
@@ -41,7 +43,7 @@ function MenuItem({ menuItem }) {
                 <strong>{menuItem.name}</strong> -{' '}
                 <span className="price">{menuItem.price}₪</span>
             </div>
-            <p className="menu-item-description">{menuItem.description}</p>
+            <p className="menu-item-description menu-main-li-p">{menuItem.description}</p>
             {hundleIsLoginIsInCart}
         </li>
     );
