@@ -51,14 +51,14 @@
     margin: 0 10px;
     padding: 10px 20px;
     font-size: 1rem;
-    background-color: #f0a500;
+    background: linear-gradient(135deg, #f0a500, #e6b100);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .first-content-button:hover {
-    background-color: #d89000;
+    background: linear-gradient(135deg, #ca9b00, #a57f00);
 }

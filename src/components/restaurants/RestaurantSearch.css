@@ -59,7 +59,7 @@
     font-size: 1rem;
     font-weight: 600;
     color: #fff;
-    background: linear-gradient(135deg, #f4c430, #e6b100);
+    background: linear-gradient(135deg, #f0a500, #e6b100);
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -68,7 +68,7 @@
 }
 
 .restaurant-search button.search:hover {
-    background: linear-gradient(135deg, #e6b100, #c99a00);
+    background: linear-gradient(135deg, #ca9b00, #a57f00);
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(201, 154, 0, 0.5);
 }
