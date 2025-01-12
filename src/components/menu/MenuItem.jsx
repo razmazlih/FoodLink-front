@@ -8,7 +8,7 @@ function MenuItem({ menuItem }) {
     const { addToCart, setShowing, checkInCart, cart } =
         useContext(CartContext);
     const [isInCart, setIsInCart] = useState(checkInCart(menuItem.id));
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         setIsInCart(checkInCart(menuItem.id));
@@ -25,7 +25,11 @@ function MenuItem({ menuItem }) {
         </button>
     );
 
-    const inCart = <span className="added-to-cart" onClick={() => setShowing(true)}>Added</span>;
+    const inCart = (
+        <span className="added-to-cart" onClick={() => setShowing(true)}>
+            Added
+        </span>
+    );
 
     const hundleIsLoginIsInCart = userId ? (
         isInCart ? (
@@ -34,7 +38,9 @@ function MenuItem({ menuItem }) {
             userLogin
         )
     ) : (
-        <p className="login-prompt-menu" onClick={() => navigate('/login')}>Please log in to order items</p>
+        <p className="login-prompt-menu" onClick={() => navigate('/login')}>
+            Please log in to order items
+        </p>
     );
 
     return (

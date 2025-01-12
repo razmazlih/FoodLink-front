@@ -108,10 +108,9 @@
 }
 
 .menu-checkout-button.hidden {
-    display: none; /* הסתרת הכפתור */
+    display: none;
 }
 
-/* רספונסיביות */
 @media (max-width: 1024px) {
     .menu-main {
         padding: 15px;
@@ -166,12 +165,12 @@
         width: auto;
         font-weight: bold;
         border-radius: 25px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* צל רך */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         text-align: center;
         cursor: pointer;
     }
 
     .menu-checkout-button:hover {
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* צל מוגבר */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
     }
 }

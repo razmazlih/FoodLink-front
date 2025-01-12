@@ -66,21 +66,25 @@ function CartTemplate({ item }) {
     return (
         <div className="cart-item">
             <div>
-            <strong
-                className="cart-item-strong">{showItem.name}</strong>
-            <span
-                className="cart-item-span">
-                {showItem.price}₪{' '}
-                {showItem.quantity > 1 && ` x ${showItem.quantity}`}
-            </span>
+                <strong className="cart-item-strong">{showItem.name}</strong>
+                <span className="cart-item-span">
+                    {showItem.price}₪{' '}
+                    {showItem.quantity > 1 && ` x ${showItem.quantity}`}
+                </span>
             </div>
             <div>
-            <button 
-            className="cart-item-button"
-            onClick={() => hundleClickAdd()}>+</button>
-            <button 
-            className="cart-item-button"
-            onClick={() => hundleClickRemove()}>-</button>
+                <button
+                    className="cart-item-button"
+                    onClick={() => hundleClickAdd()}
+                >
+                    +
+                </button>
+                <button
+                    className="cart-item-button"
+                    onClick={() => hundleClickRemove()}
+                >
+                    -
+                </button>
             </div>
         </div>
     );

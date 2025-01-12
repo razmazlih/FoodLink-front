@@ -2,11 +2,11 @@
     text-align: center;
     padding-top: 120px;
     background-image: url('https://res.cloudinary.com/drlmg8tzf/image/upload/v1736592110/ysztazluvkbnjotv9wit.jpg'); /* נתיב לתמונה */
-    background-size: cover; /* התמונה תתפוס את כל האזור */
-    background-position: center; /* התמונה תהיה ממורכזת */
-    background-repeat: no-repeat; /* התמונה לא תחזור על עצמה */
-    height: 500px; /* גובה של אזור התמונה, תוכל לשנות לפי הצורך */
-    position: relative; /* נדרש כדי למקם את ה-::before */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    position: relative;
 }
 
 @media(min-width: 1000px) {

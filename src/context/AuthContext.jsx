@@ -33,13 +33,14 @@ export const AuthProvider = ({ children }) => {
 
     const handleLogin = (tokens) => {
         localStorage.setItem('accessToken', JSON.stringify(tokens));
-        const {theUserId, theExp} = extractUserIdAndExpFromToken(tokens.access);
+        const { theUserId, theExp } = extractUserIdAndExpFromToken(
+            tokens.access
+        );
         setUserId(theUserId);
         localStorage.setItem('userId', theUserId);
         setExp(theExp);
         setIsLoggedIn(true);
     };
-
 
     const extractUserIdAndExpFromToken = (token) => {
         try {
@@ -47,7 +48,7 @@ export const AuthProvider = ({ children }) => {
             const decodedPayload = JSON.parse(atob(payload));
             const theUserId = decodedPayload.user_id;
             const theExp = decodedPayload.exp;
-            return {theUserId, theExp};
+            return { theUserId, theExp };
         } catch (error) {
             console.error('Failed to extract user_id from token:', error);
             return null;

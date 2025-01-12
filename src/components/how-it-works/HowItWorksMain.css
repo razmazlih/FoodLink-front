@@ -19,12 +19,9 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
     background: linear-gradient(to left, #ff7e5f, #feb47b);
-
-    /* תיאום עם דפדפנים שונים */
     -webkit-background-clip: text;
-    background-clip: text; /* הגרסה הסטנדרטית */
-
-    color: transparent; /* תוודא שהטקסט יהיה שקוף */
+    background-clip: text;
+    color: transparent;
 }
 
 .how-it-works-content {
@@ -84,7 +81,6 @@
     background-color: #f0f9ff;
 }
 
-/* אנימציה */
 .how-it-works-container {
     animation: fadeIn 1s ease-out;
 }

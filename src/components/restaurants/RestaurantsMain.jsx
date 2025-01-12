@@ -6,7 +6,9 @@ import './RestaurantsMain.css';
 
 function RestaurantsMain() {
     const [searchTerm, setSearchTerm] = useState('');
-    const [restaurants, setRestaurants] = useState(JSON.parse(localStorage.getItem('restaurants')) || []);
+    const [restaurants, setRestaurants] = useState(
+        JSON.parse(localStorage.getItem('restaurants')) || []
+    );
 
     useEffect(() => {
         fetchRestaurants();
@@ -34,7 +36,10 @@ function RestaurantsMain() {
             />
             <div className="restaurants-list">
                 {filteredRestaurants.map((restaurant) => (
-                    <RestaurantsTemplate key={restaurant.id} restaurant={restaurant} />
+                    <RestaurantsTemplate
+                        key={restaurant.id}
+                        restaurant={restaurant}
+                    />
                 ))}
             </div>
         </div>

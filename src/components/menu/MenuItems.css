@@ -1,4 +1,3 @@
-/* כללי */
 .menu-items-container {
     margin: 20px auto;
     padding: 20px;
@@ -75,7 +74,6 @@
     margin-top: 8px;
 }
 
-/* כפתורים */
 .add-to-cart-btn {
     font-size: 1.1rem;
     padding: 10px 15px;
@@ -95,27 +93,26 @@
     display: block;
     text-align: center;
     font-size: 1.2rem;
-    color: #4CAF50;
+    color: #4caf50;
     font-weight: bold;
     padding: 7px 0px;
     margin-top: 10px;
     margin-bottom: 1px;
     border-radius: 5px;
     background-color: #e8f5e8;
-    border: 1px solid #4CAF50;
+    border: 1px solid #4caf50;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     user-select: none;
 }
 
 .added-to-cart:hover {
-    background-color: #c8e6c9; /* שינוי צבע הרקע בעת ריחוף */
-    border-color: #388e3c; /* שינוי גבול בעת ריחוף */
-    color: #388e3c; /* שינוי צבע הטקסט בעת ריחוף */
+    background-color: #c8e6c9;
+    border-color: #388e3c;
+    color: #388e3c;
     cursor: default;
 }
 
-/* טקסטים */
 .login-prompt-menu {
     font-size: 1rem;
     color: #ff5733 !important;
@@ -132,7 +129,6 @@
     background-color: #ffcccc;
 }
 
-/* רספונסיביות */
 @media (max-width: 768px) {
     .menu-items-container {
         padding: 15px;
@@ -159,7 +155,8 @@
         font-size: 0.9rem;
     }
 
-    .add-to-cart-btn, .added-to-cart {
+    .add-to-cart-btn,
+    .added-to-cart {
         font-size: 1rem;
         padding: 9px;
         margin-top: 20px;
@@ -168,7 +165,7 @@
     .menu-item-header {
         display: flex;
         flex-direction: column;
-        align-items: center; /* כדי ליישר את התוכן לשמאל */
+        align-items: center;
     }
 
     .menu-item-name {
@@ -190,8 +187,10 @@
         margin-bottom: 10px;
     }
 
-    .add-to-cart-btn, .added-to-cart, .login-prompt-menu {
-        align-self: stretch; /* כדי שהכפתור יתפרס על כל רוחב התא */
+    .add-to-cart-btn,
+    .added-to-cart,
+    .login-prompt-menu {
+        align-self: stretch;
     }
 }
 

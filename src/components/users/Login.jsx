@@ -27,10 +27,10 @@ function Login() {
     };
 
     const handlePressEnter = (event) => {
-        if (event.key === "Enter") {
+        if (event.key === 'Enter') {
             handleSubmit();
         }
-      };
+    };
 
     return (
         <div className="login-container">

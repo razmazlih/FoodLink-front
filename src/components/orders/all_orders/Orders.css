@@ -150,7 +150,7 @@
 }
 
 .start-new-order {
-    background: linear-gradient(135deg, #34a853, #0f9d58); /* צבע ירוק הדרגתי */
+    background: linear-gradient(135deg, #34a853, #0f9d58);
     color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -171,7 +171,7 @@
 }
 
 .checkout-order {
-    background: linear-gradient(135deg, #1e90ff, #007aff); /* צבע כחול הדרגתי */
+    background: linear-gradient(135deg, #1e90ff, #007aff);
     color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -186,7 +186,7 @@
 }
 
 .checkout-order:hover {
-    background: linear-gradient(135deg, #007aff, #005ecb); /* צבע כחול כהה יותר */
+    background: linear-gradient(135deg, #007aff, #005ecb);
     transform: scale(1.05);
 }
 

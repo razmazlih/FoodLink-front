@@ -44,14 +44,14 @@
 .restaurant-card .status {
     font-size: 1rem;
     font-weight: 600;
-    color: #4caf50; /* ירוק לזמינות */
+    color: #4caf50;
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 0.7px;
 }
 
 .restaurant-card .status.unavailable {
-    color: #f44336; /* אדום לא זמין */
+    color: #f44336;
 }
 
 .restaurant-card button {
