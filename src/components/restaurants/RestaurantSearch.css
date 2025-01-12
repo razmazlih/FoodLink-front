@@ -40,7 +40,7 @@
 
 .restaurant-search input:focus {
     outline: none;
-    border-color: #f4c430; /* גוון זהב */
+    border-color: #f4c430;
     box-shadow: 0 0 8px rgba(244, 196, 48, 0.3);
 }
 
@@ -50,7 +50,6 @@
     flex-wrap: wrap;
 }
 
-/* עיצוב כפתור חיפוש */
 .restaurant-search button.search {
     flex: 1;
     min-width: 120px;
@@ -78,7 +77,6 @@
     box-shadow: 0 0 10px rgba(244, 196, 48, 0.5);
 }
 
-/* עיצוב כפתור איפוס */
 .restaurant-search button.clear {
     flex: 1;
     min-width: 120px;

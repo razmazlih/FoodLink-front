@@ -30,12 +30,10 @@
     line-height: 1.6;
 }
 
-/* הוספת עיצוב לטקסט כדי שהוא יהיה מודגש יותר */
 .restaurant-info h2 span {
-    color: #f0a500; /* צבע עדין ומחמם */
+    color: #f0a500;
 }
 
-/* טקסט מותאם לאזורי ניידים */
 @media (max-width: 768px) {
     .restaurant-info {
         padding: 20px;

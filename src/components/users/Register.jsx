@@ -32,7 +32,7 @@ function Register() {
                 })
                     .then((accessToken) => {
                         handleLogin(accessToken);
-                        navigate('/');
+                        navigate('/restaurants');
                     })
                     .catch((error) => {
                         const errorMessage =
@@ -52,10 +52,10 @@ function Register() {
     };
 
     const handlePressEnter = (event) => {
-        if (event.key === "Enter") {
+        if (event.key === 'Enter') {
             handleSubmit();
         }
-      };
+    };
 
     const updateError = (string) => {
         if (string === 'username') {

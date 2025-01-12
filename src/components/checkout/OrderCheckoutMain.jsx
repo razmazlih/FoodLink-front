@@ -23,30 +23,35 @@ function OrderCheckoutMain() {
                 })),
                 orderedAt: order.ordered_at,
                 totalPrice: order.total_price,
+                restaurantId: order.restaurant_id,
             };
             setMyOrder(showOrder);
         });
     }, [orderId, cart]);
 
     const formatDate = (date) => {
-        const options = { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric', 
-            hour: '2-digit', 
-            minute: '2-digit', 
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
         };
-    
-        const israelDate = new Date(new Date(date).getTime() + 2 * 60 * 60 * 1000); // הוספת שעתיים
+
+        const israelDate = new Date(
+            new Date(date).getTime() + 2 * 60 * 60 * 1000
+        ); // הוספת שעתיים
         return israelDate.toLocaleString('en-US', { ...options });
     };
 
     return (
         <div className="order-checkout-main-container">
             <h1 className="order-checkout-main-title">Order Checkout</h1>
-            <p className="order-checkout-main-date">{formatDate(myOrder.orderedAt)}</p>
+            <p className="order-checkout-main-date">
+                {formatDate(myOrder.orderedAt)}
+            </p>
             <OrderCheckoutItem items={cart} />
-            <OrderSummary totalPrice={myOrder.totalPrice} />
+            <OrderSummary totalPrice={myOrder.totalPrice} myOrder={myOrder} />
         </div>
     );
 }

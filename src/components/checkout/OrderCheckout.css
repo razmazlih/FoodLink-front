@@ -1,4 +1,3 @@
-/* עיצוב כללי */
 .order-checkout-main-container {
     max-width: 900px;
     margin: 30px auto;
@@ -18,7 +17,6 @@
     font-weight: 700;
 }
 
-/* תצוגת התאריך */
 .order-checkout-main-date {
     text-align: center;
     color: #888;
@@ -26,7 +24,6 @@
     margin-bottom: 30px;
 }
 
-/* OrderCheckoutItem */
 .order-checkout-item-container {
     display: flex;
     justify-content: space-between;
@@ -51,10 +48,52 @@
     font-size: 1rem;
 }
 
-/* OrderSummary */
+.order-checkout-button-checkout {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+.order-checkout-button-checkout:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.order-checkout-button-continue {
+    background-color: #2196f3;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+.order-checkout-button-continue:hover {
+    background-color: #1e88e5;
+    transform: scale(1.05);
+}
+
 .order-checkout-summary-container {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     margin-top: 30px;
+}
+
+.order-checkout-button-checkout,
+.order-checkout-button-continue {
+    width: 80%;
+    max-width: 300px;
 }
 
 .order-checkout-summary-total {
@@ -65,7 +104,7 @@
 }
 
 .order-checkout-summary-button {
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: #fff;
     padding: 12px 30px;
     font-size: 1.1rem;
@@ -81,7 +120,6 @@
     transform: scale(1.05);
 }
 
-/* רספונסיביות */
 @media (max-width: 768px) {
     .order-checkout-main-container {
         padding: 20px;
@@ -107,6 +145,16 @@
     .order-checkout-summary-button {
         padding: 12px 25px;
         font-size: 1rem;
+    }
+
+    .order-checkout-button-checkout,
+    .order-checkout-button-continue {
+        width: 100%;
+        max-width: none;
+    }
+
+    .order-checkout-summary-container {
+        gap: 10px;
     }
 }
 

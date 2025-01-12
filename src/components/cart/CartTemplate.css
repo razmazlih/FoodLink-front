@@ -17,7 +17,6 @@
     transform: translateY(-4px);
 }
 
-/* שם המנה בפריט */
 .cart-item-strong {
     font-size: 1.2rem;
     font-weight: 500;
@@ -25,14 +24,12 @@
     flex-grow: 1;
 }
 
-/* מחיר וכמות המנה */
 .cart-item-span {
     font-size: 1.1rem;
     color: #555;
     margin-left: 12px;
 }
 
-/* כפתורים לשינוי כמות */
 .cart-item-button {
     padding: 8px 15px;
     margin: 0 5px;

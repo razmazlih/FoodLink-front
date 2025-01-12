@@ -9,9 +9,9 @@ function CartNavbar() {
     const navigate = useNavigate();
 
     const hundleClickCheckout = () => {
-        setShowing(false)
-        navigate(`/my-orders/checkout/${orderId}`)
-    }
+        setShowing(false);
+        navigate(`/my-orders/checkout/${orderId}`);
+    };
 
     return (
         <div className="cart-navbar">
@@ -33,9 +33,9 @@ function CartNavbar() {
                     Checkout
                 </button>
             )}
-            <button 
-            className="cart-button"
-            onClick={() => setShowing(false)}>Close</button>
+            <button className="cart-button" onClick={() => setShowing(false)}>
+                Close
+            </button>
         </div>
     );
 }
