@@ -19,7 +19,7 @@ function Login() {
         })
             .then((response) => {
                 handleLogin(response);
-                navigate('/');
+                navigate('/restaurants');
             })
             .catch((error) => {
                 setError('Invalid username or password. Please try again.');

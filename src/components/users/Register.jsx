@@ -32,7 +32,7 @@ function Register() {
                 })
                     .then((accessToken) => {
                         handleLogin(accessToken);
-                        navigate('/');
+                        navigate('/restaurants');
                     })
                     .catch((error) => {
                         const errorMessage =
