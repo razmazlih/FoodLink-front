@@ -13,12 +13,12 @@ function Register() {
     const [city, setCity] = useState('');
     const [streetName, setStreetName] = useState('');
     const [houseNumber, setHouseNumber] = useState('');
-    const [error, setError] = useState(''); // סטייט לניהול שגיאות
+    const [error, setError] = useState('');
 
     const handleSubmit = () => {
-        setError(''); // מנקה שגיאות קודמות
+        setError('');
         registerUser({
-            username,
+            username: username.toLocaleLowerCase(),
             password,
             phone_number: phoneNumber,
             city,
@@ -35,7 +35,6 @@ function Register() {
                         navigate('/');
                     })
                     .catch((error) => {
-                        // הצגת כל אובייקט השגיאה
                         const errorMessage =
                             error.response?.data ||
                             'Failed to save user credentials. Please try again.';
@@ -44,7 +43,6 @@ function Register() {
                     });
             })
             .catch((error) => {
-                // הצגת כל אובייקט השגיאה
                 const errorMessage =
                     error.response?.data ||
                     'Error during registration. Please check your details and try again.';

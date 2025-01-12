@@ -1,31 +1,31 @@
 .register-container {
-   padding-top: 30px;
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #f9f9f9;
-  }
-  
-  .register-title {
+}
+
+.register-title {
     font-size: 2rem;
     color: #333;
-  }
-  
-  .register-form {
+}
+
+.register-form {
     display: flex;
     flex-direction: column;
     width: 300px;
-  }
-  
-  .register-input {
+}
+
+.register-input {
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
-  
-  .register-button {
+}
+
+.register-button {
     margin-top: 10px;
     padding: 10px;
     background-color: #28a745;
@@ -33,27 +33,27 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .register-button:hover {
+}
+
+.register-button:hover {
     background-color: #218838;
-  }
-  
-  .register-text {
+}
+
+.register-text {
     margin-top: 10px;
     font-size: 0.9rem;
-  }
-  
-  .register-link {
+}
+
+.register-link {
     color: #007bff;
     text-decoration: none;
-  }
-  
-  .register-link:hover {
-    text-decoration: underline;
-  }
+}
 
-  .error-message-register {
+.register-link:hover {
+    text-decoration: underline;
+}
+
+.error-message-register {
     color: #d9534f; /* צבע אדום להודעת שגיאה */
     background-color: #f2dede; /* רקע בהיר */
     border: 1px solid #ebccd1; /* גבול */

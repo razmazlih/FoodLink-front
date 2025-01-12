@@ -9,17 +9,21 @@ function Login() {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(''); // סטייט להודעות שגיאה
+    const [error, setError] = useState('');
 
     const handleSubmit = () => {
-        setError(''); // מנקה שגיאות קודמות
-        userCredentials({ username, password })
+        console.log('Username:', username.toLocaleLowerCase());
+        setError('');
+        userCredentials({
+            username: username.toLocaleLowerCase(),
+            password,
+        })
             .then((response) => {
                 handleLogin(response);
                 navigate('/');
             })
             .catch((error) => {
-                setError('Invalid username or password. Please try again.'); // הודעת שגיאה ידידותית
+                setError('Invalid username or password. Please try again.');
             });
     };
 
