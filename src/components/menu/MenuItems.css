@@ -158,8 +158,9 @@
     .add-to-cart-btn,
     .added-to-cart {
         font-size: 1rem;
-        padding: 9px;
-        margin-top: 20px;
+        padding: 8px;
+        margin-top: 12px;
+        margin-bottom: 0;
     }
 
     .menu-item-header {

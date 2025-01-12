@@ -5,7 +5,20 @@
     background-color: #333;
     color: white;
     padding: 10px 20px;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.navbar-space {
+    height: 77.5px;
+    transition: height 0.3s ease-in-out;
+}
+
+.navbar-space.active {
+    height: 323px;
 }
 
 .navbar-header {
