@@ -40,9 +40,24 @@
     font-weight: 500;
 }
 
-.order-item p {
+.order-status-active {
     font-size: 1.1rem;
-    color: #777;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #e9e9e9;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    color: #00b336;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.order-status-delivered {
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #e9e9e9;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    color: #0083d5;
     margin-bottom: 20px;
     line-height: 1.5;
 }

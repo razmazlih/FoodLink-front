@@ -26,8 +26,9 @@ function Orders() {
 
     useEffect(() => {
         fetchAllOrders(userId).then((orders) => {
-            localStorage.setItem('myOrders', JSON.stringify(orders));
-            return setMyOrders(orders);
+            const sortedOrders = orders.sort((a, b) => b.id - a.id)
+            localStorage.setItem('myOrders', JSON.stringify(sortedOrders));
+            return setMyOrders(sortedOrders);
         });
         getRestaurantsNamesAndIds().then((response) => {
             const map = {};
@@ -107,7 +108,7 @@ function Orders() {
                     </button>
                 </>
             ) : (
-                <p>Order is {order.status[order.status.length - 1].status}</p>
+                <p><span className={order.status[order.status.length - 1].status === "active" ? "order-status-active" : "order-status-delivered"}>Order is {order.status[order.status.length - 1].status}</span></p>
             )}
         </div>
     ));
@@ -115,7 +116,7 @@ function Orders() {
     return (
         <div className="orders-container">
             <h2>My Orders</h2>
-            {myOrders.length > 0 ? showingOrders : <h2>No orders</h2>}
+            {myOrders.length > 0 ? showingOrders : <h2 >No orders</h2>}
         </div>
     );
 }
