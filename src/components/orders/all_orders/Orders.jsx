@@ -26,7 +26,26 @@ function Orders() {
 
     useEffect(() => {
         fetchAllOrders(userId).then((orders) => {
-            const sortedOrders = orders.sort((a, b) => b.id - a.id)
+            const sortedOrders = orders.sort((a, b) => {
+                const statusA = a.status?.[a.status.length - 1]?.updated_at;
+                const statusB = b.status?.[b.status.length - 1]?.updated_at;
+
+                if (!statusA && statusB) {
+                    return -1;
+                }
+
+                if (statusA && !statusB) {
+                    return 1;
+                }
+
+                if (statusA && statusB) {
+                    const dateA = new Date(statusA);
+                    const dateB = new Date(statusB);
+                    return dateB - dateA;
+                }
+
+                return a.id - b.id;
+            });
             localStorage.setItem('myOrders', JSON.stringify(sortedOrders));
             return setMyOrders(sortedOrders);
         });
@@ -52,7 +71,7 @@ function Orders() {
 
     const hundleDeleteOrder = (orderId) => {
         deleteOrder(orderId);
-        const filteredOrders = myOrders.filter((order) => order.id !== orderId)
+        const filteredOrders = myOrders.filter((order) => order.id !== orderId);
         setMyOrders(filteredOrders);
         localStorage.setItem('myOrders', JSON.stringify(filteredOrders));
         localStorage.removeItem('orderId');
@@ -77,13 +96,24 @@ function Orders() {
         }
     };
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0'); // יום
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // חודש
+        const year = date.getFullYear(); // שנה
+        const hours = String(date.getHours()).padStart(2, '0'); // שעה
+        const minutes = String(date.getMinutes()).padStart(2, '0'); // דקות
+
+        return `${day}/${month}/${year} ${hours}:${minutes}`; // פורמט תאריך ושעה
+    };
+
     const hundleDeleteMyOrder = async (orderId) => {
         await deleteOrder(orderId);
-        const filteredOrders = myOrders.filter((order) => order.id !== orderId)
+        const filteredOrders = myOrders.filter((order) => order.id !== orderId);
         setMyOrders(filteredOrders);
         localStorage.setItem('myOrders', JSON.stringify(filteredOrders));
         updateCart([], '');
-    }
+    };
 
     const showingOrders = myOrders.map((order) => (
         <div key={order.id} className="order-item">
@@ -102,13 +132,42 @@ function Orders() {
                     </button>
                     <button
                         className="delete-order"
-                        onClick={() => {Number(order.id) === Number(orderId) ? hundleDeleteMyOrder(order.id) : hundleDeleteOrder(order.id)}}
+                        onClick={() => {
+                            Number(order.id) === Number(orderId)
+                                ? hundleDeleteMyOrder(order.id)
+                                : hundleDeleteOrder(order.id);
+                        }}
                     >
                         Delete Order
                     </button>
                 </>
             ) : (
-                <p><span className={order.status[order.status.length - 1].status === "active" ? "order-status-active" : "order-status-delivered"}>Order is {order.status[order.status.length - 1].status}</span></p>
+                <>
+                    <p>
+                        <span className="updated-time">
+                            <span>
+                                updated time: {' '}
+                                {formatDate(
+                                    order.status[order.status.length - 1]
+                                        .updated_at
+                                )}
+                            </span>
+                        </span>
+                    </p>
+                    <div>
+                        <span
+                            className={
+                                order.status[order.status.length - 1].status ===
+                                'active'
+                                    ? 'order-status-active'
+                                    : 'order-status-delivered'
+                            }
+                        >
+                            Order is{' '}
+                            {order.status[order.status.length - 1].status}
+                        </span>
+                    </div>
+                </>
             )}
         </div>
     ));
@@ -116,7 +175,7 @@ function Orders() {
     return (
         <div className="orders-container">
             <h2>My Orders</h2>
-            {myOrders.length > 0 ? showingOrders : <h2 >No orders</h2>}
+            {myOrders.length > 0 ? showingOrders : <h2>No orders</h2>}
         </div>
     );
 }
