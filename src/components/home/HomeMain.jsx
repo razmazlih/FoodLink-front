@@ -1,8 +1,14 @@
 import FirstContent from './FirstContent';
 import TemplateContent from './TemplateContent';
 import './HomeMain.css';
+import { useEffect } from 'react';
+import { wakeUpServers } from '../../services/initial';
 
 function HomeMain() {
+
+    useEffect(() => {
+        wakeUpServers();
+    })
     const myItems = [
         {
             topic: 'Restaurant discovery',
