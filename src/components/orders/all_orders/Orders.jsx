@@ -203,7 +203,7 @@ function Orders() {
             >
                 View Restaurants
             </button>
-            {myOrders.length > 0 ? showingOrders : <h2>No orders</h2>}
+            {showingOrders}
         </div>
     );
 }
