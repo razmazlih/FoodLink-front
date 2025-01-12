@@ -40,10 +40,10 @@ function MenuItem({ menuItem }) {
     return (
         <li className="menu-item" key={menuItem.id}>
             <div className="menu-item-header">
-                <strong>{menuItem.name}</strong> -{' '}
+                <strong className="menu-item-name">{menuItem.name}</strong>
                 <span className="price">{menuItem.price}₪</span>
             </div>
-            <p className="menu-item-description menu-main-li-p">{menuItem.description}</p>
+            <p className="menu-item-description">{menuItem.description}</p>
             {hundleIsLoginIsInCart}
         </li>
     );

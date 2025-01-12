@@ -63,6 +63,7 @@
 .price {
     color: #f0a500;
     font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .menu-item-description {
@@ -93,8 +94,9 @@
     font-size: 1.2rem;
     color: #4CAF50;
     font-weight: bold;
-    padding: 6px 0px;
-    margin: 5px 0; /* הוספת רווח חיצוני מעל ומתחת */
+    padding: 7px 0px;
+    margin-top: 10px;
+    margin-bottom: 1px;
     border-radius: 5px;
     background-color: #e8f5e8;
     border: 1px solid #4CAF50;
@@ -155,7 +157,37 @@
 
     .add-to-cart-btn, .added-to-cart {
         font-size: 1rem;
-        padding: 8px 12px;
+        padding: 9px;
+        margin-top: 20px;
+    }
+
+    .menu-item-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* כדי ליישר את התוכן לשמאל */
+    }
+
+    .menu-item-name {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .price {
+        font-size: 1.2rem;
+        color: #f0a500;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .menu-item-description {
+        font-size: 1rem;
+        text-align: center;
+        color: #777;
+        margin-bottom: 10px;
+    }
+
+    .add-to-cart-btn, .added-to-cart, .login-prompt-menu {
+        align-self: stretch; /* כדי שהכפתור יתפרס על כל רוחב התא */
     }
 }
 
