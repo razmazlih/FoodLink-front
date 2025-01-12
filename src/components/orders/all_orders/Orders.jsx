@@ -78,7 +78,7 @@ function Orders() {
         localStorage.removeItem('cartItems');
     };
 
-    const hundleContinueOrdering = (restaurantId) => {
+    const hundleContinueCart = (restaurantId, inNavigate) => {
         const reservation = myReservations.find((order) => {
             return (
                 order.restaurant_id === restaurantId &&
@@ -89,7 +89,8 @@ function Orders() {
         if (reservation) {
             fetchOrder(reservation.id).then((order) => {
                 updateCart(order.items, order.id);
-                navigate(`/restaurants/${restaurantId}/`);
+                navigate(inNavigate);
+                // navigate(`/restaurants/${restaurantId}/`);
             });
         } else {
             console.warn('No reservation found for this restaurant.');
@@ -115,7 +116,7 @@ function Orders() {
         updateCart([], '');
     };
 
-    const showingOrders = myOrders.map((order) => (
+    const showingOrders = myOrders.map((order) => order.total_price > 0 && (
         <div key={order.id} className="order-item">
             <h2>
                 {restaurantMap[order.restaurant_id]} - {order.total_price}₪
@@ -125,10 +126,18 @@ function Orders() {
                     <button
                         className="continue-ordering"
                         onClick={() =>
-                            hundleContinueOrdering(order.restaurant_id)
+                            hundleContinueCart(order.restaurant_id, `/restaurants/${order.restaurant_id}/`)
                         }
                     >
                         Continue Ordering
+                    </button>
+                    <button
+                        className="checkout-order"
+                        onClick={() => 
+                            hundleContinueCart(order.restaurant_id, `/my-orders/checkout/${order.id}`)
+                        }
+                    >
+                        Checkout
                     </button>
                     <button
                         className="delete-order"
@@ -146,7 +155,7 @@ function Orders() {
                     <p>
                         <span className="updated-time">
                             <span>
-                                updated time: {' '}
+                                updated time:{' '}
                                 {formatDate(
                                     order.status[order.status.length - 1]
                                         .updated_at
@@ -175,6 +184,12 @@ function Orders() {
     return (
         <div className="orders-container">
             <h2>My Orders</h2>
+            <button
+                className="start-new-order"
+                onClick={() => navigate('/restaurants')}
+            >
+                View Restaurants
+            </button>
             {myOrders.length > 0 ? showingOrders : <h2>No orders</h2>}
         </div>
     );
