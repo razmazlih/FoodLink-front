@@ -9,7 +9,7 @@ function OrderSummary({ totalPrice }) {
     const navigate = useNavigate();
 
     const handleCheckout = () => {
-        updateCartStatus(orderId)
+        updateCartStatus(orderId, 'active')
             .then(() => {
                 updateCart([], '');
                 navigate('/my-orders');
