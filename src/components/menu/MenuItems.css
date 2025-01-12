@@ -217,9 +217,4 @@
     .menu-item-description {
         font-size: 0.85rem;
     }
-
-    .add-to-cart-btn, .added-to-cart {
-        font-size: 0.9rem;
-        padding: 6px 10px;
-    }
 }
