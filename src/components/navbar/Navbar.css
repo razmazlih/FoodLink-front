@@ -23,6 +23,8 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    cursor: default;
+    user-select: none;
 }
 
 .navbar-toggle {
