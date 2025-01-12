@@ -51,10 +51,54 @@
     font-size: 1rem;
 }
 
-/* OrderSummary */
+/* כפתור Checkout */
+.order-checkout-button-checkout {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+.order-checkout-button-checkout:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* כפתור Continue Ordering */
+.order-checkout-button-continue {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+.order-checkout-button-continue:hover {
+    background-color: #1e88e5;
+    transform: scale(1.05);
+}
+
 .order-checkout-summary-container {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     margin-top: 30px;
+}
+
+.order-checkout-button-checkout,
+.order-checkout-button-continue {
+    width: 80%;
+    max-width: 300px;
 }
 
 .order-checkout-summary-total {
@@ -107,6 +151,16 @@
     .order-checkout-summary-button {
         padding: 12px 25px;
         font-size: 1rem;
+    }
+
+    .order-checkout-button-checkout,
+    .order-checkout-button-continue {
+        width: 100%; /* הכפתורים יתפסו את כל הרוחב */
+        max-width: none; /* הסרת מגבלת הרוחב */
+    }
+
+    .order-checkout-summary-container {
+        gap: 10px; /* מרווח קטן יותר בין הכפתורים */
     }
 }
 
