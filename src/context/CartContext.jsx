@@ -81,6 +81,7 @@ export const CartContextProvider = ({ children }) => {
                 );
                 setCart(updatedCart);
                 localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+                updatedCart.length === 0 && setShowing(false);
             } else {
                 updateQuantity(showItem.id, showItem.quantity - 1);
 
