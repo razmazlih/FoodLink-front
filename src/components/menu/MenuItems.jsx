@@ -41,7 +41,7 @@ function MenuItems({ menu }) {
                     Checkout <span className="cart-count">{cart.length}</span>
                 </button>
             ) : (
-                <div class="menu-checkout-placeholder"></div>
+                <div className="menu-checkout-placeholder"></div>
             )}
         </div>
     );
