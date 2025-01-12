@@ -12,7 +12,6 @@ function Login() {
     const [error, setError] = useState('');
 
     const handleSubmit = () => {
-        console.log('Username:', username.toLocaleLowerCase());
         setError('');
         userCredentials({
             username: username.toLocaleLowerCase(),
