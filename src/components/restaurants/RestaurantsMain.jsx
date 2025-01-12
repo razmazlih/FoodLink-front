@@ -30,6 +30,7 @@ function RestaurantsMain() {
 
     return (
         <div className="restaurants-main">
+            <h2>Restaurants</h2>
             <RestaurantSearch
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
