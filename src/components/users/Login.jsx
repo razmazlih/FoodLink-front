@@ -26,6 +26,12 @@ function Login() {
             });
     };
 
+    const handlePressEnter = (event) => {
+        if (event.key === "Enter") {
+            handleSubmit();
+        }
+      };
+
     return (
         <div className="login-container">
             <h1 className="login-title">Login</h1>
@@ -36,6 +42,7 @@ function Login() {
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    onKeyDown={handlePressEnter}
                 />
                 <input
                     className="login-input"
@@ -43,6 +50,7 @@ function Login() {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={handlePressEnter}
                 />
                 <button className="login-button" onClick={handleSubmit}>
                     Login

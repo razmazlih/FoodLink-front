@@ -51,6 +51,12 @@ function Register() {
             });
     };
 
+    const handlePressEnter = (event) => {
+        if (event.key === "Enter") {
+            handleSubmit();
+        }
+      };
+
     const updateError = (string) => {
         if (string === 'username') {
             return 'username (may used)';
@@ -72,6 +78,7 @@ function Register() {
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    onKeyDown={handlePressEnter}
                 />
                 <input
                     className="register-input"
@@ -79,6 +86,7 @@ function Register() {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={handlePressEnter}
                 />
                 <input
                     className="register-input"
@@ -86,6 +94,7 @@ function Register() {
                     placeholder="Phone Number"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
+                    onKeyDown={handlePressEnter}
                 />
                 <input
                     className="register-input"
@@ -93,6 +102,7 @@ function Register() {
                     placeholder="City"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
+                    onKeyDown={handlePressEnter}
                 />
                 <input
                     className="register-input"
@@ -100,6 +110,7 @@ function Register() {
                     placeholder="Street Name"
                     value={streetName}
                     onChange={(e) => setStreetName(e.target.value)}
+                    onKeyDown={handlePressEnter}
                 />
                 <input
                     className="register-input"
@@ -107,6 +118,7 @@ function Register() {
                     placeholder="House Number"
                     value={houseNumber}
                     onChange={(e) => setHouseNumber(e.target.value)}
+                    onKeyDown={handlePressEnter}
                 />
                 <button className="register-button" onClick={handleSubmit}>
                     Register
