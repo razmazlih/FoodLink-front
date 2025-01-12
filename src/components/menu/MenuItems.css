@@ -39,6 +39,9 @@
 
 /* פריט תפריט */
 .menu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin-bottom: 20px;
     padding: 20px;
     border-radius: 8px;
