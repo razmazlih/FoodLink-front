@@ -13,7 +13,6 @@ function RestaurantSearch({ searchTerm, setSearchTerm }) {
 
     return (
         <div className="restaurant-search">
-            <h2>Restaurant Search</h2>
             <input
                 type="text"
                 placeholder="Search for restaurants..."

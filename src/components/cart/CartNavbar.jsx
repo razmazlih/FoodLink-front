@@ -2,11 +2,12 @@ import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import CartTemplate from './CartTemplate';
 import './CartNavbar.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function CartNavbar() {
     const { cart, setShowing, orderId } = useContext(CartContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const hundleClickCheckout = () => {
         setShowing(false);
@@ -25,7 +26,7 @@ function CartNavbar() {
                     <CartTemplate key={item.id} item={item} />
                 ))}
             </div>
-            {cart.length > 0 && (
+            {cart.length > 0 && !location.pathname.includes('/checkout') && (
                 <button
                     className="cart-button"
                     onClick={() => hundleClickCheckout()}

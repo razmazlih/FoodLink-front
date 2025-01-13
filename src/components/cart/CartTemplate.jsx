@@ -11,7 +11,7 @@ function CartTemplate({ item }) {
         price: Number(item.price),
         quantity: item.quantity,
         name:
-            JSON.parse(localStorage.getItem('cartNames'))?.[item.id] ||
+            JSON.parse(localStorage.getItem('cartNames'))?.[item.menu_item_id] ||
             'Loading...',
     });
 
@@ -27,7 +27,7 @@ function CartTemplate({ item }) {
                         }));
                         const cartNames =
                             JSON.parse(localStorage.getItem('cartNames')) || {};
-                        cartNames[item.id] = response;
+                        cartNames[item.menu_item_id] = response;
                         localStorage.setItem(
                             'cartNames',
                             JSON.stringify(cartNames)

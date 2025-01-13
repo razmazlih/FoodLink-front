@@ -20,80 +20,83 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar">
-            <div className="navbar-header">
-                <h1 className="navbar-title">Food Link</h1>
-                <button className="navbar-toggle" onClick={toggleMenu}>
-                    ☰
-                </button>
-            </div>
-            <ul className={`navbar-list ${isMenuOpen ? 'open' : ''}`}>
-                {[
-                    { name: 'Home', link: '/' },
-                    { name: 'About', link: '/about' },
-                    { name: 'How it Works', link: '/how-it-works' },
-                    { name: 'Restaurants', link: '/restaurants' },
-                ].map((item, index) => (
-                    <li key={index} className="navbar-item">
-                        <Link
-                            to={item.link}
-                            className="navbar-link"
-                            onClick={closeMenu}
-                        >
-                            {item.name}
-                        </Link>
-                    </li>
-                ))}
-                {isLoggedIn ? (
-                    <>
-                        <li className="navbar-item">
+        <>
+            <div className="navbar">
+                <div className="navbar-header">
+                    <h1 className="navbar-title">Food Link</h1>
+                    <button className="navbar-toggle" onClick={toggleMenu}>
+                        ☰
+                    </button>
+                </div>
+                <ul className={`navbar-list ${isMenuOpen ? 'open' : ''}`}>
+                    {[
+                        { name: 'Home', link: '/' },
+                        { name: 'About', link: '/about' },
+                        { name: 'How it Works', link: '/how-it-works' },
+                        { name: 'Restaurants', link: '/restaurants' },
+                    ].map((item, index) => (
+                        <li key={index} className="navbar-item">
                             <Link
-                                to={'/my-orders'}
+                                to={item.link}
                                 className="navbar-link"
                                 onClick={closeMenu}
                             >
-                                My Orders
+                                {item.name}
                             </Link>
                         </li>
+                    ))}
+                    {isLoggedIn ? (
+                        <>
+                            <li className="navbar-item">
+                                <Link
+                                    to={'/my-orders'}
+                                    className="navbar-link"
+                                    onClick={closeMenu}
+                                >
+                                    My Orders
+                                </Link>
+                            </li>
+                            <li className="navbar-item">
+                                <Link
+                                    to="#"
+                                    className="navbar-link"
+                                    onClick={() => {
+                                        setShowing(!showing);
+                                        closeMenu();
+                                    }}
+                                >
+                                    My Cart
+                                </Link>
+                            </li>
+                            <li className="navbar-item">
+                                <Link
+                                    to="/login"
+                                    className="navbar-link"
+                                    onClick={() => {
+                                        handleLogout();
+                                        closeMenu();
+                                    }}
+                                >
+                                    Logout
+                                </Link>
+                            </li>
+                        </>
+                    ) : (
                         <li className="navbar-item">
                             <Link
-                                to="#"
+                                to={'/login'}
                                 className="navbar-link"
-                                onClick={() => {
-                                    setShowing(!showing);
-                                    closeMenu();
-                                }}
+                                onClick={closeMenu}
                             >
-                                My Cart
+                                Login
                             </Link>
                         </li>
-                        <li className="navbar-item">
-                            <Link
-                                to="/login"
-                                className="navbar-link"
-                                onClick={() => {
-                                    handleLogout();
-                                    closeMenu();
-                                }}
-                            >
-                                Logout
-                            </Link>
-                        </li>
-                    </>
-                ) : (
-                    <li className="navbar-item">
-                        <Link
-                            to={'/login'}
-                            className="navbar-link"
-                            onClick={closeMenu}
-                        >
-                            Login
-                        </Link>
-                    </li>
-                )}
-            </ul>
-            {showing && <CartNavbar />}
-        </div>
+                    )}
+                </ul>
+                {showing && <CartNavbar />}
+            </div>
+            <div className={`navbar-space ${isMenuOpen ? 'active' : ''}`}></div>
+        </>
     );
 };
 

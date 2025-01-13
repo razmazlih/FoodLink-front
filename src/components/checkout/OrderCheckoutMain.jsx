@@ -40,7 +40,7 @@ function OrderCheckoutMain() {
 
         const israelDate = new Date(
             new Date(date).getTime() + 2 * 60 * 60 * 1000
-        ); // הוספת שעתיים
+        );
         return israelDate.toLocaleString('en-US', { ...options });
     };
 
