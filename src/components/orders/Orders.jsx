@@ -25,7 +25,7 @@ function Orders() {
         fetchAllOrders(userId).then((orders) => {
             const sortedOrders = orders.sort((a, b) => {
                 const statusA = a.status?.[a.status.length - 1]?.updated_at;
-                const statusB = b.status?.[a.status.length - 1]?.updated_at;
+                const statusB = b.status?.[b.status.length - 1]?.updated_at;
 
                 if (!statusA && statusB) return -1;
                 if (statusA && !statusB) return 1;
