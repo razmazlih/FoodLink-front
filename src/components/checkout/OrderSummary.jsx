@@ -27,14 +27,16 @@ function OrderSummary({ totalPrice, myOrder }) {
     return (
         <div className="order-checkout-summary-container">
             <h4 className="order-checkout-summary-total">
-                Total: {totalPrice > 0 ? totalPrice : 'Loading...'}₪
+                Total: {totalPrice > 0 ? totalPrice : 0}₪
             </h4>
-            <button
-                className="order-checkout-button-checkout"
-                onClick={handleCheckout}
-            >
-                Checkout
-            </button>
+            {totalPrice > 0 && (
+                <button
+                    className="order-checkout-button-checkout"
+                    onClick={handleCheckout}
+                >
+                    Checkout
+                </button>
+            )}
             <button
                 className="order-checkout-button-continue"
                 onClick={() =>
