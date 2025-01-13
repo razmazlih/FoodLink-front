@@ -9,6 +9,7 @@ import { getRestaurantsNamesAndIds } from '../../services/DishBoard/restaurants/
 import { useNavigate } from 'react-router-dom';
 import './Orders.css';
 import { CartContext } from '../../context/CartContext';
+import { updateCartStatus } from '../../services/OrderLine/status/api';
 
 function Orders() {
     const navigate = useNavigate();
@@ -28,15 +29,10 @@ function Orders() {
         fetchAllOrders(userId).then((orders) => {
             const sortedOrders = orders.sort((a, b) => {
                 const statusA = a.status?.[a.status.length - 1]?.updated_at;
-                const statusB = b.status?.[b.status.length - 1]?.updated_at;
+                const statusB = b.status?.[a.status.length - 1]?.updated_at;
 
-                if (!statusA && statusB) {
-                    return -1;
-                }
-
-                if (statusA && !statusB) {
-                    return 1;
-                }
+                if (!statusA && statusB) return -1;
+                if (statusA && !statusB) return 1;
 
                 if (statusA && statusB) {
                     const dateA = new Date(statusA);
@@ -115,18 +111,22 @@ function Orders() {
         updateCart([], '');
     };
 
+    const hundleUpdateOrderStatusDelete = async (orderId) => {
+        updateCartStatus(orderId, 'cencelled')
+    }
+
     const showingOrders = myOrders.map(
         (order) =>
             order.total_price > 0 && (
                 <div key={order.id} className="order-item">
-                    <h2>
+                    <h2 className="order-title">
                         {restaurantMap[order.restaurant_id]} -{' '}
                         {order.total_price}₪
                     </h2>
                     {order.status.length === 0 ? (
                         <>
                             <button
-                                className="continue-ordering"
+                                className="btn-continue-ordering"
                                 onClick={() =>
                                     hundleContinueCart(
                                         order.restaurant_id,
@@ -137,7 +137,7 @@ function Orders() {
                                 Continue Ordering
                             </button>
                             <button
-                                className="checkout-order"
+                                className="btn-checkout-order"
                                 onClick={() =>
                                     hundleContinueCart(
                                         order.restaurant_id,
@@ -148,7 +148,7 @@ function Orders() {
                                 Checkout
                             </button>
                             <button
-                                className="delete-order"
+                                className="btn-delete-order"
                                 onClick={() => {
                                     Number(order.id) === Number(orderId)
                                         ? hundleDeleteMyOrder(order.id)
@@ -172,7 +172,7 @@ function Orders() {
                                     </span>
                                 </span>
                             </p>
-                            <div>
+                            <div className='order-status'>
                                 <span
                                     className={
                                         order.status[order.status.length - 1]
@@ -187,6 +187,17 @@ function Orders() {
                                             .status
                                     }
                                 </span>
+                                {order.status[order.status.length - 1]
+                                    .status === 'active' && (
+                                    <button
+                                        className="btn-update-order-status-cencel"
+                                        onClick={() =>
+                                            hundleUpdateOrderStatusDelete(order.id)
+                                        }
+                                    >
+                                        Cencel Order
+                                    </button>
+                                )}
                             </div>
                         </>
                     )}
@@ -196,9 +207,9 @@ function Orders() {
 
     return (
         <div className="orders-container">
-            <h2>My Orders</h2>
+            <h2 className="orders-title">My Orders</h2>
             <button
-                className="start-new-order"
+                className="btn-start-new-order"
                 onClick={() => navigate('/restaurants')}
             >
                 View Restaurants
