@@ -10,7 +10,7 @@
     text-align: center;
 }
 
-.orders-container h2 {
+.orders-title {
     font-size: 2.5rem;
     color: #f0a500;
     margin-bottom: 25px;
@@ -33,47 +33,17 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.order-item h2 {
+.order-title {
     font-size: 1.8rem;
     color: #333;
     margin-bottom: 20px;
     font-weight: 500;
 }
 
-.order-status-active {
-    font-size: 1.1rem;
-    padding: 5px 10px;
-    border-radius: 10px;
-    background-color: #e9e9e9;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    color: #00b336;
-    margin-bottom: 20px;
-    line-height: 1.5;
-    cursor: default;
-    transition: box-shadow 0.3s ease;
-}
-
-.order-status-active:hover {
-    box-shadow: none;
-}
-
-.order-status-delivered {
-    font-size: 1.1rem;
-    padding: 5px 10px;
-    border-radius: 10px;
-    background-color: #e9e9e9;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    color: #0083d5;
-    margin-bottom: 20px;
-    line-height: 1.5;
-    transition: box-shadow 0.3s ease;
-}
-
-.order-status-delivered:hover {
-    box-shadow: none;
-}
-
-.order-item button {
+.btn-continue-ordering,
+.btn-checkout-order,
+.btn-delete-order,
+.btn-update-order-status-cencel {
     margin-right: 20px;
     padding: 14px 20px;
     font-size: 1.1rem;
@@ -84,63 +54,107 @@
     width: 235px;
 }
 
-.continue-ordering {
+.btn-continue-ordering {
     background: linear-gradient(135deg, #f0a500, #e6b100);
     color: white;
     font-weight: 600;
     text-transform: uppercase;
 }
 
-.continue-ordering:hover {
+.btn-continue-ordering:hover {
     background: linear-gradient(135deg, #ca9b00, #a57f00);
     transform: scale(1.05);
 }
 
-.delete-order {
+.btn-checkout-order {
+    background: linear-gradient(135deg, #1e90ff, #007aff);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn-checkout-order:hover {
+    background: linear-gradient(135deg, #007aff, #005ecb);
+    transform: scale(1.05);
+}
+
+.btn-delete-order {
     background-color: #e74c3c;
     color: white;
     font-weight: 600;
     text-transform: uppercase;
 }
 
-.delete-order:hover {
+.btn-delete-order:hover {
     background-color: #c0392b;
     transform: scale(1.05);
 }
 
-.order-item button:focus {
-    outline: none;
+.btn-update-order-status-cencel {
+    padding: 11px 0;
+    background-color: #ff6666;
+    width: 100%;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    .orders-container {
-        padding: 20px;
-    }
+.btn-update-order-status-cencel:hover {
+    background-color: #ff4c4c;
+}
 
-    .order-item {
-        padding: 18px;
-    }
+.order-status {
+    display: flex;
+    flex-direction: column;
+}
 
-    .order-item h2 {
-        font-size: 1.6rem;
-    }
+.order-status-active {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background-color: #c7f1d1;
+    color: #0c9d58;
+    font-weight: bold;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease;
+}
 
-    .order-item button {
-        width: 100%;
-        margin: 12px 0;
-    }
+.order-status-active:hover {
+    background-color: #a8e9bb;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.order-status-delivered {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    background-color: #cce4fc;
+    color: #007aff;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease;
+}
+
+.order-status-delivered:hover {
+    background-color: #b3d8f9;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .updated-time {
-    position: relative;
-    bottom: 10px;
     font-size: 1.2rem;
     color: #333;
-    border-radius: 20px;
+    font-weight: 500;
     margin-bottom: 20px;
     display: inline-block;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .updated-time span {
@@ -149,7 +163,7 @@
     padding: 5px 10px;
 }
 
-.start-new-order {
+.btn-start-new-order {
     background: linear-gradient(135deg, #34a853, #0f9d58);
     color: white;
     font-weight: 600;
@@ -164,32 +178,29 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.start-new-order:hover {
+.btn-start-new-order:hover {
     background: linear-gradient(135deg, #2b8a45, #0c7d4a);
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.checkout-order {
-    background: linear-gradient(135deg, #1e90ff, #007aff);
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 14px 20px;
-    margin-right: 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 235px;
-}
+@media (max-width: 768px) {
+    .orders-container {
+        padding: 20px;
+    }
 
-.checkout-order:hover {
-    background: linear-gradient(135deg, #007aff, #005ecb);
-    transform: scale(1.05);
-}
+    .order-item {
+        padding: 18px;
+    }
 
-.checkout-order:focus {
-    outline: none;
+    .order-title {
+        font-size: 1.6rem;
+    }
+
+    .btn-continue-ordering,
+    .btn-checkout-order,
+    .btn-delete-order {
+        width: 100%;
+        margin: 12px 0;
+    }
 }
