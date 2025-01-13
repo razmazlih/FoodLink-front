@@ -3,12 +3,12 @@ import {
     deleteOrder,
     fetchAllOrders,
     fetchOrder,
-} from '../../../services/OrderLine/order/api';
-import { AuthContext } from '../../../context/AuthContext';
-import { getRestaurantsNamesAndIds } from '../../../services/DishBoard/restaurants/api';
+} from '../../services/OrderLine/order/api';
+import { AuthContext } from '../../context/AuthContext';
+import { getRestaurantsNamesAndIds } from '../../services/DishBoard/restaurants/api';
 import { useNavigate } from 'react-router-dom';
 import './Orders.css';
-import { CartContext } from '../../../context/CartContext';
+import { CartContext } from '../../context/CartContext';
 
 function Orders() {
     const navigate = useNavigate();
