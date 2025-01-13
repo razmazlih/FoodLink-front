@@ -42,12 +42,12 @@ function SingleOrder({
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
+        date.setHours(date.getHours() + 2);
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const year = date.getFullYear();
         const hours = String(date.getHours()).padStart(2, '0');
         const minutes = String(date.getMinutes()).padStart(2, '0');
-
         return `${day}/${month}/${year} ${hours}:${minutes}`;
     };
 
@@ -61,18 +61,22 @@ function SingleOrder({
 
     const hundleUpdateOrderStatusDelete = async (orderId) => {
         updateCartStatus(orderId, 'cencelled').then(() => {
-            const updatedOrders = myOrders.map((o) => 
-                o.id === orderId 
+            const updatedOrders = myOrders.map((o) =>
+                o.id === orderId
                     ? {
-                        ...o,
-                        status: [
-                            ...o.status,
-                            {
-                                status: 'cancelled',
-                                updated_at: new Date().toISOString(),
-                            },
-                        ],
-                    }
+                          ...o,
+                          status: [
+                              ...o.status,
+                              {
+                                  status: 'cancelled',
+                                  updated_at: (() => {
+                                      const date = new Date();
+                                      date.setHours(date.getHours() - 2);
+                                      return date.toISOString();
+                                  })(),
+                              },
+                          ],
+                      }
                     : o
             );
             setMyOrders(updatedOrders);
@@ -83,8 +87,7 @@ function SingleOrder({
     const ShowOrder = order.total_price > 0 && (
         <div key={order.id} className="order-item">
             <h2 className="order-title">
-                {restaurantMap[order.restaurant_id]} -{' '}
-                {order.total_price}₪
+                {restaurantMap[order.restaurant_id]} - {order.total_price}₪
             </h2>
             {order.status.length === 0 ? (
                 <>
@@ -128,9 +131,8 @@ function SingleOrder({
                             <span>
                                 updated time:{' '}
                                 {formatDate(
-                                    order.status[
-                                        order.status.length - 1
-                                    ].updated_at
+                                    order.status[order.status.length - 1]
+                                        .updated_at
                                 )}
                             </span>
                         </span>
@@ -138,28 +140,21 @@ function SingleOrder({
                     <div className="order-status">
                         <span
                             className={
-                                order.status[
-                                    order.status.length - 1
-                                ].status === 'active'
+                                order.status[order.status.length - 1].status ===
+                                'active'
                                     ? 'order-status-active'
                                     : 'order-status-delivered'
                             }
                         >
                             Order is{' '}
-                            {
-                                order.status[
-                                    order.status.length - 1
-                                ].status
-                            }
+                            {order.status[order.status.length - 1].status}
                         </span>
-                        {order.status[order.status.length - 1]
-                            .status === 'active' && (
+                        {order.status[order.status.length - 1].status ===
+                            'active' && (
                             <button
                                 className="btn-update-order-status-cencel"
                                 onClick={() =>
-                                    hundleUpdateOrderStatusDelete(
-                                        order.id
-                                    )
+                                    hundleUpdateOrderStatusDelete(order.id)
                                 }
                             >
                                 Cencel Order
