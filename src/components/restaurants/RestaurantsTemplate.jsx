@@ -1,5 +1,5 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
-import { getRestaurantOpeningHours } from '../../services/DishBoard/restaurants/api';
+import { useContext, useEffect, useState } from 'react';
+import { isRestaurantOpen } from '../../services/DishBoard/restaurants/api';
 import { useNavigate } from 'react-router-dom';
 import { fetchAllOrders, fetchOrder } from '../../services/OrderLine/order/api';
 import { AuthContext } from '../../context/AuthContext';
@@ -8,8 +8,7 @@ import './RestaurantsTemplate.css';
 
 function RestaurantsTemplate({ restaurant }) {
     const navigate = useNavigate();
-    const [openingHours, setOpeningHours] = useState([]);
-    const [isOpenNow, setIsOpenNow] = useState(false);
+    const [isOpenNow, setIsOpenNow] = useState({ status: false });
     const [hasActiveReservation, setHasActiveReservation] = useState(false);
     const { userId } = useContext(AuthContext);
     const { updateCart, createNewCart } = useContext(CartContext);
@@ -51,37 +50,10 @@ function RestaurantsTemplate({ restaurant }) {
         }
     }, [userId]);
 
-    const checkIfOpenNow = useCallback(() => {
-        const now = new Date();
-        const currentDay = now.toLocaleString('he-IL', { weekday: 'long' });
-        const currentTime = now.toTimeString().split(' ')[0];
-
-        const todaySchedule = openingHours.find(
-            (day) => day.day_of_week === currentDay
-        );
-
-        if (todaySchedule && todaySchedule.is_open) {
-            const [openingTime, closingTime] = [
-                todaySchedule.opening_time,
-                todaySchedule.closing_time,
-            ];
-
-            setIsOpenNow(
-                currentTime >= openingTime && currentTime <= closingTime
-            );
-        } else {
-            setIsOpenNow(false);
-        }
-    }, [openingHours]);
-
-    useEffect(() => {
-        checkIfOpenNow();
-    }, [openingHours, checkIfOpenNow]);
-
     const fetchRestaurantOpeningHours = async (restaurantId) => {
         try {
-            const data = await getRestaurantOpeningHours(restaurantId);
-            setOpeningHours(data);
+            const data = await isRestaurantOpen(restaurantId);
+            setIsOpenNow(data);
         } catch (error) {
             console.error('Error fetching opening hours:', error);
         }
@@ -120,7 +92,15 @@ function RestaurantsTemplate({ restaurant }) {
             <p>
                 {restaurant.address}, {restaurant.city}
             </p>
-            <p className="status">Status: {isOpenNow ? 'Open' : 'Close'}</p>
+            <p className="status">
+                {isOpenNow.status
+                    ? `Status: Open to {isOpenNow.closes_at}`
+                    : isOpenNow.next_day
+                    ? `Opens at ${
+                          isOpenNow.next_day
+                      } ${isOpenNow.opens_at.slice(0, 5)}`
+                    : 'status: Close'}
+            </p>
             {userId ? (
                 <>
                     {hasActiveReservation ? (
