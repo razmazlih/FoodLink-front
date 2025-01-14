@@ -35,9 +35,9 @@ export const getRestaurantById = async (id) => {
     }
 };
 
-export const getRestaurantOpeningHours = async (restaurantId) => {
+export const isRestaurantOpen = async (restaurantId) => {
     try {
-        const { data } = await axios.get(`${API_DISHBOARD_URL}/restaurants/opening-houers/?restaurant_id=${restaurantId}`);
+        const { data } = await axios.get(`${API_DISHBOARD_URL}/restaurants/opening-hours/is-open/?restaurant_id=${restaurantId}`);
         return data;
     } catch (error) {
         console.error("Error fetching restaurant opening hours:", error);
