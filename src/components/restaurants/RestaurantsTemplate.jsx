@@ -116,6 +116,7 @@ function RestaurantsTemplate({ restaurant }) {
 
     return (
         <div className="restaurant-card">
+            <img className='restaurant-photo' src={restaurant.photo_url} alt="" />
             <h3>{restaurant.name}</h3>
             <p>
                 {restaurant.address}, {restaurant.city}
