@@ -59,68 +59,49 @@ function RestaurantsTemplate({ restaurant }) {
         }
     };
 
-    function handleClick() {
+    async function handleContainerClick() {
+        if (userId) {
+            if (hasActiveReservation) {
+                const reservation = myReservations.find((order) => {
+                    return (
+                        order.restaurant_id === restaurant.id &&
+                        order.status.length === 0
+                    );
+                });
+
+                if (reservation) {
+                    const order = await fetchOrder(reservation.id);
+                    updateCart(order.items, order.id);
+                }
+            } else {
+                createNewCart(userId, restaurant.id);
+            }
+        }
         navigate(`/restaurants/${restaurant.id}`);
     }
 
-    async function comtinueOrder(restaurantId) {
-        const reservation = myReservations.find((order) => {
-            return (
-                order.restaurant_id === restaurantId &&
-                order.status.length === 0
-            );
-        });
-
-        if (reservation) {
-            fetchOrder(reservation.id).then((order) => {
-                updateCart(order.items, order.id);
-                handleClick();
-            });
-        } else {
-            console.warn('No reservation found for this restaurant.');
-        }
-    }
-
-    async function handleClickOrder(restaurantId) {
-        createNewCart(userId, restaurantId);
-        handleClick();
-    }
-
     return (
-        <div className="restaurant-card">
-            <img className='restaurant-photo' src={restaurant.photo_url} alt="" />
+        <div
+            className="restaurant-card"
+            onClick={handleContainerClick}
+            role="button"
+            tabIndex={0} // מאפשר גישה עם מקלדת
+            onKeyDown={(e) => e.key === 'Enter' && handleContainerClick()} // תמיכה בלחיצה על Enter
+        >
+            <img className="restaurant-photo" src={restaurant.photo_url} alt="" />
             <h3>{restaurant.name}</h3>
             <p>
                 {restaurant.address}, {restaurant.city}
             </p>
             <p className="status">
-                {isOpenNow.status
-                    ? `Status: Open to {isOpenNow.closes_at}`
+                {isOpenNow.is_open
+                    ? `Open until ${isOpenNow.closes_at.slice(0,5)}`
                     : isOpenNow.next_day
                     ? `Opens at ${
                           isOpenNow.next_day
                       } ${isOpenNow.opens_at.slice(0, 5)}`
-                    : 'status: Close'}
+                    : 'Close'}
             </p>
-            {userId ? (
-                <>
-                    {hasActiveReservation ? (
-                        <button onClick={() => comtinueOrder(restaurant.id)}>
-                            Continue Ordering
-                        </button>
-                    ) : (
-                        <button
-                            onClick={() => {
-                                handleClickOrder(restaurant.id);
-                            }}
-                        >
-                            Order Now
-                        </button>
-                    )}
-                </>
-            ) : (
-                <button onClick={() => handleClick()}>View Menu</button>
-            )}
         </div>
     );
 }
