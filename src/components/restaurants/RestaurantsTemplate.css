@@ -79,7 +79,7 @@
     object-fit: cover;
     overflow: hidden;
     border-bottom: 2px solid #f4c430;
-    border-radius: 20px 20px 0 0;
+    border-radius: 10px 10px 0 0;
     transition: transform 0.3s ease, filter 0.3s ease, position 0.3s ease;
 }
 
