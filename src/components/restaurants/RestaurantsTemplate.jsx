@@ -95,12 +95,14 @@ function RestaurantsTemplate({ restaurant }) {
             />
             <div className="restaurants-info">
                 <h3>{restaurant.name}</h3>
-                <p
-                    className={`tooltip-status ${
-                        isOpenNow.is_open ? 'open' : 'close'
-                    }`}
-                >
-                    {isOpenNow.is_open ? 'Open' : 'Close'}
+                <p className="tooltip-status">
+                    <span
+                        className={`restaurant-status ${
+                            isOpenNow.is_open ? 'open' : 'close'
+                        }`}
+                    >
+                        {isOpenNow.is_open ? 'Open' : 'Close'}
+                    </span>
                     <span className="tooltip-text">
                         {isOpenNow.is_open
                             ? `Closes at ${isOpenNow.closes_at.slice(0, 5)}`
