@@ -88,19 +88,25 @@ function RestaurantsTemplate({ restaurant }) {
             tabIndex={0} // מאפשר גישה עם מקלדת
             onKeyDown={(e) => e.key === 'Enter' && handleContainerClick()} // תמיכה בלחיצה על Enter
         >
-            <img className="restaurant-photo" src={restaurant.photo_url} alt="" />
-            <h3>{restaurant.name}</h3>
+            <img
+                className="restaurant-photo"
+                src={restaurant.photo_url}
+                alt=""
+            />
+            <div className="restaurants-info">
+                <h3>{restaurant.name}</h3>
+                <p className="status">
+                    {isOpenNow.is_open
+                        ? `Open until ${isOpenNow.closes_at.slice(0, 5)}`
+                        : isOpenNow.next_day
+                        ? `Opens at ${
+                              isOpenNow.next_day
+                          } ${isOpenNow.opens_at.slice(0, 5)}`
+                        : 'Close'}
+                </p>
+            </div>
             <p>
                 {restaurant.address}, {restaurant.city}
-            </p>
-            <p className="status">
-                {isOpenNow.is_open
-                    ? `Open until ${isOpenNow.closes_at.slice(0,5)}`
-                    : isOpenNow.next_day
-                    ? `Opens at ${
-                          isOpenNow.next_day
-                      } ${isOpenNow.opens_at.slice(0, 5)}`
-                    : 'Close'}
             </p>
         </div>
     );
