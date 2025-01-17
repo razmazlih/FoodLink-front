@@ -17,31 +17,38 @@ function CartTemplate({ item }) {
 
     useEffect(() => {
         let isMounted = true;
-        if (showItem.name === 'Loading...') {
+    
+        const updateLocalStorage = (menuItemId, name) => {
+            const cartNames = JSON.parse(localStorage.getItem('cartNames')) || {};
+            cartNames[menuItemId] = name;
+            localStorage.setItem('cartNames', JSON.stringify(cartNames));
+        };
+    
+        if (!JSON.parse(localStorage.getItem('cartNames'))?.[item.menu_item_id]) {
             getMenuItemNameById(item.menu_item_id)
                 .then((response) => {
-                    if (isMounted) {
+                    if (isMounted && response) {
                         setShowItem((prev) => ({
                             ...prev,
                             name: response,
                         }));
-                        const cartNames =
-                            JSON.parse(localStorage.getItem('cartNames')) || {};
-                        cartNames[item.menu_item_id] = response;
-                        localStorage.setItem(
-                            'cartNames',
-                            JSON.stringify(cartNames)
-                        );
+                        updateLocalStorage(item.menu_item_id, response);
                     }
                 })
                 .catch((error) => {
                     console.error('Error fetching menu item name:', error);
                 });
+        } else {
+            setShowItem((prev) => ({
+                ...prev,
+                name: JSON.parse(localStorage.getItem('cartNames'))[item.menu_item_id],
+            }));
         }
+    
         return () => {
             isMounted = false;
         };
-    }, [item.id, item.menu_item_id, showItem.name]);
+    }, [item.menu_item_id]);
 
     const hundleClickAdd = async () => {
         const updatedItem = await updateQuantity(item.id, item.quantity + 1);
