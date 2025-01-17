@@ -41,12 +41,8 @@ function MenuMain() {
                 </div>
             ) : (
                 <>
-                    <div>
-                        <RestaurantInfo restaurant={restaurantInfo} />
-                    </div>
-                    <div>
-                        <MenuItems menu={menuItems} />
-                    </div>
+                    <RestaurantInfo restaurant={restaurantInfo} />
+                    <MenuItems menu={menuItems} />
                 </>
             )}
         </div>
