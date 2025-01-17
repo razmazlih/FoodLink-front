@@ -38,7 +38,7 @@ function MenuItems({ menu }) {
                     className="menu-checkout-button"
                     onClick={() => hundleClickCheckout()}
                 >
-                    Checkout <span className="cart-count">{cart.length}</span>
+                    View order <span className="cart-count">{cart.length}</span>
                 </button>
             ) : (
                 <div className="menu-checkout-placeholder"></div>

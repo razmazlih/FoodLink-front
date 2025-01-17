@@ -30,12 +30,12 @@ function RestaurantsMain() {
 
     return (
         <div className="restaurants-main">
-            <h2>Restaurants</h2>
+            <h2 className="restaurants-main-title">Restaurants</h2>
             <RestaurantSearch
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
             />
-            <div className="restaurants-list">
+            <div className="restaurants-main-list">
                 {filteredRestaurants.map((restaurant) => (
                     <RestaurantsTemplate
                         key={restaurant.id}

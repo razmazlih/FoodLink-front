@@ -85,8 +85,8 @@ function RestaurantsTemplate({ restaurant }) {
             className="restaurant-card"
             onClick={handleContainerClick}
             role="button"
-            tabIndex={0} // מאפשר גישה עם מקלדת
-            onKeyDown={(e) => e.key === 'Enter' && handleContainerClick()} // תמיכה בלחיצה על Enter
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && handleContainerClick()}
         >
             <img
                 className="restaurant-photo"
@@ -95,14 +95,21 @@ function RestaurantsTemplate({ restaurant }) {
             />
             <div className="restaurants-info">
                 <h3>{restaurant.name}</h3>
-                <p className="status">
-                    {isOpenNow.is_open
-                        ? `Open until ${isOpenNow.closes_at.slice(0, 5)}`
-                        : isOpenNow.next_day
-                        ? `Opens at ${
-                              isOpenNow.next_day
-                          } ${isOpenNow.opens_at.slice(0, 5)}`
-                        : 'Close'}
+                <p
+                    className={`tooltip-status ${
+                        isOpenNow.is_open ? 'open' : 'close'
+                    }`}
+                >
+                    {isOpenNow.is_open ? 'Open' : 'Close'}
+                    <span className="tooltip-text">
+                        {isOpenNow.is_open
+                            ? `Closes at ${isOpenNow.closes_at.slice(0, 5)}`
+                            : isOpenNow.next_day
+                            ? `Opens at ${
+                                  isOpenNow.next_day
+                              } ${isOpenNow.opens_at.slice(0, 5)}`
+                            : 'This restaurant not updates its status'}
+                    </span>
                 </p>
             </div>
             <p>
