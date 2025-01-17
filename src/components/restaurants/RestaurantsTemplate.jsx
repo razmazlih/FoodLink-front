@@ -6,9 +6,9 @@ import { AuthContext } from '../../context/AuthContext';
 import { CartContext } from '../../context/CartContext';
 import './RestaurantsTemplate.css';
 
-function RestaurantsTemplate({ restaurant }) {
+function RestaurantsTemplate({ restaurant, openStatus, updateOpenStatuses }) {
     const navigate = useNavigate();
-    const [isOpenNow, setIsOpenNow] = useState({ status: false });
+    const isOpenNow = openStatus[restaurant.id] || {status: 'close'};
     const [hasActiveReservation, setHasActiveReservation] = useState(false);
     const { userId } = useContext(AuthContext);
     const { updateCart, createNewCart } = useContext(CartContext);
@@ -16,6 +16,16 @@ function RestaurantsTemplate({ restaurant }) {
         JSON.parse(localStorage.getItem('myReservations')) || []
     );
 
+    useEffect(() => {
+        isRestaurantOpen(restaurant.id)
+            .then((data) => {
+                updateOpenStatuses(data, restaurant.id);
+            })
+            .catch((error) => {
+                console.error('Error fetching opening hours:', error);
+            });
+    }, [restaurant.id, updateOpenStatuses]);
+    
     useEffect(() => {
         const checkReservation = async (restaurantId, userId) => {
             try {
@@ -31,8 +41,7 @@ function RestaurantsTemplate({ restaurant }) {
                 console.error('Error checking reservation:', error);
             }
         };
-
-        fetchRestaurantOpeningHours(restaurant.id);
+    
         if (userId) {
             checkReservation(restaurant.id, userId);
         }
@@ -49,15 +58,6 @@ function RestaurantsTemplate({ restaurant }) {
             });
         }
     }, [userId]);
-
-    const fetchRestaurantOpeningHours = async (restaurantId) => {
-        try {
-            const data = await isRestaurantOpen(restaurantId);
-            setIsOpenNow(data);
-        } catch (error) {
-            console.error('Error fetching opening hours:', error);
-        }
-    };
 
     async function handleContainerClick() {
         if (userId) {

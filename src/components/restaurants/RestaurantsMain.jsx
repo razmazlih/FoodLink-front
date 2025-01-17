@@ -9,6 +9,7 @@ function RestaurantsMain() {
     const [restaurants, setRestaurants] = useState(
         JSON.parse(localStorage.getItem('restaurants')) || []
     );
+    const [openStatus, setOpenStatus] = useState(JSON.parse(localStorage.getItem('openStatus')) || {});
 
     useEffect(() => {
         fetchRestaurants();
@@ -28,6 +29,17 @@ function RestaurantsMain() {
         restaurant.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const updateOpenStatuses = (updatedStatus, restaurantId) => {
+        setOpenStatus((prev) => {
+            const newStatus = { 
+                ...prev, 
+                [restaurantId]: updatedStatus
+            };
+            localStorage.setItem('openStatus', JSON.stringify(newStatus));
+            return newStatus;
+        });
+    };
+
     return (
         <div className="restaurants-main">
             <h2 className="restaurants-main-title">Restaurants</h2>
@@ -40,6 +52,8 @@ function RestaurantsMain() {
                     <RestaurantsTemplate
                         key={restaurant.id}
                         restaurant={restaurant}
+                        openStatus={openStatus}
+                        updateOpenStatuses={updateOpenStatuses}
                     />
                 ))}
             </div>
