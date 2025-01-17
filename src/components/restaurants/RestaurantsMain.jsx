@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import RestaurantSearch from './RestaurantSearch';
 import RestaurantsTemplate from './RestaurantsTemplate';
 import { getRestaurants } from '../../services/DishBoard/restaurants/api';
@@ -29,7 +29,7 @@ function RestaurantsMain() {
         restaurant.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const updateOpenStatuses = (updatedStatus, restaurantId) => {
+    const updateOpenStatuses = useCallback((updatedStatus, restaurantId) => {
         setOpenStatus((prev) => {
             const newStatus = { 
                 ...prev, 
@@ -38,7 +38,7 @@ function RestaurantsMain() {
             localStorage.setItem('openStatus', JSON.stringify(newStatus));
             return newStatus;
         });
-    };
+    }, []);
 
     return (
         <div className="restaurants-main">
