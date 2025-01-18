@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { isRestaurantOpen } from '../../services/DishBoard/restaurants/api';
 import { useNavigate } from 'react-router-dom';
 import { fetchAllOrders, fetchOrder } from '../../services/OrderLine/order/api';
@@ -7,14 +8,16 @@ import { CartContext } from '../../context/CartContext';
 import './RestaurantsTemplate.css';
 
 function RestaurantsTemplate({ restaurant, openStatus, updateOpenStatuses }) {
+    const { t } = useTranslation();
     const navigate = useNavigate();
-    const isOpenNow = openStatus[restaurant.id] || {status: 'close'};
+    const isOpenNow = openStatus[restaurant.id] || { status: 'close' };
     const [hasActiveReservation, setHasActiveReservation] = useState(false);
     const { userId } = useContext(AuthContext);
     const { updateCart, createNewCart } = useContext(CartContext);
     const [myReservations, setMyReservations] = useState(
         JSON.parse(localStorage.getItem('myReservations')) || []
     );
+    const { i18n } = useTranslation();
 
     useEffect(() => {
         isRestaurantOpen(restaurant.id)
@@ -25,7 +28,13 @@ function RestaurantsTemplate({ restaurant, openStatus, updateOpenStatuses }) {
                 console.error('Error fetching opening hours:', error);
             });
     }, [restaurant.id, updateOpenStatuses]);
-    
+
+
+    useEffect(() => {
+        document.documentElement.lang = i18n.language;
+        document.documentElement.dir = i18n.language === 'he' ? 'rtl' : 'ltr';
+    }, [i18n.language]);
+
     useEffect(() => {
         const checkReservation = async (restaurantId, userId) => {
             try {
@@ -41,7 +50,7 @@ function RestaurantsTemplate({ restaurant, openStatus, updateOpenStatuses }) {
                 console.error('Error checking reservation:', error);
             }
         };
-    
+
         if (userId) {
             checkReservation(restaurant.id, userId);
         }
@@ -91,7 +100,7 @@ function RestaurantsTemplate({ restaurant, openStatus, updateOpenStatuses }) {
             <img
                 className="restaurant-photo"
                 src={restaurant.photo_url}
-                alt=""
+                alt={restaurant.name}
             />
             <div className="restaurants-info">
                 <h3>{restaurant.name}</h3>
@@ -101,16 +110,14 @@ function RestaurantsTemplate({ restaurant, openStatus, updateOpenStatuses }) {
                             isOpenNow.is_open ? 'open' : 'close'
                         }`}
                     >
-                        {isOpenNow.is_open ? 'Open' : 'Close'}
+                        {isOpenNow.is_open ? t('open') : t('closed')}
                     </span>
                     <span className="tooltip-text">
                         {isOpenNow.is_open
-                            ? `Closes at ${isOpenNow.closes_at.slice(0, 5)}`
+                            ? `${t('closesAt')} ${isOpenNow.closes_at.slice(0, 5)}`
                             : isOpenNow.next_day
-                            ? `Opens at ${
-                                  isOpenNow.next_day
-                              } ${isOpenNow.opens_at.slice(0, 5)}`
-                            : 'This restaurant not updates its status'}
+                            ? `${t('opensAt')} ${t(isOpenNow.next_day)}, ${isOpenNow.opens_at.slice(0, 5)}`
+                            : t('restaurantNotUpdated')}
                     </span>
                 </p>
             </div>

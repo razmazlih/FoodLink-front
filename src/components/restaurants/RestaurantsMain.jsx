@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import RestaurantSearch from './RestaurantSearch';
 import RestaurantsTemplate from './RestaurantsTemplate';
 import { getRestaurants } from '../../services/DishBoard/restaurants/api';
 import './RestaurantsMain.css';
 
 function RestaurantsMain() {
+    const { t } = useTranslation();
     const [searchTerm, setSearchTerm] = useState('');
     const [restaurants, setRestaurants] = useState(
         JSON.parse(localStorage.getItem('restaurants')) || []
@@ -42,7 +44,7 @@ function RestaurantsMain() {
 
     return (
         <div className="restaurants-main">
-            <h2 className="restaurants-main-title">Restaurants</h2>
+            <h2 className="restaurants-main-title">{t('restaurantsTitle')}</h2>
             <RestaurantSearch
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
