@@ -8,9 +8,9 @@ import axios from 'axios';
 
 function HomeMain() {
     useEffect(() => {
-        axios.get(API_DISHBOARD_URL).catch(err => null);
-        axios.get(API_ORDERLINE_URL).catch(err => null);
-        axios.get(API_USERBASE_URL).catch(err => null);
+        axios.get(API_DISHBOARD_URL).catch(() => null);
+        axios.get(API_ORDERLINE_URL).catch(() => null);
+        axios.get(API_USERBASE_URL).catch(() => null);
     })
     const { t } = useTranslation();
 
