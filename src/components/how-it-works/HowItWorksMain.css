@@ -100,7 +100,7 @@
     color: #ff7e5f;
     font-weight: 600;
     text-decoration: none;
-    margin-left: 10px;
+    margin: 0 10px;
 }
 
 .service-link:hover {
