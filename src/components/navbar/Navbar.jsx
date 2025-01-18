@@ -33,6 +33,7 @@ const Navbar = ({ changeLanguage }) => {
     const toggleLanguage = () => {
         const newLanguage = i18n.language === 'en' ? 'he' : 'en';
         changeLanguage(newLanguage);
+        setIsMenuOpen(false);
     };
 
     return (
