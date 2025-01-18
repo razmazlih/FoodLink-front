@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import HomeMain from './components/home/HomeMain';
 import Navbar from './components/navbar/Navbar';
 import RestaurantsMain from './components/restaurants/RestaurantsMain';
@@ -11,13 +12,31 @@ import HowItWorksMain from './components/how-it-works/HowItWorksMain';
 import { CartContextProvider } from './context/CartContext';
 import Orders from './components/orders/Orders';
 import OrderCheckoutMain from './components/checkout/OrderCheckoutMain';
+import './i18n';
+import { useEffect } from 'react';
 
 function App() {
+    const { i18n } = useTranslation();
+
+    useEffect(() => {
+        const savedLanguage = localStorage.getItem('language') || 'en';
+        i18n.changeLanguage(savedLanguage);
+        document.documentElement.lang = savedLanguage;
+        document.documentElement.dir = savedLanguage === 'he' ? 'rtl' : 'ltr';
+    }, [i18n]);
+
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+        document.documentElement.lang = lng;
+        document.documentElement.dir = lng === 'he' ? 'rtl' : 'ltr';
+        localStorage.setItem('language', lng);
+    };
+
     return (
         <Router>
             <AuthProvider>
                 <CartContextProvider>
-                    <Navbar />
+                    <Navbar changeLanguage={changeLanguage} />
                     <Routes>
                         <Route path="/" element={<HomeMain />} />
                         <Route
@@ -36,9 +55,10 @@ function App() {
                             element={<HowItWorksMain />}
                         />
                         <Route path="/my-orders" element={<Orders />} />
-                        <Route path="/my-orders/checkout/:orderId" element={<OrderCheckoutMain />} />
-
-
+                        <Route
+                            path="/my-orders/checkout/:orderId"
+                            element={<OrderCheckoutMain />}
+                        />
                     </Routes>
                 </CartContextProvider>
             </AuthProvider>
