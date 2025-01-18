@@ -3,6 +3,7 @@ import { deleteOrder, fetchOrder } from '../../services/OrderLine/order/api';
 import { updateCartStatus } from '../../services/OrderLine/status/api';
 import { CartContext } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function SingleOrder({
     order,
@@ -13,6 +14,8 @@ function SingleOrder({
 }) {
     const { updateCart, orderId } = useContext(CartContext);
     const navigate = useNavigate();
+    const { t } = useTranslation();
+
     const hundleDeleteOrder = (orderId) => {
         deleteOrder(orderId);
         const filteredOrders = myOrders.filter((order) => order.id !== orderId);
@@ -60,7 +63,7 @@ function SingleOrder({
     };
 
     const hundleUpdateOrderStatusDelete = async (orderId) => {
-        updateCartStatus(orderId, 'cencelled').then(() => {
+        updateCartStatus(orderId, 'cancelled').then(() => {
             const updatedOrders = myOrders.map((o) =>
                 o.id === orderId
                     ? {
@@ -92,7 +95,7 @@ function SingleOrder({
             {order.status.length === 0 ? (
                 <>
                     <button
-                        className="btn-continue-ordering"
+                        className="btn-continue-ordering button-spaced"
                         onClick={() =>
                             hundleContinueCart(
                                 order.restaurant_id,
@@ -100,10 +103,10 @@ function SingleOrder({
                             )
                         }
                     >
-                        Continue Ordering
+                        {t('continueOrdering')}
                     </button>
                     <button
-                        className="btn-checkout-order"
+                        className="btn-checkout-order button-spaced"
                         onClick={() =>
                             hundleContinueCart(
                                 order.restaurant_id,
@@ -111,30 +114,24 @@ function SingleOrder({
                             )
                         }
                     >
-                        Checkout
+                        {t('checkout')}
                     </button>
                     <button
-                        className="btn-delete-order"
+                        className="btn-delete-order button-spaced"
                         onClick={() => {
                             Number(order.id) === Number(orderId)
                                 ? hundleDeleteMyOrder(order.id)
                                 : hundleDeleteOrder(order.id);
                         }}
                     >
-                        Delete Order
+                        {t('deleteOrder')}
                     </button>
                 </>
             ) : (
                 <>
                     <p>
                         <span className="updated-time">
-                            <span>
-                                updated time:{' '}
-                                {formatDate(
-                                    order.status[order.status.length - 1]
-                                        .updated_at
-                                )}
-                            </span>
+                            {t('updatedTime')}: {formatDate(order.status[order.status.length - 1].updated_at)}
                         </span>
                     </p>
                     <div className="order-status">
@@ -146,18 +143,16 @@ function SingleOrder({
                                     : 'order-status-delivered'
                             }
                         >
-                            Order is{' '}
-                            {order.status[order.status.length - 1].status}
+                            {t('orderStatus')} {t(order.status[order.status.length - 1].status)}
                         </span>
-                        {order.status[order.status.length - 1].status ===
-                            'active' && (
+                        {order.status[order.status.length - 1].status === 'active' && (
                             <button
                                 className="btn-update-order-status-cencel"
                                 onClick={() =>
                                     hundleUpdateOrderStatusDelete(order.id)
                                 }
                             >
-                                Cencel Order
+                                {t('cancelOrder')}
                             </button>
                         )}
                     </div>

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CartContext } from '../../context/CartContext';
 import { useParams } from 'react-router-dom';
 import { fetchOrder } from '../../services/OrderLine/order/api';
@@ -7,6 +8,7 @@ import OrderSummary from './OrderSummary';
 import './OrderCheckout.css';
 
 function OrderCheckoutMain() {
+    const { t, i18n } = useTranslation();
     const { orderId } = useParams();
     const { cart } = useContext(CartContext);
     const [myOrder, setMyOrder] = useState({ items: [], totalPrice: 0 });
@@ -19,7 +21,7 @@ function OrderCheckoutMain() {
                 id: order.id,
                 items: order.items.map((item) => ({
                     ...item,
-                    name: mapItemName[item.id] || 'Loading...',
+                    name: mapItemName[item.id] || t('loading'),
                 })),
                 orderedAt: order.ordered_at,
                 totalPrice: order.total_price,
@@ -27,9 +29,11 @@ function OrderCheckoutMain() {
             };
             setMyOrder(showOrder);
         });
-    }, [orderId, cart]);
+    }, [orderId, cart, t]);
 
     const formatDate = (date) => {
+        if (!date) return t('loading');
+
         const options = {
             year: 'numeric',
             month: 'long',
@@ -38,15 +42,13 @@ function OrderCheckoutMain() {
             minute: '2-digit',
         };
 
-        const israelDate = new Date(
-            new Date(date).getTime() + 2 * 60 * 60 * 1000
-        );
-        return israelDate.toLocaleString('en-US', { ...options });
+        const locale = i18n.language === 'he' ? 'he-IL' : 'en-US';
+        return new Date(date).toLocaleString(locale, options);
     };
 
     return (
         <div className="order-checkout-main-container">
-            <h1 className="order-checkout-main-title">Order Checkout</h1>
+            <h1 className="order-checkout-main-title">{t('orderCheckoutTitle')}</h1>
             <p className="order-checkout-main-date">
                 {formatDate(myOrder.orderedAt)}
             </p>

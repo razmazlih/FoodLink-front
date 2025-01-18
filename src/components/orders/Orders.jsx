@@ -3,12 +3,14 @@ import { fetchAllOrders } from '../../services/OrderLine/order/api';
 import { AuthContext } from '../../context/AuthContext';
 import { getRestaurantsNamesAndIds } from '../../services/DishBoard/restaurants/api';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './Orders.css';
 import { CartContext } from '../../context/CartContext';
 import SingleOrder from './SingleOrder';
 
 function Orders() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const { userId } = useContext(AuthContext);
     const { cart } = useContext(CartContext);
     const [myOrders, setMyOrders] = useState(
@@ -74,12 +76,12 @@ function Orders() {
 
     return (
         <div className="orders-container">
-            <h2 className="orders-title">My Orders</h2>
+            <h2 className="orders-title">{t('myOrders')}</h2>
             <button
                 className="btn-start-new-order"
                 onClick={() => navigate('/restaurants')}
             >
-                View Restaurants
+                {t('viewRestaurants')}
             </button>
             {showingOrders}
         </div>

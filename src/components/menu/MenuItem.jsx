@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { CartContext } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function MenuItem({ menuItem }) {
+    const { t } = useTranslation();
     const { userId } = useContext(AuthContext);
     const { addToCart, setShowing, checkInCart, cart } =
         useContext(CartContext);
@@ -21,17 +23,17 @@ function MenuItem({ menuItem }) {
 
     const userLogin = (
         <button onClick={() => handleAddToCart()} className="add-to-cart-btn">
-            Add to Cart
+            {t('addToCart')}
         </button>
     );
 
     const inCart = (
         <span className="added-to-cart" onClick={() => setShowing(true)}>
-            Added
+            {t('added')}
         </span>
     );
 
-    const hundleIsLoginIsInCart = userId ? (
+    const handleIsLoginIsInCart = userId ? (
         isInCart ? (
             inCart
         ) : (
@@ -39,7 +41,7 @@ function MenuItem({ menuItem }) {
         )
     ) : (
         <p className="login-prompt-menu" onClick={() => navigate('/login')}>
-            Please log in to order items
+            {t('pleaseLogin')}
         </p>
     );
 
@@ -50,7 +52,7 @@ function MenuItem({ menuItem }) {
                 <span className="price">{menuItem.price}₪</span>
             </div>
             <p className="menu-item-description">{menuItem.description}</p>
-            {hundleIsLoginIsInCart}
+            {handleIsLoginIsInCart}
         </li>
     );
 }

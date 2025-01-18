@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
+import { useTranslation } from 'react-i18next';
 import MenuItem from './MenuItem';
 import './MenuItems.css';
 import { AuthContext } from '../../context/AuthContext';
 
 function MenuItems({ menu }) {
+    const { t } = useTranslation();
     const { userId } = useContext(AuthContext);
     const { cart, showing, setShowing } = useContext(CartContext);
     const [showCheckout, setShowCheckout] = useState(false);
@@ -16,13 +18,14 @@ function MenuItems({ menu }) {
             setShowCheckout(false);
         }
     }, [cart, showing, userId]);
-    const hundleClickCheckout = () => {
+
+    const handleClickCheckout = () => {
         setShowing(true);
     };
 
     return (
         <div className="menu-items-container">
-            <h2 className="menu-title">Menu</h2>
+            <h2 className="menu-title">{t('menu')}</h2>
             {menu.map((category) => (
                 <div key={category.id} className="category-container">
                     <h3 className="category-title">{category.name}</h3>
@@ -36,9 +39,9 @@ function MenuItems({ menu }) {
             {showCheckout ? (
                 <button
                     className="menu-checkout-button"
-                    onClick={() => hundleClickCheckout()}
+                    onClick={() => handleClickCheckout()}
                 >
-                    View order <span className="cart-count">{cart.length}</span>
+                    {t('viewOrder')} <span className="cart-count">{cart.length}</span>
                 </button>
             ) : (
                 <div className="menu-checkout-placeholder"></div>

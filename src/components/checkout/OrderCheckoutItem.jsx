@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getMenuItemNameById } from '../../services/DishBoard/menu/api';
 
 function OrderCheckoutItem({ items }) {
+    const { t } = useTranslation();
     const [mapItemName, setMapItemName] = useState(
         JSON.parse(localStorage.getItem('cartNames')) || {}
     );
+
     useEffect(() => {
         const fetchDetailsForLoadingItems = async () => {
             const cartNames =
@@ -44,8 +47,9 @@ function OrderCheckoutItem({ items }) {
             {items.map((item) => (
                 <div className="order-checkout-item-container" key={item.id}>
                     <p className="order-checkout-item-name">
-                        {mapItemName[item.menu_item_id]} - {Number(item.price)}₪{' '}
-                        {item.quantity > 1 && 'x ' + item.quantity}
+                        {mapItemName[item.menu_item_id] || t('loading')} -{' '}
+                        {Number(item.price)}₪{' '}
+                        {item.quantity > 1 && `x ${item.quantity}`}
                     </p>
                 </div>
             ))}

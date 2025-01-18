@@ -2,8 +2,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { updateCartStatus } from '../../services/OrderLine/status/api';
 import { CartContext } from '../../context/CartContext';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function OrderSummary({ totalPrice, myOrder }) {
+    const { t } = useTranslation();
     const { orderId } = useParams();
     const { updateCart } = useContext(CartContext);
     const navigate = useNavigate();
@@ -19,7 +21,7 @@ function OrderSummary({ totalPrice, myOrder }) {
             });
     };
 
-    const hundleContinueCart = (inNavigate) => {
+    const handleContinueCart = (inNavigate) => {
         updateCart(myOrder.items, myOrder.id);
         navigate(inNavigate);
     };
@@ -27,23 +29,21 @@ function OrderSummary({ totalPrice, myOrder }) {
     return (
         <div className="order-checkout-summary-container">
             <h4 className="order-checkout-summary-total">
-                Total: {totalPrice > 0 ? totalPrice : 0}₪
+                {t('total')}: {totalPrice > 0 ? totalPrice : 0}₪
             </h4>
             {totalPrice > 0 && (
                 <button
                     className="order-checkout-button-checkout"
                     onClick={handleCheckout}
                 >
-                    Checkout
+                    {t('pay')}
                 </button>
             )}
             <button
                 className="order-checkout-button-continue"
-                onClick={() =>
-                    hundleContinueCart(`/restaurants/${myOrder.restaurantId}`)
-                }
+                onClick={() => handleContinueCart(`/restaurants/${myOrder.restaurantId}`)}
             >
-                Continue Ordering
+                {t('continueOrdering')}
             </button>
         </div>
     );

@@ -1,24 +1,26 @@
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CartContext } from '../../context/CartContext';
 import CartTemplate from './CartTemplate';
 import './CartNavbar.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 function CartNavbar() {
+    const { t } = useTranslation();
     const { cart, setShowing, orderId } = useContext(CartContext);
     const navigate = useNavigate();
     const location = useLocation();
 
-    const hundleClickCheckout = () => {
+    const handleClickCheckout = () => {
         setShowing(false);
         navigate(`/my-orders/checkout/${orderId}`);
     };
 
     return (
         <div className="cart-navbar">
-            <h2 className="cart-navbar-title">My Cart</h2>
+            <h2 className="cart-navbar-title">{t('myCart')}</h2>
             {!cart.length && (
-                <p className="cart-navbar-pas">No items in the cart</p>
+                <p className="cart-navbar-pas">{t('emptyCart')}</p>
             )}
 
             <div className="cart-items-container">
@@ -29,13 +31,13 @@ function CartNavbar() {
             {cart.length > 0 && !location.pathname.includes('/checkout') && (
                 <button
                     className="cart-button"
-                    onClick={() => hundleClickCheckout()}
+                    onClick={() => handleClickCheckout()}
                 >
-                    Checkout
+                    {t('checkout')}
                 </button>
             )}
             <button className="cart-button" onClick={() => setShowing(false)}>
-                Close
+                {t('close')}
             </button>
         </div>
     );
