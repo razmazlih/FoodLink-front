@@ -30,6 +30,9 @@
     font-weight: 700;
     text-transform: capitalize;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tooltip-status {
@@ -69,24 +72,16 @@
 
 .tooltip-text {
     font-size: 0.9rem;
-    width: 120px;
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
-    text-align: center;
     border-radius: 8px;
     padding: 5px 0;
     position: absolute;
-    bottom: 125%;
-    left: 52%;
-    transform: translateX(-50%);
+    bottom: 120%;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     z-index: 100;
     pointer-events: none;
-}
-
-[dir="rtl"] .tooltip-text {
-    left: 64%;
 }
 
 .restaurant-status:hover ~ .tooltip-text {
