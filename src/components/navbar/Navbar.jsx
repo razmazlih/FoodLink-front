@@ -106,7 +106,7 @@ const Navbar = ({ changeLanguage }) => {
                 </ul>
                 {showing && <CartNavbar />}
             </div>
-            <div className={`navbar-space ${isMenuOpen ? 'active' : ''}`}></div>
+            <div className={`navbar-space ${isMenuOpen && 'active'} ${isLoggedIn && 'login'}`}></div>
         </>
     );
 };
