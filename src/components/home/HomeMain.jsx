@@ -2,8 +2,16 @@ import FirstContent from './FirstContent';
 import TemplateContent from './TemplateContent';
 import { useTranslation } from 'react-i18next';
 import './HomeMain.css';
+import { useEffect } from 'react';
+import { API_DISHBOARD_URL, API_ORDERLINE_URL, API_USERBASE_URL } from '../../config';
+import axios from 'axios';
 
 function HomeMain() {
+    useEffect(() => {
+        axios.get(API_DISHBOARD_URL).catch(err => null);
+        axios.get(API_ORDERLINE_URL).catch(err => null);
+        axios.get(API_USERBASE_URL).catch(err => null);
+    })
     const { t } = useTranslation();
 
     const myItems = [
