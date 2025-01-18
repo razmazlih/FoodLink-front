@@ -105,5 +105,10 @@
     "loading": "טוען...",
     "orderCheckoutTitle": "סיכום הזמנה",
     "total": "סה\"כ",
-    "pay": "שלם"
+    "pay": "שלם",
+    "orderDetailsTitle": "פרטי ההזמנה",
+    "backToOrders": "חזרה להזמנות שלי",
+    "unknownItem": "פריט לא ידוע",
+    "noItems": "אין פריטים בהזמנה זו",
+    "viewOrderDetails": "צפה בהזמנה"
 }

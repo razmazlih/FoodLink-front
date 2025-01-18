@@ -137,7 +137,7 @@
 .order-status-delivered {
     font-size: 1.2rem;
     padding: 8px 12px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     border-radius: 10px;
     background-color: #cce4fc;
     color: #007aff;
@@ -186,6 +186,24 @@
     background: linear-gradient(135deg, #2b8a45, #0c7d4a);
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-view-order-details {
+    background: linear-gradient(135deg, #f0a500, #e6b100);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.btn-view-order-details:hover {
+    background: linear-gradient(135deg, #ca9b00, #a57f00);
+    transform: scale(1.01);
 }
 
 @media (max-width: 768px) {

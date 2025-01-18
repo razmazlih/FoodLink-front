@@ -14,6 +14,7 @@ import Orders from './components/orders/Orders';
 import OrderCheckoutMain from './components/checkout/OrderCheckoutMain';
 import './i18n';
 import { useEffect } from 'react';
+import OrderDetailsMain from './components/order-detail/OrderDetailsMain';
 
 function App() {
     const { i18n } = useTranslation();
@@ -59,6 +60,7 @@ function App() {
                             path="/my-orders/checkout/:orderId"
                             element={<OrderCheckoutMain />}
                         />
+                        <Route path="/order-details/:orderId" element={<OrderDetailsMain />} />
                     </Routes>
                 </CartContextProvider>
             </AuthProvider>

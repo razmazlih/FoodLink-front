@@ -105,5 +105,10 @@
     "loading": "Loading...",
     "orderCheckoutTitle": "Order Checkout",
     "total": "Total",
-    "pay": "Pay"
+    "pay": "Pay",
+    "orderDetailsTitle": "Order Details",
+    "backToOrders": "Back to My Orders",
+    "unknownItem": "Unknown Item",
+    "noItems": "No items in this order",
+    "viewOrderDetails": "View Order Details"
 }

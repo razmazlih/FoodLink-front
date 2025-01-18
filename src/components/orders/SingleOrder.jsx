@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { deleteOrder, fetchOrder } from '../../services/OrderLine/order/api';
-import { updateCartStatus } from '../../services/OrderLine/status/api';
 import { CartContext } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -12,9 +11,13 @@ function SingleOrder({
     myOrders,
     setMyOrders,
 }) {
-    const { updateCart, orderId } = useContext(CartContext);
+    const { updateCart } = useContext(CartContext);
     const navigate = useNavigate();
     const { t } = useTranslation();
+
+    const hundleViewOrderDetails = (orderId) => {
+        navigate(`/order-details/${orderId}`);
+    };
 
     const hundleDeleteOrder = (orderId) => {
         deleteOrder(orderId);
@@ -54,39 +57,6 @@ function SingleOrder({
         return `${day}/${month}/${year} ${hours}:${minutes}`;
     };
 
-    const hundleDeleteMyOrder = async (orderId) => {
-        await deleteOrder(orderId);
-        const filteredOrders = myOrders.filter((order) => order.id !== orderId);
-        setMyOrders(filteredOrders);
-        localStorage.setItem('myOrders', JSON.stringify(filteredOrders));
-        updateCart([], '');
-    };
-
-    const hundleUpdateOrderStatusDelete = async (orderId) => {
-        updateCartStatus(orderId, 'cancelled').then(() => {
-            const updatedOrders = myOrders.map((o) =>
-                o.id === orderId
-                    ? {
-                          ...o,
-                          status: [
-                              ...o.status,
-                              {
-                                  status: 'cancelled',
-                                  updated_at: (() => {
-                                      const date = new Date();
-                                      date.setHours(date.getHours() - 2);
-                                      return date.toISOString();
-                                  })(),
-                              },
-                          ],
-                      }
-                    : o
-            );
-            setMyOrders(updatedOrders);
-            localStorage.setItem('myOrders', JSON.stringify(updatedOrders));
-        });
-    };
-
     const ShowOrder = order.total_price > 0 && (
         <div key={order.id} className="order-item">
             <h2 className="order-title">
@@ -118,11 +88,7 @@ function SingleOrder({
                     </button>
                     <button
                         className="btn-delete-order button-spaced"
-                        onClick={() => {
-                            Number(order.id) === Number(orderId)
-                                ? hundleDeleteMyOrder(order.id)
-                                : hundleDeleteOrder(order.id);
-                        }}
+                        onClick={() => hundleDeleteOrder(order.id)}
                     >
                         {t('deleteOrder')}
                     </button>
@@ -145,16 +111,12 @@ function SingleOrder({
                         >
                             {t('orderStatus')} {t(order.status[order.status.length - 1].status)}
                         </span>
-                        {order.status[order.status.length - 1].status === 'active' && (
-                            <button
-                                className="btn-update-order-status-cencel"
-                                onClick={() =>
-                                    hundleUpdateOrderStatusDelete(order.id)
-                                }
-                            >
-                                {t('cancelOrder')}
-                            </button>
-                        )}
+                        <button
+                            className="btn-view-order-details button-spaced"
+                            onClick={() => hundleViewOrderDetails(order.id)}
+                        >
+                            {t('viewOrderDetails')}
+                        </button>
                     </div>
                 </>
             )}
