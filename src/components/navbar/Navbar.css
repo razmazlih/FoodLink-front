@@ -18,7 +18,11 @@
 }
 
 .navbar-space.active {
-    height: 374px;
+    height: 304px;
+}
+
+.navbar-space.active.login {
+    height: 376px;
 }
 
 .navbar-header {
@@ -125,7 +129,7 @@
     }
 
     .navbar-list.open {
-        max-height: 300px;
+        max-height: 320px;
     }
 
     .navbar-item {
