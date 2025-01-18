@@ -1,10 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../../context/AuthContext';
 import { userCredentials } from '../../services/Userbase/api';
 import './Login.css';
 
 function Login() {
+    const { t } = useTranslation();
     const { handleLogin } = useContext(AuthContext);
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
@@ -14,15 +16,15 @@ function Login() {
     const handleSubmit = () => {
         setError('');
         userCredentials({
-            username: username.toLocaleLowerCase(),
+            username: username.toLowerCase(),
             password,
         })
             .then((response) => {
                 handleLogin(response);
                 navigate('/restaurants');
             })
-            .catch((error) => {
-                setError('Invalid username or password. Please try again.');
+            .catch(() => {
+                setError(t('invalidCredentials'));
             });
     };
 
@@ -34,12 +36,12 @@ function Login() {
 
     return (
         <div className="login-container">
-            <h1 className="login-title">Login</h1>
+            <h1 className="login-title">{t('login')}</h1>
             <div className="login-form">
                 <input
                     className="login-input"
                     type="text"
-                    placeholder="Username"
+                    placeholder={t('username')}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     onKeyDown={handlePressEnter}
@@ -47,19 +49,19 @@ function Login() {
                 <input
                     className="login-input"
                     type="password"
-                    placeholder="Password"
+                    placeholder={t('password')}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     onKeyDown={handlePressEnter}
                 />
                 <button className="login-button" onClick={handleSubmit}>
-                    Login
+                    {t('login')}
                 </button>
                 {error && <div className="error-message-login">{error}</div>}
                 <p className="login-text">
-                    Don't have an account?{' '}
+                    {t('noAccount')}{' '}
                     <Link to="/register" className="login-link">
-                        Register
+                        {t('register')}
                     </Link>
                 </p>
             </div>
