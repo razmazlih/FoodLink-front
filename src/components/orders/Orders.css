@@ -28,6 +28,10 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+.button-spaced {
+    margin: 0 5px;
+}
+
 .order-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -44,7 +48,7 @@
 .btn-checkout-order,
 .btn-delete-order,
 .btn-update-order-status-cencel {
-    margin-right: 20px;
+    /* margin-right: 20px; */
     padding: 14px 20px;
     font-size: 1.1rem;
     border: none;
@@ -133,7 +137,7 @@
 .order-status-delivered {
     font-size: 1.2rem;
     padding: 8px 12px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     border-radius: 10px;
     background-color: #cce4fc;
     color: #007aff;
