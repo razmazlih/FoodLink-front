@@ -40,6 +40,7 @@
 }
 
 .register-text {
+    text-align: center;
     margin-top: 10px;
     font-size: 0.9rem;
 }
@@ -62,4 +63,24 @@
     margin-top: 10px;
     font-size: 0.9rem;
     text-align: center;
+}
+
+.input-error {
+    border: 2px solid #d9534f;
+    background-color: #f8d7da;
+}
+
+.error-message {
+    color: #d9534f;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    text-align: left;
+}
+
+.error-general {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
 }
