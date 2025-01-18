@@ -1,29 +1,26 @@
 import './HowItWorksMain.css';
+import { useTranslation } from 'react-i18next';
 
 function HowItWorksMain() {
+    const { t } = useTranslation();
+
     return (
         <div className="how-it-works-container">
-            <h1 className="how-it-works-title">How it Works</h1>
+            <h1 className="how-it-works-title">{t('howItWorksTitle')}</h1>
             <div className="how-it-works-content">
-                <p className="intro-text">
-                    Welcome to my food ordering platform! Here’s a quick
-                    overview of how everything works behind the scenes to ensure
-                    a smooth experience:
-                </p>
+                <p className="intro-text">{t('howItWorksIntro')}</p>
                 <ol className="how-it-works-steps">
                     <li className="step-item">
-                        <strong>User Management:</strong> Create an account or
-                        log in to access all features. Your account securely
-                        stores your information for a personalized experience.
+                        <strong>{t('userManagementTitle')}:</strong> {t('userManagementDesc')}
                         <br />
-                        Links:
+                        {t('links')}:
                         <a
                             href="https://userbase-xqd2.onrender.com"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="service-link"
                         >
-                            Documentation
+                            {t('documentation')}
                         </a>{' '}
                         |
                         <a
@@ -36,19 +33,16 @@ function HowItWorksMain() {
                         </a>
                     </li>
                     <li className="step-item">
-                        <strong>Restaurant Management:</strong> Browse through a
-                        curated list of restaurants. View detailed menus with
-                        prices and descriptions to find exactly what you’re
-                        craving.
+                        <strong>{t('restaurantManagementTitle')}:</strong> {t('restaurantManagementDesc')}
                         <br />
-                        Links:
+                        {t('links')}:
                         <a
                             href="https://dishboard.onrender.com"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="service-link"
                         >
-                            Documentation
+                            {t('documentation')}
                         </a>{' '}
                         |
                         <a
@@ -61,20 +55,16 @@ function HowItWorksMain() {
                         </a>
                     </li>
                     <li className="step-item">
-                        <strong>Order Management:</strong> Add items to your
-                        cart from one or multiple restaurants. Keep track of all
-                        your ongoing orders simultaneously. After confirming
-                        your order, track its status in real-time until
-                        completion.
+                        <strong>{t('orderManagementTitle')}:</strong> {t('orderManagementDesc')}
                         <br />
-                        Links:
+                        {t('links')}:
                         <a
                             href="https://orderline.onrender.com/docs"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="service-link"
                         >
-                            Documentation
+                            {t('documentation')}
                         </a>{' '}
                         |
                         <a
@@ -87,21 +77,13 @@ function HowItWorksMain() {
                         </a>
                     </li>
                     <li className="step-item">
-                        <strong>Real-Time Updates:</strong> Using WebSocket
-                        technology, we provide live updates on your delivery
-                        status, so you always know when your food will arrive.
+                        <strong>{t('realTimeUpdatesTitle')}:</strong> {t('realTimeUpdatesDesc')}
                     </li>
                     <li className="step-item">
-                        <strong>Simplified Payments:</strong> The platform
-                        includes a simulated payment system to finalize your
-                        orders securely and efficiently.
+                        <strong>{t('paymentsTitle')}:</strong> {t('paymentsDesc')}
                     </li>
                     <li className="step-item">
-                        <strong>Built for Learning:</strong> This project was
-                        developed to explore multi-server architectures,
-                        real-time systems, and database management. While it’s
-                        fully functional, the platform is currently for
-                        educational purposes and not active for public use.
+                        <strong>{t('learningTitle')}:</strong> {t('learningDesc')}
                     </li>
                 </ol>
             </div>

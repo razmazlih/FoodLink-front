@@ -1,48 +1,38 @@
 import './AboutMain.css';
+import { useTranslation } from 'react-i18next';
 
 function AboutMain() {
+    const { t } = useTranslation();
+
     return (
         <div className="about-container">
-            <h1 className="about-title">About</h1>
+            <h1 className="about-title">{t('aboutTitle')}</h1>
             <p className="about-text">
-                I developed an online food ordering website using{' '}
-                <span className="highlight">Django</span> and
-                <span className="highlight"> FastAPI</span>, integrating{' '}
-                <span className="highlight">WebSocket</span> in FastAPI for
-                real-time updates on delivery status.
+                {t('aboutIntro')}
+                <span className="highlight">Django</span> {t('and')}
+                <span className="highlight"> FastAPI</span>, {t('aboutWebsocket')}
+                <span className="highlight">WebSocket</span> {t('forRealTimeUpdates')}.
             </p>
             <p className="about-text">
-                The website includes three server-side services:{' '}
-                <span className="highlight">user management</span>,
-                <span className="highlight"> restaurant management</span>, and{' '}
-                <span className="highlight">order management</span>. The primary
-                goal of the website was to experiment with complex development
-                involving multiple servers.
+                {t('aboutServices')}
+                <span className="highlight">{t('userManagement')}</span>,
+                <span className="highlight">{t('restaurantManagement')}</span>, {t('and')}
+                <span className="highlight">{t('orderManagement')}</span>. {t('aboutGoal')}
             </p>
-            <p className="about-text">Key features of the site include:</p>
+            <p className="about-text">{t('aboutFeatures')}:</p>
             <ul className="features-list">
-                <li>User registration and login</li>
-                <li>Viewing restaurant menus and the list of restaurants</li>
-                <li>Tracking multiple orders simultaneously</li>
-                <li>
-                    Monitoring order status after payment (simulated payment)
-                </li>
+                <li>{t('featureUserRegistration')}</li>
+                <li>{t('featureViewingMenus')}</li>
+                <li>{t('featureTrackingOrders')}</li>
+                <li>{t('featureMonitoringStatus')}</li>
             </ul>
             <p className="about-text">
-                I worked on the project alone to learn and experiment with all
-                aspects of development. I used three{' '}
-                <span className="highlight">PostgreSQL</span> databases and
-                didn’t integrate any external tools.
+                {t('aboutLearning')}
+                <span className="highlight">PostgreSQL</span> {t('aboutDatabases')}.
             </p>
-            <p className="about-text">
-                I designed the website independently. The biggest challenge was
-                aggregating data from multiple servers and presenting it as
-                coherent information on the client side.
-            </p>
-            <p className="about-text">
-                The website is for personal use and learning, so it is not
-                active.
-            </p>
+            <p className="about-text">{t('aboutDesign')}</p>
+            <p className="about-text">{t('aboutChallenges')}</p>
+            <p className="about-text">{t('aboutPersonalUse')}</p>
         </div>
     );
 }

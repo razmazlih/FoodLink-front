@@ -1,54 +1,43 @@
 import FirstContent from './FirstContent';
 import TemplateContent from './TemplateContent';
+import { useTranslation } from 'react-i18next';
 import './HomeMain.css';
 
 function HomeMain() {
+    const { t } = useTranslation();
+
     const myItems = [
         {
-            topic: 'Restaurant discovery',
-            content: 'Explore a wide array of local restaurants with ease.',
+            topic: t('restaurantDiscovery'),
+            content: t('exploreRestaurants'),
         },
         {
-            topic: 'Order tracking',
-            content: 'Stay updated on your food delivery in real-time.',
+            topic: t('orderTracking'),
+            content: t('stayUpdated'),
         },
         {
-            topic: 'Menu browsing',
-            content: 'View detailed menus from your favorite restaurants.',
+            topic: t('menuBrowsing'),
+            content: t('viewMenus'),
         },
     ];
 
     const contentToRender = [
         {
-            topHeader: <h3
-                className="first-content-h3">DISCOVER FOODLINK</h3>,
-            mainHeader: <h2
-                className="first-content-h2">Your gateway to delicious meals</h2>,
+            topHeader: <h3 className="first-content-h3">{t('discoverFoodLink')}</h3>,
+            mainHeader: <h2 className="first-content-h2">{t('yourGateway')}</h2>,
             paragraph: (
-                <p
-                className="first-content-p"
-                >
-                    FoodLink connects you to finest restaurants right at your
-                    fingertips. Browse through a diverse selection of eateries,
-                    explore their menus, and handpick your favorite dishes for a
-                    delightful dining experience. Completing your order is a
-                    breeze with our easy-to-use platform. Plus, you can track
-                    your order online every step of the way. Enjoy the flavors
-                    of Ashdod without leaving your home!,
+                <p className="first-content-p">
+                    {t('foodLinkIntro')}
                 </p>
             ),
-            button: 'About the Project',
+            button: t('aboutProject'),
             link: '/about'
         },
         {
-            topHeader: <h3
-                className="first-content-h3">DELICIOUS DELIVERIES</h3>,
-            mainHeader: <h2
-                className="first-content-h2">Order from the best local restaurants</h2>,
+            topHeader: <h3 className="first-content-h3">{t('deliciousDeliveries')}</h3>,
+            mainHeader: <h2 className="first-content-h2">{t('orderFromBest')}</h2>,
             paragraph: myItems.map((item, index) => (
-                <li 
-                className="first-content-li"
-                key={index}>
+                <li className="first-content-li" key={index}>
                     <strong>{item.topic}:</strong> {item.content}
                 </li>
             )),
@@ -63,7 +52,7 @@ function HomeMain() {
             paragraph={content.paragraph}
             button={content.button}
         />
-    ))
+    ));
 
     return (
         <div className="home-main">
